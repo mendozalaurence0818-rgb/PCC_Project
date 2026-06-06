@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
         crossorigin="anonymous" />
     <link rel="stylesheet" href="css/adminlte.css" />
-    <link rel="icon" href="images/PCC_Logo" type="image/png" />
+    <link rel="icon" href="images/PCC_favicon" type="image/png" />
 </head>
 
 <body class="login-page bg-body-secondary"
@@ -23,8 +23,8 @@
             <a href="#"></a>
             <i><img src="images/PCC_Logo.png" alt="" style="width: 100px; height: 100px;"></i>
             <br>
-            <p style="font-size: 20px; margin-bottom: -10px; margin-top: 5px;">Home of the PCC Chiefs</p>
-            <p style="font-size: 25px; font-weight: bold;">POBLACION CENTRAL COLLEGE</p>
+            <p style="font-size: 25px; font-weight: bold; margin-bottom: -10px; margin-top: 5px;">POBLACION CENTRAL COLLEGE</p>
+    		<p style="font-size: 15px; margin-top: 5px;">Home of the PCC Chiefs</p>
         </div>
         <div>
             <div class="card-body login-card-body">

@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
         crossorigin="anonymous" />
     <link rel="stylesheet" href="css/adminlte.css" />
+    <link rel="icon" href="images/PCC_Logo" type="image/png" />
 </head>
 
 <body class="login-page bg-body-secondary"
@@ -69,5 +70,4 @@
     </div>
     </div>
 </body>
-
 </html>

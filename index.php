@@ -16,7 +16,7 @@
 </head>
 
 <body class="login-page bg-body-secondary"
-    style="background-image: url(images/PCC_Background.png); background-repeat: no-repeat; background-attachment: fixed; background-size: cover;">
+    style="background-image: url('images/PCC_Background.png'); background-repeat: no-repeat; background-attachment: fixed; background-size: cover;">
     <div class="login-box">
         <div class="login-logo" style="color: white;">
             <a href="#"></a>
@@ -59,7 +59,7 @@
                     <div class="row">
                         <div class="col-8">
                             <p class="mb-1">
-                                <a href="forgot-password.html">Forgot your password?</a>
+                                <a href="#">Forgot your password?</a>
                             </p>
                         </div>
                         <div class="col-4">

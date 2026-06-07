@@ -71,7 +71,6 @@
             color: #ffffff;
         }
         
-        /* Karagdagang Custom Glow Effects para sa Tab Activities */
         .activity-card {
             border: none;
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);

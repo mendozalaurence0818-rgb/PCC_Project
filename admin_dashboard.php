@@ -70,6 +70,20 @@
         .user-info .status-text {
             color: #ffffff;
         }
+        
+        /* Karagdagang Custom Glow Effects para sa Tab Activities */
+        .activity-card {
+            border: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            border-radius: 10px;
+        }
+        
+        .tab-indicator {
+            font-weight: 600;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
     </style>
 </head>
 
@@ -223,22 +237,165 @@
                     </div>
                 </div>
             </div>
+            
             <div class="app-content">
                 <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h3 class="card-title">Test</h3>
+                    
+                    <div class="row g-4 mb-4">
+                        <div class="col-12 col-sm-6 col-xl-3">
+                            <div class="info-box bg-white shadow-sm d-flex align-items-center p-3 rounded">
+                                <span class="info-box-icon bg-primary text-white d-flex align-items-center justify-content-center rounded" style="width: 50px; height: 50px; font-size: 22px;">
+                                    <i class="bi bi-people-fill"></i>
+                                </span>
+                                <div class="info-box-content ms-3">
+                                    <span class="text-muted small text-uppercase d-block">Total Students</span>
+                                    <h4 class="fw-bold mb-0">1,248</h4>
                                 </div>
-                                <div class="card-body">Test</div>
-                                <div class="card-footer">Test</div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-12 col-sm-6 col-xl-3">
+                            <div class="info-box bg-white shadow-sm d-flex align-items-center p-3 rounded">
+                                <span class="info-box-icon bg-warning text-dark d-flex align-items-center justify-content-center rounded" style="width: 50px; height: 50px; font-size: 22px;">
+                                    <i class="bi bi-clipboard-fill"></i>
+                                </span>
+                                <div class="info-box-content ms-3">
+                                    <span class="text-muted small text-uppercase d-block">New Admissions</span>
+                                    <h4 class="fw-bold mb-0 text-warning">42</h4>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-sm-6 col-xl-3">
+                            <div class="info-box bg-white shadow-sm d-flex align-items-center p-3 rounded">
+                                <span class="info-box-icon bg-success text-white d-flex align-items-center justify-content-center rounded" style="width: 50px; height: 50px; font-size: 22px;">
+                                    <i class="bi bi-clipboard2-minus-fill"></i>
+                                tap</span>
+                                <div class="info-box-content ms-3">
+                                    <span class="text-muted small text-uppercase d-block">Active Subjects</span>
+                                    <h4 class="fw-bold mb-0 text-success">185</h4>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-sm-6 col-xl-3">
+                            <div class="info-box bg-white shadow-sm d-flex align-items-center p-3 rounded">
+                                <span class="info-box-icon bg-info text-white d-flex align-items-center justify-content-center rounded" style="width: 50px; height: 50px; font-size: 22px;">
+                                    <i class="bi bi-calendar3"></i>
+                                </span>
+                                <div class="info-box-content ms-3">
+                                    <span class="text-muted small text-uppercase d-block">Schedules Block</span>
+                                    <h4 class="fw-bold mb-0 text-info">36</h4>
+                                </div>
                             </div>
                         </div>
                     </div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card activity-card">
+                                <div class="card-header bg-white py-3 border-bottom d-flex align-items-center justify-content-between">
+                                    <h5 class="card-title mb-0 fw-bold text-dark">
+                                        <i class="bi bi-arrow-repeat me-2 text-primary"></i>Recent System & Module Updates
+                                    </h5>
+                                    <span class="badge bg-primary-subtle text-primary px-3 py-1 rounded-pill">Live Monitoring Feed</span>
+                                </div>
+                                <div class="card-body p-0">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover align-middle mb-0">
+                                            <thead class="table-light small text-uppercase text-secondary">
+                                                <tr>
+                                                    <th class="ps-4" style="width: 18%;">Source Tab</th>
+                                                    <th style="width: 57%;">Activity Log / Action Taken</th>
+                                                    <th class="pe-4 text-end" style="width: 25%;">Time Elapsed</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="ps-4">
+                                                        <span class="badge bg-primary-subtle text-primary tab-indicator">
+                                                            <i class="bi bi-people-fill me-1"></i> Students
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        Profile status of student <span class="fw-bold text-dark">Yoyenk D. Creator</span> (ID: 2026-0412) was successfully changed to <span class="text-success fw-semibold">Officially Enrolled</span>.
+                                                    </td>
+                                                    <td class="pe-4 text-end text-muted small"><i class="bi bi-clock me-1"></i> Just now</td>
+                                                </tr>
+                                                
+                                                <tr>
+                                                    <td class="ps-4">
+                                                        <span class="badge bg-warning-subtle text-warning-emphasis tab-indicator">
+                                                            <i class="bi bi-clipboard-fill me-1"></i> Admissions
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        New enrollment application received from transferee applicant <span class="fw-bold text-dark">Miguelito Agudon</span> (Pending Requirements Review).
+                                                    </td>
+                                                    <td class="pe-4 text-end text-muted small"><i class="bi bi-clock me-1"></i> 5 mins ago</td>
+                                                </tr>
+                                                
+                                                <tr>
+                                                    <td class="ps-4">
+                                                        <span class="badge bg-danger-subtle text-danger tab-indicator">
+                                                            <i class="bi bi-clipboard-data-fill me-1"></i> Programs
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        Curriculum structure modifications were applied to the <span class="fw-bold text-dark">Bachelor of Science in Information Technology (BSIT)</span> program.
+                                                    </td>
+                                                    <td class="pe-4 text-end text-muted small"><i class="bi bi-clock me-1"></i> 24 mins ago</td>
+                                                </tr>
+                                                
+                                                <tr>
+                                                    <td class="ps-4">
+                                                        <span class="badge bg-success-subtle text-success tab-indicator">
+                                                            <i class="bi bi-clipboard2-minus-fill me-1"></i> Subjects
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        A new curriculum subject course entry <span class="font-monospace fw-bold text-dark">IT211 - Integrative Programming</span> was added by the admin system.
+                                                    </td>
+                                                    <td class="pe-4 text-end text-muted small"><i class="bi bi-clock me-1"></i> 42 mins ago</td>
+                                                </tr>
+                                                
+                                                <tr>
+                                                    <td class="ps-4">
+                                                        <span class="badge bg-info-subtle text-info-emphasis tab-indicator">
+                                                            <i class="bi bi-calendar3 me-1"></i> Schedules
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        Room configuration for <span class="fw-bold text-dark">BSIT - Section 201</span> was updated from Room 302 to Computer Laboratory Room 1.
+                                                    </td>
+                                                    <td class="pe-4 text-end text-muted small"><i class="bi bi-clock me-1"></i> 1 hour ago</td>
+                                                </tr>
+                                                
+                                                <tr>
+                                                    <td class="ps-4">
+                                                        <span class="badge bg-secondary-subtle text-secondary-emphasis tab-indicator">
+                                                            <i class="bi bi-person-check-fill me-1"></i> Users
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        Password recovery access credentials token generated for user account <span class="font-monospace text-dark">registrar_staff_02</span>.
+                                                    </td>
+                                                    <td class="pe-4 text-end text-muted small"><i class="bi bi-clock me-1"></i> 2 hours ago</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="card-footer bg-white border-top py-3 text-center">
+                                    <small class="text-muted font-semibold"><i class="bi bi-info-circle me-1"></i> This interface acts as the secondary monitoring layer showing real-time feedback loop iterations from connected workspace tabs.</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
-        </main>
+            </main>
 
         <footer class="app-footer">
             <div class="float-start d-none d-sm-inline">Poblacion Central College - </div>

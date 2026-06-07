@@ -17,7 +17,7 @@
 </head>
 
 <body class="login-page bg-body-secondary"
-    style="background-image: url('../images/PCC_Background.png'); background-repeat: no-repeat; background-attachment: fixed; background-size: cover;">
+    style="background-image: url('../../images/PCC_Main_Background.png'); background-repeat: no-repeat; background-attachment: fixed; background-size: cover;">
     <div class="login-box">
         <div class="login-logo" style="color: #FFFFFF;">
             <a href="#"></a>

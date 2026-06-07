@@ -110,7 +110,7 @@
                         </div>
                         <div class="user-info avatar-wrapper">
                             <div class="username">Admin 1</div>
-                            <div class="status-text">Online</div>
+                            <div class="status-text" style="color: #35e400; margin-top: -5px">Online</div>
                         </div>
                     </div>
                     <ul class="nav sidebar-menu flex-column" id="navigation">

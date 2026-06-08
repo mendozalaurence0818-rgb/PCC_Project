@@ -167,7 +167,6 @@
                             </a>
                         </li>
 
-                        <li class="nav-header">ADMINISTRATIVE</li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon bi bi-file-earmark-person-fill"></i>

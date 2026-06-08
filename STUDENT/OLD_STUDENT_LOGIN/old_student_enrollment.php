@@ -16,7 +16,6 @@
     <link rel="icon" href="../../images/PCC_favicon.png" type="image/png" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Required for native HTML Modal and Tab popups -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
@@ -94,7 +93,6 @@
 
 <body class="fixed-header sidebar-expand-lg bg-body-tertiary">
     <div class="app-wrapper">
-        <!-- Header Section -->
         <nav class="app-header navbar navbar-expand bg-body shadow-sm">
             <div class="container-fluid">
                 <ul class="navbar-nav"></ul>
@@ -112,39 +110,88 @@
             </div>
         </nav>
 
-        <!-- Sidebar Navigation -->
-        <aside class="app-sidebar sidebar-bg shadow">
-            <div class="sidebar-brand" style="border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
-                <a href="#" class="brand-link d-flex align-items-center py-3">
-                    <img src="../../images/PCC_Logo.png" alt="PCC Logo" class="brand-image me-2" style="max-height: 35px;" />
-                    <span class="brand-text fw-bold text-white fs-5">PCC Student</span>
+        <aside class="app-sidebar sidebar-bg">
+            <div class="sidebar-brand" style="border-right: 1px solid rgba(255, 255, 255, 0.1); border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
+                <a href="#" class="brand-link">
+                    <img src="../../images/PCC_Logo.png" alt="PCC Logo" class="brand-image" />
+                    <span class="brand-text fw-bold" style="color: white;">PCC Student</span>
                 </a>
             </div>
-            <div class="sidebar-wrapper">
+            <div class="sidebar-wrapper" style="border-right: 1px solid rgba(255, 255, 255, 0.1)">
                 <nav class="mt-2">
                     <div class="user-profile">
                         <div class="avatar-wrapper">
-                            <div class="avatar-placeholder"><i class="fa-solid fa-user-graduate"></i></div>
+                            <div class="avatar-placeholder">
+                                <i class="fa-solid fa-user-graduate"></i>
+                            </div>
                         </div>
-                        <div class="user-info">
-                            <div class="username text-truncate" style="max-width: 140px;">Juan Dela Cruz</div>
-                            <div class="status-text fw-semibold small">BSIT - 4th Year</div>
+                        <div class="user-info avatar-wrapper">
+                            <div class="username">Juan Dela Cruz</div>
+                            <div class="status-text" style="color: #f1b813; font-size: 0.80rem; margin-top: -3px">ID: 2024-001234</div>
+                            <div class="status-text" style="color: #f1b813; font-size: 0.80rem; margin-top: -3px">BSIT - 4th Year</div>
+                            <div class="status-text" style="color: #4ade80; font-size: 0.75rem; margin-top: 2px"><i class="bi bi-circle-fill" style="font-size: 0.5rem; vertical-align: middle;"></i> Regular Standing</div>
                         </div>
                     </div>
-                    <ul class="nav sidebar-menu flex-column mt-3" id="navigation">
-                        <li class="nav-header opacity-75 text-uppercase tracking-wider fs-7 px-4 mb-2">Registration Shuttle</li>
-                        <li class="nav-item px-2">
-                            <a href="#" class="nav-link sidebar-bg-active rounded">
-                                <i class="nav-icon bi bi-card-checklist me-2"></i>
-                                <span>Online Enrollment</span>
+                    <ul class="nav sidebar-menu flex-column" id="navigation">
+                        <li class="nav-header">ACADEMIC HUB</li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon bi bi-house-door-fill"></i>
+                                <p>
+                                    Dashboard
+                                    <i class="nav-arrow bi bi-chevron-left"></i>
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon bi bi-file-earmark-person-fill"></i>
+                                <p>
+                                    Student Information
+                                    <i class="nav-arrow bi bi-chevron-left"></i>
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link sidebar-bg-active">
+                                <i class="nav-icon bi bi-laptop"></i>
+                                <p>
+                                    Online Enrollment
+                                    <i class="nav-arrow bi bi-chevron-right"></i>
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon bi bi-calendar-week-fill"></i>
+                                <p>
+                                   Schedule
+                                    <i class="nav-arrow bi bi-chevron-left"></i>
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon bi bi-journal-check"></i>
+                                <p>
+                                    Grades & Transcripts
+                                    <i class="nav-arrow bi bi-chevron-left"></i>
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon bi bi-gear-fill"></i>
+                                <p>
+                                    Dropping of Subject
+                                    <i class="nav-arrow bi bi-chevron-left"></i>
+                                </p>
                             </a>
                         </li>
                     </ul>
                 </nav>
             </div>
         </aside>
-
-        <!-- Main Content Area -->
         <main class="app-main py-4">
             <div class="app-content-header mb-4">
                 <div class="container-fluid">
@@ -153,7 +200,6 @@
                             <h3 class="mb-1 fw-bold text-dark" style="letter-spacing: -0.5px;">Semestral Enrollment Portal</h3>
                             <p class="text-muted small mb-3 fw-medium">Academic Year 2026-2027 | 1st Semester</p>
                             
-                            <!-- MODERN STEP FLOW SEPARATOR PANEL -->
                             <ul class="nav nav-pills bg-white p-2 rounded shadow-sm border" id="enrollmentSteps" role="tablist">
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link active rounded-pill text-nowrap" id="step1-tab" data-bs-toggle="tab" data-bs-target="#step1-builder" type="button" role="tab">
@@ -162,7 +208,7 @@
                                 </li>
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link rounded-pill text-nowrap" id="step2-tab" data-bs-toggle="tab" data-bs-target="#step2-payment" type="button" role="tab">
-                                        <i class="bi bi-credit-card-2-front me-2"></i>2. Tuition Assessment & Payment
+                                        <i class="bi bi-receipt-cutoff me-2"></i>2. Assessment Breakdown
                                     </button>
                                 </li>
                                 <li class="nav-item" role="presentation">
@@ -181,14 +227,9 @@
                     <form action="" method="POST" enctype="multipart/form-data">
                         <div class="tab-content" id="enrollmentStepContent">
 
-                            <!-- ========================================== -->
-                            <!-- STEP 1: INTERACTIVE SCHEDULE BUILDER       -->
-                            <!-- ========================================== -->
                             <div class="tab-pane fade show active" id="step1-builder" role="tabpanel">
                                 <div class="row g-4">
-                                    <!-- LEFT COLUMN: Subject Directory Sidebar & Rule Validator -->
                                     <div class="col-xl-4 col-lg-5">
-                                        <!-- Subject Directory Sidebar -->
                                         <div class="card enrollment-card mb-4">
                                             <div class="card-header bg-white py-3 border-bottom">
                                                 <h5 class="card-title mb-0 fw-bold text-dark"><i class="bi bi-search me-2 text-primary"></i>Subject Directory</h5>
@@ -196,14 +237,12 @@
                                             <div class="card-body p-3">
                                                 <input type="text" class="form-content form-control form-control-sm mb-3" placeholder="Search Open Courses (e.g., Core, GE)...">
                                                 
-                                                <!-- Available Sections Accordion Container -->
                                                 <div class="accordion" id="subjectAccordion">
                                                     
-                                                    <!-- IT411 Accordion Frame (2 Sections) -->
                                                     <div class="accordion-item border rounded-3 mb-2 overflow-hidden">
                                                         <h2 class="accordion-header" id="headingIT411">
                                                             <button class="accordion-button collapsed fw-bold py-2 bg-light text-dark fs-7" type="button" data-bs-toggle="collapse" data-bs-target="#collapseIT411">
-                                                                IT411 - Capstone Project 1 (Core)
+                                                                IT411 - Capstone Project 1 (Core) <span class="badge bg-primary-subtle text-primary border border-primary-subtle ms-2">3 Units</span>
                                                             </button>
                                                         </h2>
                                                         <div id="collapseIT411" class="accordion-collapse collapse" data-bs-parent="#subjectAccordion">
@@ -221,11 +260,10 @@
                                                         </div>
                                                     </div>
 
-                                                    <!-- IT412 Accordion Frame (2 Sections) -->
                                                     <div class="accordion-item border rounded-3 mb-2 overflow-hidden">
                                                         <h2 class="accordion-header" id="headingIT412">
                                                             <button class="accordion-button collapsed fw-bold py-2 bg-light text-dark fs-7" type="button" data-bs-toggle="collapse" data-bs-target="#collapseIT412">
-                                                                IT412 - Information Assurance 2 (Core)
+                                                                IT412 - Information Assurance 2 (Core) <span class="badge bg-primary-subtle text-primary border border-primary-subtle ms-2">3 Units</span>
                                                             </button>
                                                         </h2>
                                                         <div id="collapseIT412" class="accordion-collapse collapse" data-bs-parent="#subjectAccordion">
@@ -244,11 +282,10 @@
                                                         </div>
                                                     </div>
 
-                                                    <!-- PE400 Accordion Frame (2 Sections) -->
                                                     <div class="accordion-item border rounded-3 mb-0 overflow-hidden">
                                                         <h2 class="accordion-header" id="headingPE400">
                                                             <button class="accordion-button collapsed fw-bold py-2 bg-light text-dark fs-7" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePE400">
-                                                                PE400 - Advanced Team Sports (GE Elective)
+                                                                PE400 - Advanced Team Sports (GE) <span class="badge bg-secondary-subtle text-secondary border border-secondary-subtle ms-2">2 Units</span>
                                                             </button>
                                                         </h2>
                                                         <div id="collapsePE400" class="accordion-collapse collapse" data-bs-parent="#subjectAccordion">
@@ -271,7 +308,6 @@
                                             </div>
                                         </div>
 
-                                        <!-- Unit Counter & Rule Validator Sidebar -->
                                         <div class="card enrollment-card mb-4 border-start border-4 border-warning bg-light-subtle">
                                             <div class="card-header bg-white py-3 border-bottom">
                                                 <h6 class="card-title mb-0 fw-bold text-dark"><i class="bi bi-shield-check me-2 text-warning"></i>Unit Counter & Rules</h6>
@@ -296,7 +332,6 @@
                                         </div>
                                     </div>
 
-                                    <!-- RIGHT COLUMN: Real-Time Visual Schedule Grid Calendar Display -->
                                     <div class="col-xl-8 col-lg-7">
                                         <div class="card enrollment-card h-100">
                                             <div class="card-header bg-white py-3 border-bottom d-flex justify-content-between align-items-center">
@@ -355,146 +390,77 @@
                                                 </div>
                                             </div>
                                             <div class="card-footer bg-white border-top py-3 text-end">
-                                                <button type="button" onclick="document.getElementById('step2-tab').click();" class="btn btn-pcc-primary fw-semibold px-4 py-2">Lock Classes & Assessment <i class="bi bi-arrow-right-circle ms-1"></i></button>
+                                                <button type="button" onclick="document.getElementById('step2-tab').click();" class="btn btn-pcc-primary fw-semibold px-4 py-2">Lock Classes & View Assessment <i class="bi bi-arrow-right-circle ms-1"></i></button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <!-- ========================================== -->
-                            <!-- STEP 2: TUITION ASSESSMENT & PAYMENT VIEW  -->
-                            <!-- ========================================== -->
                             <div class="tab-pane fade" id="step2-payment" role="tabpanel">
-                                <div class="row g-4">
-                                    <!-- LEFT COLUMN: Itemized Invoice & Discounts Section -->
-                                    <div class="col-xl-8 col-lg-7">
-                                        <!-- Itemized Invoice Ledger -->
-                                        <div class="card enrollment-card mb-4">
-                                            <div class="card-header bg-white py-3 border-bottom">
-                                                <h5 class="card-title mb-0 fw-bold text-dark"><i class="bi bi-receipt me-2 text-primary"></i>Itemized Invoice Ledger</h5>
+                                <div class="row justify-content-center g-4">
+                                    <div class="col-xl-8 col-lg-10">
+                                        <div class="card enrollment-card mb-4 shadow-sm">
+                                            <div class="card-header bg-white py-3 border-bottom d-flex justify-content-between align-items-center">
+                                                <h5 class="card-title mb-0 fw-bold text-dark"><i class="bi bi-receipt me-2 text-primary"></i>Subject Breakdown & Assessment</h5>
                                             </div>
                                             <div class="card-body p-0">
                                                 <div class="table-responsive">
                                                     <table class="table align-middle mb-0">
                                                         <thead class="table-light text-secondary small text-uppercase">
                                                             <tr>
-                                                                <th class="ps-4">Operational utility details</th>
-                                                                <th>Units / Basis</th>
-                                                                <th class="pe-4 text-end">Rate Cost</th>
+                                                                <th class="ps-4">Course / Fee Description</th>
+                                                                <th class="text-center">Units</th>
+                                                                <th class="pe-4 text-end">Amount</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody class="text-secondary small">
                                                             <tr>
-                                                                <td class="ps-4 fw-bold text-dark">Tuition Fee Assessment</td>
-                                                                <td>8 Units Standard</td>
-                                                                <td class="pe-4 text-end fw-semibold text-dark">₱12,400.00</td>
+                                                                <td class="ps-4 fw-bold text-dark">IT411 - Capstone Project 1</td>
+                                                                <td class="text-center">3</td>
+                                                                <td class="pe-4 text-end fw-semibold text-dark">₱4,650.00</td>
                                                             </tr>
                                                             <tr>
-                                                                <td class="ps-4 fw-bold text-dark">Specific Lab Utility Allocations</td>
-                                                                <td>IT411 Capstone Resource Access</td>
-                                                                <td class="pe-4 text-end fw-semibold text-dark">₱2,100.00</td>
+                                                                <td class="ps-4 fw-bold text-dark">IT412 - Information Assurance 2</td>
+                                                                <td class="text-center">3</td>
+                                                                <td class="pe-4 text-end fw-semibold text-dark">₱4,650.00</td>
                                                             </tr>
                                                             <tr>
-                                                                <td class="ps-4 fw-bold text-dark">Miscellaneous Operational Infrastructure Fees</td>
-                                                                <td>Registration, Library, Athletics, Medical</td>
-                                                                <td class="pe-4 text-end fw-semibold text-dark">₱4,500.00</td>
+                                                                <td class="ps-4 fw-bold text-dark">PE400 - Advanced Team Sports</td>
+                                                                <td class="text-center">2</td>
+                                                                <td class="pe-4 text-end fw-semibold text-dark">₱3,100.00</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="ps-4 text-muted">Specific Lab Utility Allocations</td>
+                                                                <td class="text-center">-</td>
+                                                                <td class="pe-4 text-end text-muted">₱2,100.00</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="ps-4 text-muted">Miscellaneous Operational Fees</td>
+                                                                <td class="text-center">-</td>
+                                                                <td class="pe-4 text-end text-muted">₱4,500.00</td>
                                                             </tr>
                                                         </tbody>
+                                                        <tfoot class="bg-light">
+                                                            <tr>
+                                                                <td colspan="2" class="ps-4 fw-bold text-dark text-end">Total Assessment:</td>
+                                                                <td class="pe-4 fw-bold text-primary text-end fs-5">₱19,000.00</td>
+                                                            </tr>
+                                                        </tfoot>
                                                     </table>
                                                 </div>
                                             </div>
-                                        </div>
-
-                                        <!-- Discounts & Scholarships Panel -->
-                                        <div class="card enrollment-card mb-4 border-start border-4 border-success bg-white">
-                                            <div class="card-header bg-white py-3 border-bottom">
-                                                <h6 class="card-title mb-0 fw-bold text-success"><i class="bi bi-patch-check-fill me-2"></i>Discounts & Scholarships Panel</h6>
-                                            </div>
-                                            <div class="card-body py-3">
-                                                <div class="d-flex justify-content-between align-items-center small border-bottom pb-2 mb-2">
-                                                    <div>
-                                                        <span class="fw-bold text-dark d-block">Institutional Academic Scholarship Grant</span>
-                                                        <small class="text-muted">Maintained 1.75 Cumulative GPA Standing Threshold</small>
-                                                    </div>
-                                                    <span class="fw-bold text-success">- ₱5,000.00</span>
-                                                </div>
-                                                <div class="d-flex justify-content-between align-items-center small">
-                                                    <div>
-                                                        <span class="fw-bold text-dark d-block">Recognized Working-Student Tuition Exception</span>
-                                                        <small class="text-muted">Office of the Dean Endorsement Token Waiver</small>
-                                                    </div>
-                                                    <span class="fw-bold text-muted">₱0.00 (Inactive)</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- RIGHT COLUMN: Plan Selector & Payment Gateway -->
-                                    <div class="col-xl-4 col-lg-5">
-                                        <!-- Payment Plan Selector Toggle -->
-                                        <div class="card enrollment-card mb-4">
-                                            <div class="card-header bg-white py-3 border-bottom">
-                                                <h6 class="card-title mb-0 fw-bold text-dark"><i class="bi bi-sliders me-2 text-primary"></i>Payment Plan Selector</h6>
-                                            </div>
-                                            <div class="card-body">
-                                                <label class="d-block payment-option m-0 p-3 mb-2">
-                                                    <div class="form-check d-flex m-0 p-0 align-items-center">
-                                                        <input class="form-check-input me-3" type="radio" name="payment_term" value="full" checked>
-                                                        <div class="w-100 d-flex justify-content-between align-items-center small">
-                                                            <span class="fw-bold text-dark">Full Payment Option</span>
-                                                            <span class="badge bg-success-subtle text-success">5% Subtraction Apply</span>
-                                                        </div>
-                                                    </div>
-                                                </label>
-                                                <label class="d-block payment-option m-0 p-3">
-                                                    <div class="form-check d-flex m-0 p-0 align-items-center">
-                                                        <input class="form-check-input me-3" type="radio" name="payment_term" value="installment">
-                                                        <span class="fw-bold text-dark small">Multi-Tiered Installment Schedule</span>
-                                                    </div>
-                                                </label>
-                                            </div>
-                                        </div>
-
-                                        <!-- Payment Gateway Interface -->
-                                        <div class="card enrollment-card mb-4 border-top border-4 border-primary">
-                                            <div class="card-header bg-white py-3 border-bottom">
-                                                <h6 class="card-title mb-0 fw-bold text-dark"><i class="bi bi-shield-lock-fill me-2 text-primary"></i>Payment Gateway Interface</h6>
-                                            </div>
-                                            <div class="card-body small text-secondary">
-                                                <div class="mb-3">
-                                                    <label class="form-label fw-bold text-dark">Select Direct Link Route</label>
-                                                    <select class="form-select form-select-sm">
-                                                        <option>Secure Digital Card Processing (Visa/Mastercard)</option>
-                                                        <option>Direct Electronic Banking Transfer Link</option>
-                                                        <option>Visual Over-the-Counter Proof Uploader</option>
-                                                    </select>
-                                                </div>
-                                                <div class="mb-3">
-                                                    <label class="form-label fw-bold text-dark">Upload Proof of Payment Asset</label>
-                                                    <input type="file" name="payment_proof" class="form-control form-control-sm">
-                                                </div>
-                                                <hr>
-                                                <div class="d-flex justify-content-between align-items-center mb-1">
-                                                    <span class="fw-bold text-dark">Net Assessment Total:</span>
-                                                    <h5 class="fw-bold text-primary mb-0">₱14,000.00</h5>
-                                                </div>
-                                            </div>
-                                            <div class="card-footer bg-white border-top py-3 text-center">
-                                                <button type="button" onclick="document.getElementById('step3-tab').click();" class="btn btn-success text-white fw-bold w-100 py-2"><i class="bi bi-credit-card-fill me-2"></i>Execute Payment Checkout</button>
+                                            <div class="card-footer bg-white border-top py-3 text-end">
+                                                <button type="button" onclick="document.getElementById('step3-tab').click();" class="btn btn-success text-white fw-bold px-4 py-2"><i class="bi bi-check-circle-fill me-2"></i>Acknowledge & Generate COR</button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <!-- ========================================== -->
-                            <!-- STEP 3: OFFICIAL COR VIEW                  -->
-                            <!-- ========================================== -->
                             <div class="tab-pane fade" id="step3-cor" role="tabpanel">
                                 <div class="card enrollment-card cor-watermark mx-auto shadow-lg mb-4" style="max-width: 900px;">
                                     
-                                    <!-- Institutional Header Section -->
                                     <div class="row align-items-center border-bottom pb-3 mb-4">
                                         <div class="col-md-2 text-center text-md-start">
                                             <img src="../../images/PCC_Logo.png" alt="PCC Logo" style="max-height: 70px;">
@@ -512,14 +478,12 @@
                                         </div>
                                     </div>
 
-                                    <!-- Finalized Student Info Metadata Frame -->
                                     <div class="row g-3 text-secondary small mb-4 bg-light p-3 rounded mx-0">
                                         <div class="col-sm-4"><strong>Student ID:</strong> 2024-001234</div>
                                         <div class="col-sm-4"><strong>Student Name:</strong> Juan Dela Cruz</div>
                                         <div class="col-sm-4"><strong>Program Track:</strong> BSIT - 4th Year</div>
                                     </div>
 
-                                    <!-- Finalized Schedule Table -->
                                     <h6 class="fw-bold text-dark mb-2"><i class="bi bi-table me-2 text-secondary"></i>Finalized Course Roster Table</h6>
                                     <div class="table-responsive mb-4">
                                         <table class="table table-bordered table-striped align-middle mb-0 small text-secondary">
@@ -558,14 +522,12 @@
                                         </table>
                                     </div>
 
-                                    <!-- Lower Block Footer containing Verification Box -->
                                     <div class="row align-items-center pt-3 border-top mt-4 g-4">
                                         <div class="col-md-8 text-center text-md-start text-secondary small">
                                             <p class="mb-1 fw-bold text-dark"><i class="bi bi-shield-fill-check me-1 text-success"></i>Authenticity Verification Guarantee</p>
                                             <p class="mb-0 text-muted fs-8">This document represents an authenticated, electronically signed certificate. Any structural changes invalidates processing credentials.</p>
                                         </div>
                                         
-                                        <!-- Verification QR Code Security Box -->
                                         <div class="col-md-4 d-flex justify-content-center justify-content-md-end">
                                             <div class="qr-box shadow-sm text-center">
                                                 <i class="bi bi-qr-code-scan text-dark display-6 mb-1 d-block"></i>
@@ -587,7 +549,6 @@
         </main>
     </div>
 
-    <!-- Required Bootstrap Bundle for enabling Tabs and Modals -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 

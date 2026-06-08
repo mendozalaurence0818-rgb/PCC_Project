@@ -31,7 +31,7 @@
             <div class="card-body login-card-body">
                 <p class="login-box-msg" style="font-size:30px; margin-bottom: -25px;"><b>Student</b> Portal</p>
                 <p class="login-box-msg">Sign in to start your session</p>
-                <form action="../index3.html" method="post">
+                <form action="old_student_dashboard.php" method="post">
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" placeholder="Student ID" required />
                         <div class="input-group-text">

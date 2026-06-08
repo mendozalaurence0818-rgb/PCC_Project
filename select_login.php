@@ -14,6 +14,39 @@
         crossorigin="anonymous" />
     <link rel="stylesheet" href="css/adminlte.css" />
     <link rel="icon" href="images/PCC_favicon.png" type="image/png" />
+    <style>
+        .portal-btn-primary {
+            background-color: #0D6EFD;
+            border: 1px solid #0D6EFD;
+            color: #FFFFFF;
+            padding: 15px;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+        }
+
+        .portal-btn-primary:hover {
+            background-color: #0B5ED7;
+            border-color: #0B5ED7;
+            color: #FFFFFF;
+        }
+
+        .portal-btn-outline {
+            color: #0D6EFD;
+            border: 1px solid #0D6EFD;
+            background-color: #FFFFFF;
+            padding: 15px;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+        }
+
+        .portal-btn-outline:hover {
+            background-color: #0D6EFD;
+            color: #FFFFFF;
+            border-color: #0D6EFD;
+        }
+    </style>
 </head>
 
 <body class="login-page bg-body-secondary"
@@ -35,19 +68,24 @@
 
                 <div class="row">
                     <div class="col-12 mb-3">
-                        <a href="admin-login.html"
-                            class="btn btn-primary w-100 d-flex align-items-center justify-content-center"
-                            style="background-color: #0D6EFD; border-color: #0D6EFD; padding: 15px; font-size: 16px; font-weight: bold;">
+                        <a href="admin_login.php"
+                            class="btn portal-btn-primary w-100 d-flex align-items-center justify-content-center">
                             <i class="bi bi-shield-lock-fill" style="font-size: 24px; margin-right: 15px;"></i>
                             Admin Portal
                         </a>
                     </div>
-                    <div class="col-12">
-                        <a href="student-login.html"
-                            class="btn btn-outline-primary w-100 d-flex align-items-center justify-content-center"
-                            style="color: #0D6EFD; border-color: #0D6EFD; padding: 15px; font-size: 16px; font-weight: bold; background-color: #FFFFFF;">
+                    <div class="col-12 mb-3">
+                        <a href="STUDENT/OLD_STUDENT_LOGIN/old_student_login.php"
+                            class="btn portal-btn-outline w-100 d-flex align-items-center justify-content-center">
                             <i class="bi bi-mortarboard-fill" style="font-size: 24px; margin-right: 15px;"></i>
                             Student Portal
+                        </a>
+                    </div>
+                    <div class="col-12">
+                        <a href="STUDENT/NEW_SUDENT_REGISTRATION/new_student_registration.php"
+                            class="btn portal-btn-outline w-100 d-flex align-items-center justify-content-center">
+                            <i class="bi bi-person-plus-fill" style="font-size: 24px; margin-right: 15px;"></i>
+                            Admission Portal
                         </a>
                     </div>
                 </div>

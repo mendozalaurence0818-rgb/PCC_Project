@@ -141,13 +141,32 @@
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
-                                <i class="nav-icon bi bi-calendar-week-fill"></i>
+                                <i class="nav-icon bi bi-file-earmark-person-fill"></i>
                                 <p>
-                                    My Schedule
+                                    Student Information
                                     <i class="nav-arrow bi bi-chevron-left"></i>
                                 </p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon bi bi-laptop"></i>
+                                <p>
+                                    Online Enrollment
+                                    <i class="nav-arrow bi bi-chevron-left"></i>
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon bi bi-calendar-week-fill"></i>
+                                <p>
+                                   Schedule
+                                    <i class="nav-arrow bi bi-chevron-left"></i>
+                                </p>
+                            </a>
+                        </li>
+
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon bi bi-journal-check"></i>
@@ -159,28 +178,9 @@
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
-                                <i class="nav-icon bi bi-laptop"></i>
-                                <p>
-                                    Dropping of Subject
-                                    <i class="nav-arrow bi bi-chevron-left"></i>
-                                </p>
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon bi bi-file-earmark-person-fill"></i>
-                                <p>
-                                    Online Enrollment
-                                    <i class="nav-arrow bi bi-chevron-left"></i>
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
                                 <i class="nav-icon bi bi-gear-fill"></i>
                                 <p>
-                                    Profile Settings
+                                    Dropping of Subject
                                     <i class="nav-arrow bi bi-chevron-left"></i>
                                 </p>
                             </a>

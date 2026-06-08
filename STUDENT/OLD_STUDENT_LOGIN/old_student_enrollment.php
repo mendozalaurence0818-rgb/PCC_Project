@@ -41,50 +41,54 @@
         .user-info .username { color: #ffffff; font-weight: 600; }
         .user-info .status-text { color: var(--pcc-gold); }
         
-        /* Modern Card Customizations */
         .enrollment-card { border: none; box-shadow: 0 0 25px rgba(0,0,0,0.06); border-radius: 12px; overflow: hidden; }
 
-        /* Custom Interactive Selection Cards */
-        .schedule-option, .block-option, .payment-option {
+        .schedule-option, .payment-option {
             border: 2px solid #e9ecef;
             border-radius: 10px;
-            padding: 20px;
-            margin-bottom: 15px;
+            padding: 15px;
+            margin-bottom: 12px;
             cursor: pointer;
             transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
             background-color: #fff;
             position: relative;
         }
-        .schedule-option:hover, .block-option:hover, .payment-option:hover { 
+        .schedule-option:hover, .payment-option:hover { 
             background-color: #fafbfc; 
             border-color: #ced4da;
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
         }
         
-        /* Interactive Selections Natively Driven by Form Elements */
-        .form-check-input { cursor: pointer; }
         .form-check-input:checked { background-color: var(--pcc-blue); border-color: var(--pcc-blue); }
-        .form-check-input:checked + .schedule-details, .form-check-input:checked + .payment-details { font-weight: bold; color: var(--pcc-blue); }
-        .block-option:has(input:checked), .payment-option:has(input:checked) { border-color: var(--pcc-blue); background-color: #f7faff; box-shadow: 0 4px 15px rgba(0, 44, 94, 0.06); }
-        .block-option:has(input:checked)::before { content: '\f26b'; font-family: 'bootstrap-icons'; position: absolute; top: 18px; right: 20px; color: var(--pcc-blue); font-size: 1.2rem; }
+        .payment-option:has(input:checked) { border-color: var(--pcc-blue); background-color: #f7faff; }
         
-        /* PCC Nav Pill Accent Refinements */
-        .nav-pills .nav-link { color: #495057; font-weight: 600; padding: 10px 24px; border: 1px solid transparent; transition: all 0.2s; }
-        .nav-pills .nav-link:hover { background-color: #eeddb21a; color: var(--pcc-blue); }
-        .nav-pills .nav-link.active { background-color: var(--pcc-blue); color: #fff; font-weight: 600; box-shadow: 0 4px 10px rgba(0, 44, 94, 0.15); }
+        .nav-pills .nav-link { color: #495057; font-weight: 600; padding: 12px 24px; border: 1px solid transparent; transition: all 0.2s; }
+        .nav-pills .nav-link.active { background-color: var(--pcc-blue); color: #fff; box-shadow: 0 4px 10px rgba(0, 44, 94, 0.15); }
         
-        /* Customized Form Actions Buttons */
-        .btn-pcc-primary { background-color: var(--pcc-blue); color: #fff; transition: all 0.2s; }
-        .btn-pcc-primary:hover { background-color: var(--pcc-blue-dark); color: #fff; box-shadow: 0 4px 12px rgba(0, 44, 94, 0.2); }
-        .btn-outline-pcc { border-color: var(--pcc-blue); color: var(--pcc-blue); }
-        .btn-outline-pcc:hover { background-color: var(--pcc-blue); color: #fff; }
+        .btn-pcc-primary { background-color: var(--pcc-blue); color: #fff; }
+        .btn-pcc-primary:hover { background-color: var(--pcc-blue-dark); color: #fff; }
 
-        /* Crisp Table Cleanups */
-        .table th { font-weight: 700; letter-spacing: 0.5px; background-color: #f8f9fa !important; border-bottom: 2px solid #edeff1 !important; }
-        .table tbody tr { transition: background-color 0.15s; }
-        .table-hover tbody tr:hover { background-color: #fdfdfd; }
-        .table tr:has(input[type="checkbox"]:checked) { background-color: #fcfdfe; }
+        /* Real-Time Calendar Grid Styles */
+        .schedule-grid-table th, .schedule-grid-table td {
+            border: 1px solid #edeff1;
+            text-align: center;
+            vertical-align: middle;
+            padding: 8px;
+            font-size: 0.8rem;
+            height: 50px;
+        }
+        .schedule-grid-table thead th {
+            background-color: #f8f9fa !important;
+            color: var(--pcc-blue) !important;
+            font-weight: 700;
+        }
+        .time-col { font-weight: 600; background-color: #f8f9fa; width: 110px; }
+        .staged-slot { background-color: #e6f2ff; color: #002c5e; font-weight: 700; border: 1px solid #b3d7ff; border-radius: 4px; }
+        .conflict-slot { background-color: #ffeef0; color: #dc3545; font-weight: 700; border: 1px solid #fecdd3; border-radius: 4px; }
+        
+        /* Official COR Layout Simulation Styles */
+        .cor-watermark { border: 2px solid #002c5e; padding: 30px; background-color: #fff; position: relative; border-radius: 8px; }
+        .qr-box { border: 2px dashed #ced4da; padding: 15px; text-align: center; background: #fdfdfd; border-radius: 8px; width: 140px; }
     </style>
 </head>
 
@@ -124,7 +128,7 @@
                         </div>
                         <div class="user-info">
                             <div class="username text-truncate" style="max-width: 140px;">Juan Dela Cruz</div>
-                            <div class="status-text fw-semibold small">BSIT - Incoming 4th Year</div>
+                            <div class="status-text fw-semibold small">BSIT - 4th Year</div>
                         </div>
                     </div>
                     <ul class="nav sidebar-menu flex-column mt-3" id="navigation">
@@ -145,9 +149,28 @@
             <div class="app-content-header mb-4">
                 <div class="container-fluid">
                     <div class="row align-items-center">
-                        <div class="col-sm-6">
+                        <div class="col-sm-12">
                             <h3 class="mb-1 fw-bold text-dark" style="letter-spacing: -0.5px;">Semestral Enrollment Portal</h3>
-                            <p class="text-muted small mb-0 fw-medium">Academic Year 2026-2027 | 1st Semester</p>
+                            <p class="text-muted small mb-3 fw-medium">Academic Year 2026-2027 | 1st Semester</p>
+                            
+                            <!-- MODERN STEP FLOW SEPARATOR PANEL -->
+                            <ul class="nav nav-pills bg-white p-2 rounded shadow-sm border" id="enrollmentSteps" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link active rounded-pill text-nowrap" id="step1-tab" data-bs-toggle="tab" data-bs-target="#step1-builder" type="button" role="tab">
+                                        <i class="bi bi-calendar3 me-2"></i>1. Interactive Schedule Builder
+                                    </button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link rounded-pill text-nowrap" id="step2-tab" data-bs-toggle="tab" data-bs-target="#step2-payment" type="button" role="tab">
+                                        <i class="bi bi-credit-card-2-front me-2"></i>2. Tuition Assessment & Payment
+                                    </button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link rounded-pill text-nowrap" id="step3-tab" data-bs-toggle="tab" data-bs-target="#step3-cor" type="button" role="tab">
+                                        <i class="bi bi-file-earmark-check me-2"></i>3. Official COR View
+                                    </button>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -155,330 +178,409 @@
             
             <div class="app-content">
                 <div class="container-fluid">
+                    <form action="" method="POST" enctype="multipart/form-data">
+                        <div class="tab-content" id="enrollmentStepContent">
 
-                    <!-- Main Core Setup Window Wrapping Tabs, Tables, and Selection Blocks -->
-                    <form action="" method="POST">
-                        <div class="row">
-                            
-                            <!-- LEFT COLUMN: Main Scheduling Area (Full Schedule View) -->
-                            <div class="col-xl-8 col-lg-7">
-                                <div class="card enrollment-card mb-4">
-                                    <div class="card-header bg-white py-3 border-bottom d-flex justify-content-between align-items-center flex-wrap gap-2">
-                                        <h5 class="card-title mb-0 fw-bold text-dark d-flex align-items-center">
-                                            <i class="bi bi-book-half me-2 text-secondary"></i>Schedule Allocation
-                                        </h5>
-                                        
-                                        <!-- Functional Layout Control Toggle Tabs -->
-                                        <ul class="nav nav-pills" id="enrollmentModeTabs" role="tablist">
-                                            <li class="nav-item" role="presentation">
-                                                <button class="nav-link active rounded-pill px-4" id="block-tab" data-bs-toggle="tab" data-bs-target="#block-mode" type="button" role="tab">
-                                                    <i class="bi bi-grid-1x2-fill me-2"></i>Block Section
-                                                </button>
-                                            </li>
-                                            <li class="nav-item" role="presentation">
-                                                <button class="nav-link rounded-pill px-4" id="individual-tab" data-bs-toggle="tab" data-bs-target="#individual-mode" type="button" role="tab">
-                                                    <i class="bi bi-list-check me-2"></i>Individual Subjects
-                                                </button>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    
-                                    <div class="card-body p-0">
-                                        <div class="tab-content" id="enrollmentModeContent">
-                                            
-                                            <!-- BLOCK SECTION PRE-CONFIGURED MODULES MODE -->
-                                            <div class="tab-pane fade show active p-4" id="block-mode" role="tabpanel">
-                                                <p class="text-muted mb-4 small"><i class="bi bi-info-circle me-1"></i> Select a predefined schedule block. All subjects for your year level will be automatically assigned to the times indicated below.</p>
-                                                
-                                                <div class="row g-3">
-                                                    <!-- Block Standard Template Item: Morning Session A -->
-                                                    <div class="col-lg-12 col-xl-6">
-                                                        <label class="d-block block-option m-0">
-                                                            <div class="form-check d-flex p-0 m-0">
-                                                                <input class="form-check-input me-3 mt-1" type="radio" name="selected_block" value="BSIT-4A" checked>
-                                                                <div class="block-details w-100">
-                                                                    <div class="d-flex justify-content-between align-items-center mb-1">
-                                                                        <h6 class="fw-bold text-dark mb-0 fs-5">Block BSIT-4A (Morning)</h6>
-                                                                        <span class="badge bg-success-subtle text-success px-2 py-1 rounded">Available</span>
-                                                                    </div>
-                                                                    <p class="small text-muted mb-3 border-bottom pb-2 fw-medium"><i class="bi bi-tags me-1"></i>Total Units: 8 units &nbsp;|&nbsp; Mon, Wed, Fri Schedule</p>
-                                                                    <ul class="list-unstyled small mb-0 text-secondary">
-                                                                        <li class="mb-2"><span class="fw-bold text-dark">IT411:</span> MWF 09:00 AM - 10:30 AM</li>
-                                                                        <li class="mb-2"><span class="fw-bold text-dark">IT412:</span> MWF 11:00 AM - 12:00 PM</li>
-                                                                        <li><span class="fw-bold text-dark">PE400:</span> SAT 07:00 AM - 09:00 AM</li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                        </label>
-                                                    </div>
-                                                    
-                                                    <!-- Block Standard Template Item: Afternoon Session B -->
-                                                    <div class="col-lg-12 col-xl-6">
-                                                        <label class="d-block block-option m-0">
-                                                            <div class="form-check d-flex p-0 m-0">
-                                                                <input class="form-check-input me-3 mt-1" type="radio" name="selected_block" value="BSIT-4B">
-                                                                <div class="block-details w-100">
-                                                                    <div class="d-flex justify-content-between align-items-center mb-1">
-                                                                        <h6 class="fw-bold text-dark mb-0 fs-5">Block BSIT-4B (Afternoon)</h6>
-                                                                        <span class="badge bg-warning-subtle text-warning-dark px-2 py-1 rounded" style="color: #664d03; background-color: #fff3cd;">Few Slots Left</span>
-                                                                    </div>
-                                                                    <p class="small text-muted mb-3 border-bottom pb-2 fw-medium"><i class="bi bi-tags me-1"></i>Total Units: 8 units &nbsp;|&nbsp; Tue, Thu Schedule</p>
-                                                                    <ul class="list-unstyled small mb-0 text-secondary">
-                                                                        <li class="mb-2"><span class="fw-bold text-dark">IT411:</span> TTH 01:00 PM - 03:30 PM</li>
-                                                                        <li class="mb-2"><span class="fw-bold text-dark">IT412:</span> TTH 04:00 PM - 05:30 PM</li>
-                                                                        <li><span class="fw-bold text-dark">PE400:</span> SAT 09:00 AM - 11:00 AM</li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                                <input type="hidden" name="enrollment_type" value="block">
+                            <!-- ========================================== -->
+                            <!-- STEP 1: INTERACTIVE SCHEDULE BUILDER       -->
+                            <!-- ========================================== -->
+                            <div class="tab-pane fade show active" id="step1-builder" role="tabpanel">
+                                <div class="row g-4">
+                                    <!-- LEFT COLUMN: Subject Directory Sidebar & Rule Validator -->
+                                    <div class="col-xl-4 col-lg-5">
+                                        <!-- Subject Directory Sidebar -->
+                                        <div class="card enrollment-card mb-4">
+                                            <div class="card-header bg-white py-3 border-bottom">
+                                                <h5 class="card-title mb-0 fw-bold text-dark"><i class="bi bi-search me-2 text-primary"></i>Subject Directory</h5>
                                             </div>
-                                            
-                                            <!-- SEPARATED INDIVIDUAL COURSE SELECTIONS PROCESSING MODE -->
-                                            <div class="tab-pane fade" id="individual-mode" role="tabpanel">
-                                                <div class="p-3 bg-light-subtle border-bottom px-4">
-                                                    <p class="text-muted small mb-0"><i class="bi bi-info-circle text-primary me-1"></i> Select your subjects manually and click <strong>"Choose Time"</strong> to configure specific isolated slots for each course row chosen.</p>
+                                            <div class="card-body p-3">
+                                                <input type="text" class="form-content form-control form-control-sm mb-3" placeholder="Search Open Courses (e.g., Core, GE)...">
+                                                
+                                                <!-- Available Sections Accordion Container -->
+                                                <div class="accordion" id="subjectAccordion">
+                                                    
+                                                    <!-- IT411 Accordion Frame (2 Sections) -->
+                                                    <div class="accordion-item border rounded-3 mb-2 overflow-hidden">
+                                                        <h2 class="accordion-header" id="headingIT411">
+                                                            <button class="accordion-button collapsed fw-bold py-2 bg-light text-dark fs-7" type="button" data-bs-toggle="collapse" data-bs-target="#collapseIT411">
+                                                                IT411 - Capstone Project 1 (Core)
+                                                            </button>
+                                                        </h2>
+                                                        <div id="collapseIT411" class="accordion-collapse collapse" data-bs-parent="#subjectAccordion">
+                                                            <div class="accordion-body p-2 bg-white">
+                                                                <div class="p-2 border rounded mb-2 small bg-light-subtle">
+                                                                    <div class="d-flex justify-content-between fw-bold"><span>Sec A (MWF 9-10:30AM)</span><span class="text-success">Seats: 35/40</span></div>
+                                                                    <div class="text-muted mt-1">Faculty: Prof. A. Santos | Room: Lab 1</div>
+                                                                    <button type="button" class="btn btn-sm btn-pcc-primary py-0 px-2 mt-1 rounded-pill">Stage Section</button>
+                                                                </div>
+                                                                <div class="p-2 border rounded small bg-light-subtle">
+                                                                    <div class="d-flex justify-content-between fw-bold"><span>Sec B (TTH 1-3:30PM)</span><span class="text-danger">Full (40/40)</span></div>
+                                                                    <div class="text-muted mt-1">Faculty: Dr. E. Ramos | Room: Lab 2</div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- IT412 Accordion Frame (2 Sections) -->
+                                                    <div class="accordion-item border rounded-3 mb-2 overflow-hidden">
+                                                        <h2 class="accordion-header" id="headingIT412">
+                                                            <button class="accordion-button collapsed fw-bold py-2 bg-light text-dark fs-7" type="button" data-bs-toggle="collapse" data-bs-target="#collapseIT412">
+                                                                IT412 - Information Assurance 2 (Core)
+                                                            </button>
+                                                        </h2>
+                                                        <div id="collapseIT412" class="accordion-collapse collapse" data-bs-parent="#subjectAccordion">
+                                                            <div class="accordion-body p-2 bg-white">
+                                                                <div class="p-2 border rounded mb-2 small bg-light-subtle">
+                                                                    <div class="d-flex justify-content-between fw-bold"><span>Sec A (MWF 11AM-12PM)</span><span class="text-success">Seats: 12/35</span></div>
+                                                                    <div class="text-muted mt-1">Faculty: Prof. M. Torres | Room: Lec 304</div>
+                                                                    <button type="button" class="btn btn-sm btn-pcc-primary py-0 px-2 mt-1 rounded-pill">Stage Section</button>
+                                                                </div>
+                                                                <div class="p-2 border rounded small bg-light-subtle">
+                                                                    <div class="d-flex justify-content-between fw-bold"><span>Sec B (TTH 10:30AM-12:00PM)</span><span class="text-success">Seats: 25/35</span></div>
+                                                                    <div class="text-muted mt-1">Faculty: Dr. R. Reyes | Room: Lec 202</div>
+                                                                    <button type="button" class="btn btn-sm btn-pcc-primary py-0 px-2 mt-1 rounded-pill">Stage Section</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- PE400 Accordion Frame (2 Sections) -->
+                                                    <div class="accordion-item border rounded-3 mb-0 overflow-hidden">
+                                                        <h2 class="accordion-header" id="headingPE400">
+                                                            <button class="accordion-button collapsed fw-bold py-2 bg-light text-dark fs-7" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePE400">
+                                                                PE400 - Advanced Team Sports (GE Elective)
+                                                            </button>
+                                                        </h2>
+                                                        <div id="collapsePE400" class="accordion-collapse collapse" data-bs-parent="#subjectAccordion">
+                                                            <div class="accordion-body p-2 bg-white">
+                                                                <div class="p-2 border rounded mb-2 small bg-light-subtle">
+                                                                    <div class="d-flex justify-content-between fw-bold"><span>Sec A (SAT 7-09:00AM)</span><span class="text-warning">Seats: 38/40</span></div>
+                                                                    <div class="text-muted mt-1">Faculty: Coach J. Perez | Room: Gym</div>
+                                                                    <button type="button" class="btn btn-sm btn-pcc-primary py-0 px-2 mt-1 rounded-pill">Stage Section</button>
+                                                                </div>
+                                                                <div class="p-2 border rounded small bg-light-subtle">
+                                                                    <div class="d-flex justify-content-between fw-bold"><span>Sec B (SAT 1:00PM-3:00PM)</span><span class="text-success">Seats: 15/40</span></div>
+                                                                    <div class="text-muted mt-1">Faculty: Coach M. Santos | Room: Court 2</div>
+                                                                    <button type="button" class="btn btn-sm btn-pcc-primary py-0 px-2 mt-1 rounded-pill">Stage Section</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
                                                 </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Unit Counter & Rule Validator Sidebar -->
+                                        <div class="card enrollment-card mb-4 border-start border-4 border-warning bg-light-subtle">
+                                            <div class="card-header bg-white py-3 border-bottom">
+                                                <h6 class="card-title mb-0 fw-bold text-dark"><i class="bi bi-shield-check me-2 text-warning"></i>Unit Counter & Rules</h6>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="mb-3">
+                                                    <div class="d-flex justify-content-between small fw-bold text-secondary mb-1">
+                                                        <span>Cumulative Credit Load:</span>
+                                                        <span class="text-dark">8 / 21 Max Units</span>
+                                                    </div>
+                                                    <div class="progress" style="height: 8px;">
+                                                        <div class="progress-bar bg-warning" role="progressbar" style="width: 38%"></div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <ul class="list-unstyled small mb-0 text-secondary">
+                                                    <li class="mb-2 text-success"><i class="bi bi-check-circle-fill me-2"></i>Prerequisite Evaluation Resolved</li>
+                                                    <li class="mb-2 text-success"><i class="bi bi-check-circle-fill me-2"></i>Year Level Constraint Cleared</li>
+                                                    <li class="text-danger"><i class="bi bi-exclamation-triangle-fill me-2"></i>Constraint Alert: Total units under full-time limit.</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- RIGHT COLUMN: Real-Time Visual Schedule Grid Calendar Display -->
+                                    <div class="col-xl-8 col-lg-7">
+                                        <div class="card enrollment-card h-100">
+                                            <div class="card-header bg-white py-3 border-bottom d-flex justify-content-between align-items-center">
+                                                <h5 class="card-title mb-0 fw-bold text-dark"><i class="bi bi-calendar-week me-2 text-secondary"></i>Real-Time Visual Schedule Grid</h5>
+                                                <span class="badge bg-danger-subtle text-danger px-3 py-1 rounded-pill small fw-bold">Live Conflict Matrix</span>
+                                            </div>
+                                            <div class="card-body p-3">
                                                 <div class="table-responsive">
-                                                    <table class="table table-hover align-middle mb-0">
-                                                        <thead class="table-light small text-uppercase text-secondary">
+                                                    <table class="table schedule-grid-table table-bordered mb-0">
+                                                        <thead>
                                                             <tr>
-                                                                <th class="ps-4" style="width: 8%;">Enroll</th>
-                                                                <th style="width: 15%;">Subject Code</th>
-                                                                <th style="width: 42%;">Description</th>
-                                                                <th style="width: 10%;">Units</th>
-                                                                <th class="pe-4 text-end" style="width: 25%;">Schedule Selection</th>
+                                                                <th class="time-col">Time Block</th>
+                                                                <th>Mon</th>
+                                                                <th>Tue</th>
+                                                                <th>Wed</th>
+                                                                <th>Thu</th>
+                                                                <th>Fri</th>
+                                                                <th>Sat</th>
                                                             </tr>
                                                         </thead>
-                                                        <tbody class="text-secondary">
-                                                            <!-- Row Item Course 1 -->
+                                                        <tbody>
                                                             <tr>
-                                                                <td class="ps-4">
-                                                                    <input class="form-check-input" type="checkbox" name="subjects[]" value="IT411" checked>
-                                                                </td>
-                                                                <td><span class="fw-bold text-dark">IT411</span></td>
-                                                                <td class="text-dark">Capstone Project 1 (Proposal & Prototyping)</td>
-                                                                <td><span class="badge bg-light text-dark border px-2 py-1">3 Units</span></td>
-                                                                <td class="pe-4 text-end">
-                                                                    <button type="button" class="btn btn-outline-pcc btn-sm rounded-pill fw-semibold px-3" data-bs-toggle="modal" data-bs-target="#modalIT411">
-                                                                        <i class="bi bi-clock me-1"></i> Choose Time
-                                                                    </button>
-                                                                </td>
+                                                                <td class="time-col">07:00 - 09:00 AM</td>
+                                                                <td></td><td></td><td></td><td></td><td></td>
+                                                                <td class="staged-slot">PE400<br><span class="fw-normal fs-8">Gym</span></td>
                                                             </tr>
-                                                            <!-- Row Item Course 2 -->
                                                             <tr>
-                                                                <td class="ps-4">
-                                                                    <input class="form-check-input" type="checkbox" name="subjects[]" value="IT412" checked>
-                                                                </td>
-                                                                <td><span class="fw-bold text-dark">IT412</span></td>
-                                                                <td class="text-dark">Information Assurance and Security 2</td>
-                                                                <td><span class="badge bg-light text-dark border px-2 py-1">3 Units</span></td>
-                                                                <td class="pe-4 text-end">
-                                                                    <button type="button" class="btn btn-outline-pcc btn-sm rounded-pill fw-semibold px-3" data-bs-toggle="modal" data-bs-target="#modalIT412">
-                                                                        <i class="bi bi-clock me-1"></i> Choose Time
-                                                                    </button>
-                                                                </td>
+                                                                <td class="time-col">09:00 - 10:30 AM</td>
+                                                                <td class="staged-slot">IT411<br><span class="fw-normal fs-8">Lab 1</span></td>
+                                                                <td></td>
+                                                                <td class="staged-slot">IT411<br><span class="fw-normal fs-8">Lab 1</span></td>
+                                                                <td></td>
+                                                                <td class="staged-slot">IT411<br><span class="fw-normal fs-8">Lab 1</span></td>
+                                                                <td></td>
                                                             </tr>
-                                                            <!-- Row Item Course 3 -->
                                                             <tr>
-                                                                <td class="ps-4">
-                                                                    <input class="form-check-input" type="checkbox" name="subjects[]" value="PE400">
-                                                                </td>
-                                                                <td><span class="fw-bold text-dark">PE400</span></td>
-                                                                <td class="text-dark">Advanced Team Sports Elective</td>
-                                                                <td><span class="badge bg-light text-dark border px-2 py-1">2 Units</span></td>
-                                                                <td class="pe-4 text-end">
-                                                                    <button type="button" class="btn btn-outline-pcc btn-sm rounded-pill fw-semibold px-3" data-bs-toggle="modal" data-bs-target="#modalPE400">
-                                                                        <i class="bi bi-clock me-1"></i> Choose Time
-                                                                    </button>
-                                                                </td>
+                                                                <td class="time-col">11:00 - 12:00 PM</td>
+                                                                <td class="staged-slot">IT412<br><span class="fw-normal fs-8">Lec 304</span></td>
+                                                                <td></td>
+                                                                <td class="staged-slot">IT412<br><span class="fw-normal fs-8">Lec 304</span></td>
+                                                                <td></td>
+                                                                <td class="staged-slot">IT412<br><span class="fw-normal fs-8">Lec 304</span></td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="time-col">01:00 - 03:30 PM</td>
+                                                                <td></td>
+                                                                <td class="text-muted bg-light fs-8">Staging Conflict Slot Window</td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
+                                                                <td></td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
                                                 </div>
                                             </div>
-
+                                            <div class="card-footer bg-white border-top py-3 text-end">
+                                                <button type="button" onclick="document.getElementById('step2-tab').click();" class="btn btn-pcc-primary fw-semibold px-4 py-2">Lock Classes & Assessment <i class="bi bi-arrow-right-circle ms-1"></i></button>
+                                            </div>
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+
+                            <!-- ========================================== -->
+                            <!-- STEP 2: TUITION ASSESSMENT & PAYMENT VIEW  -->
+                            <!-- ========================================== -->
+                            <div class="tab-pane fade" id="step2-payment" role="tabpanel">
+                                <div class="row g-4">
+                                    <!-- LEFT COLUMN: Itemized Invoice & Discounts Section -->
+                                    <div class="col-xl-8 col-lg-7">
+                                        <!-- Itemized Invoice Ledger -->
+                                        <div class="card enrollment-card mb-4">
+                                            <div class="card-header bg-white py-3 border-bottom">
+                                                <h5 class="card-title mb-0 fw-bold text-dark"><i class="bi bi-receipt me-2 text-primary"></i>Itemized Invoice Ledger</h5>
+                                            </div>
+                                            <div class="card-body p-0">
+                                                <div class="table-responsive">
+                                                    <table class="table align-middle mb-0">
+                                                        <thead class="table-light text-secondary small text-uppercase">
+                                                            <tr>
+                                                                <th class="ps-4">Operational utility details</th>
+                                                                <th>Units / Basis</th>
+                                                                <th class="pe-4 text-end">Rate Cost</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody class="text-secondary small">
+                                                            <tr>
+                                                                <td class="ps-4 fw-bold text-dark">Tuition Fee Assessment</td>
+                                                                <td>8 Units Standard</td>
+                                                                <td class="pe-4 text-end fw-semibold text-dark">₱12,400.00</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="ps-4 fw-bold text-dark">Specific Lab Utility Allocations</td>
+                                                                <td>IT411 Capstone Resource Access</td>
+                                                                <td class="pe-4 text-end fw-semibold text-dark">₱2,100.00</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="ps-4 fw-bold text-dark">Miscellaneous Operational Infrastructure Fees</td>
+                                                                <td>Registration, Library, Athletics, Medical</td>
+                                                                <td class="pe-4 text-end fw-semibold text-dark">₱4,500.00</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Discounts & Scholarships Panel -->
+                                        <div class="card enrollment-card mb-4 border-start border-4 border-success bg-white">
+                                            <div class="card-header bg-white py-3 border-bottom">
+                                                <h6 class="card-title mb-0 fw-bold text-success"><i class="bi bi-patch-check-fill me-2"></i>Discounts & Scholarships Panel</h6>
+                                            </div>
+                                            <div class="card-body py-3">
+                                                <div class="d-flex justify-content-between align-items-center small border-bottom pb-2 mb-2">
+                                                    <div>
+                                                        <span class="fw-bold text-dark d-block">Institutional Academic Scholarship Grant</span>
+                                                        <small class="text-muted">Maintained 1.75 Cumulative GPA Standing Threshold</small>
+                                                    </div>
+                                                    <span class="fw-bold text-success">- ₱5,000.00</span>
+                                                </div>
+                                                <div class="d-flex justify-content-between align-items-center small">
+                                                    <div>
+                                                        <span class="fw-bold text-dark d-block">Recognized Working-Student Tuition Exception</span>
+                                                        <small class="text-muted">Office of the Dean Endorsement Token Waiver</small>
+                                                    </div>
+                                                    <span class="fw-bold text-muted">₱0.00 (Inactive)</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- RIGHT COLUMN: Plan Selector & Payment Gateway -->
+                                    <div class="col-xl-4 col-lg-5">
+                                        <!-- Payment Plan Selector Toggle -->
+                                        <div class="card enrollment-card mb-4">
+                                            <div class="card-header bg-white py-3 border-bottom">
+                                                <h6 class="card-title mb-0 fw-bold text-dark"><i class="bi bi-sliders me-2 text-primary"></i>Payment Plan Selector</h6>
+                                            </div>
+                                            <div class="card-body">
+                                                <label class="d-block payment-option m-0 p-3 mb-2">
+                                                    <div class="form-check d-flex m-0 p-0 align-items-center">
+                                                        <input class="form-check-input me-3" type="radio" name="payment_term" value="full" checked>
+                                                        <div class="w-100 d-flex justify-content-between align-items-center small">
+                                                            <span class="fw-bold text-dark">Full Payment Option</span>
+                                                            <span class="badge bg-success-subtle text-success">5% Subtraction Apply</span>
+                                                        </div>
+                                                    </div>
+                                                </label>
+                                                <label class="d-block payment-option m-0 p-3">
+                                                    <div class="form-check d-flex m-0 p-0 align-items-center">
+                                                        <input class="form-check-input me-3" type="radio" name="payment_term" value="installment">
+                                                        <span class="fw-bold text-dark small">Multi-Tiered Installment Schedule</span>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                        <!-- Payment Gateway Interface -->
+                                        <div class="card enrollment-card mb-4 border-top border-4 border-primary">
+                                            <div class="card-header bg-white py-3 border-bottom">
+                                                <h6 class="card-title mb-0 fw-bold text-dark"><i class="bi bi-shield-lock-fill me-2 text-primary"></i>Payment Gateway Interface</h6>
+                                            </div>
+                                            <div class="card-body small text-secondary">
+                                                <div class="mb-3">
+                                                    <label class="form-label fw-bold text-dark">Select Direct Link Route</label>
+                                                    <select class="form-select form-select-sm">
+                                                        <option>Secure Digital Card Processing (Visa/Mastercard)</option>
+                                                        <option>Direct Electronic Banking Transfer Link</option>
+                                                        <option>Visual Over-the-Counter Proof Uploader</option>
+                                                    </select>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label fw-bold text-dark">Upload Proof of Payment Asset</label>
+                                                    <input type="file" name="payment_proof" class="form-control form-control-sm">
+                                                </div>
+                                                <hr>
+                                                <div class="d-flex justify-content-between align-items-center mb-1">
+                                                    <span class="fw-bold text-dark">Net Assessment Total:</span>
+                                                    <h5 class="fw-bold text-primary mb-0">₱14,000.00</h5>
+                                                </div>
+                                            </div>
+                                            <div class="card-footer bg-white border-top py-3 text-center">
+                                                <button type="button" onclick="document.getElementById('step3-tab').click();" class="btn btn-success text-white fw-bold w-100 py-2"><i class="bi bi-credit-card-fill me-2"></i>Execute Payment Checkout</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- ========================================== -->
+                            <!-- STEP 3: OFFICIAL COR VIEW                  -->
+                            <!-- ========================================== -->
+                            <div class="tab-pane fade" id="step3-cor" role="tabpanel">
+                                <div class="card enrollment-card cor-watermark mx-auto shadow-lg mb-4" style="max-width: 900px;">
                                     
-                                    <!-- Central Form Operational Interactive Processing Footers -->
-                                    <div class="card-footer bg-white border-top py-3 d-flex justify-content-between align-items-center flex-wrap gap-2">
-                                        <div>
-                                            <button type="reset" class="btn btn-outline-secondary btn-sm fw-semibold me-2 px-3 py-2"><i class="bi bi-x-circle me-1"></i> Reset Fields</button>
-                                            <button type="submit" name="action" value="draft" class="btn btn-success btn-sm text-white fw-semibold px-3 py-2"><i class="bi bi-file-earmark-check me-1"></i> Save Draft</button>
+                                    <!-- Institutional Header Section -->
+                                    <div class="row align-items-center border-bottom pb-3 mb-4">
+                                        <div class="col-md-2 text-center text-md-start">
+                                            <img src="../../images/PCC_Logo.png" alt="PCC Logo" style="max-height: 70px;">
                                         </div>
-                                        <button type="submit" name="action" value="lock" class="btn btn-pcc-primary fw-semibold px-4 py-2"><i class="bi bi-arrow-right-circle me-2"></i>Proceed to Enrollment</button>
+                                        <div class="col-md-7 text-center text-md-start mt-2 mt-md-0">
+                                            <h4 class="fw-bold text-dark mb-0">POBLACION CENTRAL COLLEGE</h4>
+                                            <span class="text-uppercase tracking-wider small text-secondary fw-semibold">Official Certificate of Registration (COR)</span>
+                                            <div class="small text-muted mt-1 fw-medium">Active Academic Cycle: First Semester, AY 2026-2027</div>
+                                        </div>
+                                        <div class="col-md-3 text-center text-md-end mt-3 mt-md-0">
+                                            <div class="small border p-2 bg-light rounded text-start font-monospace fs-8">
+                                                <strong>Token:</strong> COR-9941A2<br>
+                                                <strong>Status:</strong> IMMUTABLE DOCUMENT
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
 
-                            <!-- RIGHT COLUMN: Exact Fee Layout Structure & Payment Terms -->
-                            <div class="col-xl-4 col-lg-5">
-                                
-                                <!-- Exact Tuition & Fees Breakdown Panel -->
-                                <div class="card enrollment-card mb-4 bg-light-subtle border-top border-4 border-primary">
-                                    <div class="card-header bg-white py-3 border-bottom">
-                                        <h6 class="card-title mb-0 fw-bold text-dark"><i class="bi bi-receipt me-2 text-primary"></i>Exact Tuition Breakdown</h6>
+                                    <!-- Finalized Student Info Metadata Frame -->
+                                    <div class="row g-3 text-secondary small mb-4 bg-light p-3 rounded mx-0">
+                                        <div class="col-sm-4"><strong>Student ID:</strong> 2024-001234</div>
+                                        <div class="col-sm-4"><strong>Student Name:</strong> Juan Dela Cruz</div>
+                                        <div class="col-sm-4"><strong>Program Track:</strong> BSIT - 4th Year</div>
                                     </div>
-                                    <div class="card-body pb-2">
-                                        <p class="text-dark small mb-3 fw-semibold"><i class="bi bi-file-earmark-text me-1 text-secondary"></i>Official Statement of Account (8 Units)</p>
+
+                                    <!-- Finalized Schedule Table -->
+                                    <h6 class="fw-bold text-dark mb-2"><i class="bi bi-table me-2 text-secondary"></i>Finalized Course Roster Table</h6>
+                                    <div class="table-responsive mb-4">
+                                        <table class="table table-bordered table-striped align-middle mb-0 small text-secondary">
+                                            <thead class="table-light text-dark fw-bold">
+                                                <tr>
+                                                    <th>Course Code</th>
+                                                    <th>Subject Narrative Description</th>
+                                                    <th class="text-center">Units</th>
+                                                    <th>Assigned Facility Room Layout</th>
+                                                    <th>Faculty Registry Authority</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="fw-bold text-dark">IT411</td>
+                                                    <td>Capstone Project 1 (Proposal & Prototyping)</td>
+                                                    <td class="text-center">3</td>
+                                                    <td>Laboratory Station 1</td>
+                                                    <td>Prof. A. Santos</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="fw-bold text-dark">IT412</td>
+                                                    <td>Information Assurance and Security 2</td>
+                                                    <td class="text-center">3</td>
+                                                    <td>Lecture Hall 304</td>
+                                                    <td>Prof. M. Torres</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="fw-bold text-dark">PE400</td>
+                                                    <td>Advanced Team Sports Elective</td>
+                                                    <td class="text-center">2</td>
+                                                    <td>Physical Campus Gymnasium</td>
+                                                    <td>Coach J. Perez</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <!-- Lower Block Footer containing Verification Box -->
+                                    <div class="row align-items-center pt-3 border-top mt-4 g-4">
+                                        <div class="col-md-8 text-center text-md-start text-secondary small">
+                                            <p class="mb-1 fw-bold text-dark"><i class="bi bi-shield-fill-check me-1 text-success"></i>Authenticity Verification Guarantee</p>
+                                            <p class="mb-0 text-muted fs-8">This document represents an authenticated, electronically signed certificate. Any structural changes invalidates processing credentials.</p>
+                                        </div>
                                         
-                                        <div class="d-flex justify-content-between mb-2 small">
-                                            <span class="text-secondary">Tuition Fee</span>
-                                            <span class="fw-semibold text-dark">₱ 12,400.00</span>
-                                        </div>
-                                        <div class="d-flex justify-content-between mb-2 small">
-                                            <span class="text-secondary">Miscellaneous Fees</span>
-                                            <span class="fw-semibold text-dark">₱ 4,500.00</span>
-                                        </div>
-                                        <div class="d-flex justify-content-between mb-2 small">
-                                            <span class="text-secondary">Laboratory Fees</span>
-                                            <span class="fw-semibold text-dark">₱ 2,100.00</span>
-                                        </div>
-                                        <hr class="my-2 text-secondary">
-                                        <div class="d-flex justify-content-between mt-2 mb-4">
-                                            <span class="fw-bold text-dark">Total Tuition Amount</span>
-                                            <span class="fw-bold text-primary" style="font-size: 1.1rem;">₱ 19,000.00</span>
-                                        </div>
-
-                                        <!-- PAYMENT TERM SELECTOR -->
-                                        <h6 class="fw-bold text-dark mb-3 fs-6 border-top pt-4">Select Payment Plan</h6>
-                                        
-                                        <!-- Option 1: Full Payment -->
-                                        <label class="d-block payment-option p-3 mb-3 m-0">
-                                            <div class="form-check d-flex m-0 p-0 align-items-center">
-                                                <input class="form-check-input me-3" type="radio" name="payment_term" value="full" checked>
-                                                <div class="payment-details w-100 d-flex justify-content-between align-items-center">
-                                                    <span class="fw-bold text-dark m-0">Full Payment</span>
-                                                    <span class="badge bg-success-subtle text-success border border-success-subtle">5% Discount</span>
-                                                </div>
+                                        <!-- Verification QR Code Security Box -->
+                                        <div class="col-md-4 d-flex justify-content-center justify-content-md-end">
+                                            <div class="qr-box shadow-sm text-center">
+                                                <i class="bi bi-qr-code-scan text-dark display-6 mb-1 d-block"></i>
+                                                <span class="font-monospace text-uppercase text-muted d-block" style="font-size: 0.65rem;">Cryptographic Facility Entrance Token</span>
                                             </div>
-                                        </label>
+                                        </div>
+                                    </div>
 
-                                        <!-- Option 2: Installment Plan -->
-                                        <label class="d-block payment-option p-3 m-0">
-                                            <div class="form-check m-0 p-0">
-                                                <div class="d-flex align-items-center mb-2">
-                                                    <input class="form-check-input me-3" type="radio" name="payment_term" value="installment">
-                                                    <span class="fw-bold text-dark payment-details m-0">Installment Plan</span>
-                                                </div>
-                                                <div class="small text-muted ms-4 ps-1 mt-2 border-top pt-2">
-                                                    <div class="d-flex justify-content-between mb-1">
-                                                        <span>Upon Enrollment:</span> <span class="fw-semibold text-dark">₱ 4,000.00</span>
-                                                    </div>
-                                                    <div class="d-flex justify-content-between mb-1">
-                                                        <span>Prelims:</span> <span>₱ 5,000.00</span>
-                                                    </div>
-                                                    <div class="d-flex justify-content-between mb-1">
-                                                        <span>Midterms:</span> <span>₱ 5,000.00</span>
-                                                    </div>
-                                                    <div class="d-flex justify-content-between">
-                                                        <span>Finals:</span> <span>₱ 5,000.00</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </label>
-                                        
-                                    </div>
-                                    <div class="card-footer bg-white border-top py-3 mt-2">
-                                        <div class="small text-success text-center fw-semibold"><i class="bi bi-check-circle-fill me-1"></i>Confirmed Semester Amount</div>
-                                    </div>
                                 </div>
-
-                            </div>
-                        </div>
-
-                        <!-- MODAL POP-UPS FOR INDIVIDUAL SCHEDULE MODAL ASSIGNMENTS -->
-                        <!-- Modal configuration segment for IT411 -->
-                        <div class="modal fade" id="modalIT411" tabindex="-1" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered">
-                                <div class="modal-content border-0 shadow-lg" style="border-radius: 12px;">
-                                    <div class="modal-header bg-light border-0 py-3">
-                                        <h5 class="modal-title fw-bold text-dark d-flex align-items-center"><i class="bi bi-calendar-range me-2 text-primary"></i>IT411 Schedules</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body p-4">
-                                        <label class="d-block schedule-option mb-3">
-                                            <div class="form-check d-flex align-items-center m-0 p-0">
-                                                <input class="form-check-input me-3" type="radio" name="schedule_IT411" value="sched1" checked>
-                                                <div class="schedule-details">
-                                                    <div class="fw-bold text-dark">Section A - Mon/Wed/Fri</div>
-                                                    <div class="small text-muted mt-1"><i class="bi bi-clock me-1"></i>09:00 AM - 10:30 AM &nbsp;|&nbsp; Lab 1</div>
-                                                </div>
-                                            </div>
-                                        </label>
-                                        
-                                        <label class="d-block schedule-option m-0">
-                                            <div class="form-check d-flex align-items-center m-0 p-0">
-                                                <input class="form-check-input me-3" type="radio" name="schedule_IT411" value="sched2">
-                                                <div class="schedule-details">
-                                                    <div class="fw-bold text-dark">Section B - Tue/Thu</div>
-                                                    <div class="small text-muted mt-1"><i class="bi bi-clock me-1"></i>01:00 PM - 03:30 PM &nbsp;|&nbsp; Lab 2</div>
-                                                </div>
-                                            </div>
-                                        </label>
-                                    </div>
-                                    <div class="modal-footer border-0 p-4 pt-0">
-                                        <button type="button" class="btn btn-pcc-primary w-100 fw-bold py-2 rounded-pill" data-bs-dismiss="modal">Confirm Selection</button>
-                                    </div>
+                                <div class="text-center">
+                                    <button type="button" onclick="window.print();" class="btn btn-outline-secondary px-4 py-2 fw-semibold shadow-sm"><i class="bi bi-printer me-2"></i>Print Official COR Document</button>
                                 </div>
                             </div>
-                        </div>
 
-                        <!-- Modal configuration segment for IT412 -->
-                        <div class="modal fade" id="modalIT412" tabindex="-1" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered">
-                                <div class="modal-content border-0 shadow-lg" style="border-radius: 12px;">
-                                    <div class="modal-header bg-light border-0 py-3">
-                                        <h5 class="modal-title fw-bold text-dark d-flex align-items-center"><i class="bi bi-calendar-range me-2 text-primary"></i>IT412 Schedules</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body p-4">
-                                        <label class="d-block schedule-option m-0">
-                                            <div class="form-check d-flex align-items-center m-0 p-0">
-                                                <input class="form-check-input me-3" type="radio" name="schedule_IT412" value="sched1" checked>
-                                                <div class="schedule-details">
-                                                    <div class="fw-bold text-dark">Section A - Mon/Wed/Fri</div>
-                                                    <div class="small text-muted mt-1"><i class="bi bi-clock me-1"></i>11:00 AM - 12:00 PM &nbsp;|&nbsp; Lec 304</div>
-                                                </div>
-                                            </div>
-                                        </label>
-                                    </div>
-                                    <div class="modal-footer border-0 p-4 pt-0">
-                                        <button type="button" class="btn btn-pcc-primary w-100 fw-bold py-2 rounded-pill" data-bs-dismiss="modal">Confirm Selection</button>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
-
-                        <!-- Modal configuration segment for PE400 -->
-                        <div class="modal fade" id="modalPE400" tabindex="-1" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered">
-                                <div class="modal-content border-0 shadow-lg" style="border-radius: 12px;">
-                                    <div class="modal-header bg-light border-0 py-3">
-                                        <h5 class="modal-title fw-bold text-dark d-flex align-items-center"><i class="bi bi-calendar-range me-2 text-primary"></i>PE400 Schedules</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body p-4">
-                                        <label class="d-block schedule-option m-0">
-                                            <div class="form-check d-flex align-items-center m-0 p-0">
-                                                <input class="form-check-input me-3" type="radio" name="schedule_PE400" value="sched1" checked>
-                                                <div class="schedule-details">
-                                                    <div class="fw-bold text-dark">Section A - Saturday</div>
-                                                    <div class="small text-muted mt-1"><i class="bi bi-clock me-1"></i>07:00 AM - 09:00 AM &nbsp;|&nbsp; Gymnasium</div>
-                                                </div>
-                                            </div>
-                                        </label>
-                                    </div>
-                                    <div class="modal-footer border-0 p-4 pt-0">
-                                        <button type="button" class="btn btn-pcc-primary w-100 fw-bold py-2 rounded-pill" data-bs-dismiss="modal">Confirm Selection</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
                     </form>
                 </div>
             </div>

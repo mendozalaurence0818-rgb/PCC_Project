@@ -123,7 +123,9 @@
                         </div>
                         <div class="user-info avatar-wrapper">
                             <div class="username">Juan Dela Cruz</div>
-                            <div class="status-text" style="color: #f1b813; font-size: 0.85rem; margin-top: -5px">BSIT - 3rd Year</div>
+                            <div class="status-text" style="color: #f1b813; font-size: 0.80rem; margin-top: -3px">ID: 2024-001234</div>
+                            <div class="status-text" style="color: #f1b813; font-size: 0.80rem; margin-top: -3px">BSIT - 3rd Year</div>
+                            <div class="status-text" style="color: #4ade80; font-size: 0.75rem; margin-top: 2px"><i class="bi bi-circle-fill" style="font-size: 0.5rem; vertical-align: middle;"></i> Regular Standing</div>
                         </div>
                     </div>
                     <ul class="nav sidebar-menu flex-column" id="navigation">
@@ -168,15 +170,6 @@
                         <li class="nav-header">ADMINISTRATIVE</li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
-                                <i class="nav-icon bi bi-wallet2"></i>
-                                <p>
-                                    Financial Account
-                                    <i class="nav-arrow bi bi-chevron-left"></i>
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
                                 <i class="nav-icon bi bi-file-earmark-person-fill"></i>
                                 <p>
                                     Clearance & Holds
@@ -211,6 +204,19 @@
             
             <div class="app-content">
                 <div class="container-fluid">
+
+                    <div class="row mb-4">
+                        <div class="col-12">
+                            <div class="alert alert-primary d-flex align-items-center shadow-sm border-0" role="alert" style="background-color: #e6f2ff; color: #002c5e;">
+                                <i class="bi bi-clock-history fs-2 me-4"></i>
+                                <div>
+                                    <h5 class="alert-heading fw-bold mb-1">Registration Window Opens In:</h5>
+                                    <div class="fs-4 fw-bold font-monospace">03 Days : 14 Hrs : 45 Mins</div>
+                                    <small class="text-muted fw-semibold">Batch 3 (3rd Year Students) - Schedule Builder unlocks at exactly 08:00 AM.</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     
                     <div class="row g-4 mb-4">
                         <div class="col-12 col-sm-6 col-xl-3">
@@ -231,8 +237,8 @@
                                     <i class="bi bi-book-fill"></i>
                                 </span>
                                 <div class="info-box-content ms-3">
-                                    <span class="text-muted small text-uppercase d-block">Enrolled Units</span>
-                                    <h4 class="fw-bold mb-0 text-warning">21</h4>
+                                    <span class="text-muted small text-uppercase d-block">Completed Units</span>
+                                    <h4 class="fw-bold mb-0 text-warning">86</h4>
                                 </div>
                             </div>
                         </div>
@@ -256,28 +262,27 @@
                                 </span>
                                 <div class="info-box-content ms-3">
                                     <span class="text-muted small text-uppercase d-block">Active Holds</span>
-                                    <h4 class="fw-bold mb-0 text-info">None</h4>
+                                    <h4 class="fw-bold mb-0 text-info">1 Pending</h4>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <div class="row">
-                        <div class="col-12">
-                            <div class="card activity-card">
+                        <div class="col-lg-8 col-12 mb-4">
+                            <div class="card activity-card h-100">
                                 <div class="card-header bg-white py-3 border-bottom d-flex align-items-center justify-content-between">
                                     <h5 class="card-title mb-0 fw-bold text-dark">
-                                        <i class="bi bi-bell-fill me-2 text-primary"></i>Recent Announcements & Action Items
+                                        <i class="bi bi-bell-fill me-2 text-primary"></i>Recent Announcements
                                     </h5>
-                                    <span class="badge bg-primary-subtle text-primary px-3 py-1 rounded-pill">My Notifications</span>
                                 </div>
                                 <div class="card-body p-0">
                                     <div class="table-responsive">
                                         <table class="table table-hover align-middle mb-0">
                                             <thead class="table-light small text-uppercase text-secondary">
                                                 <tr>
-                                                    <th class="ps-4" style="width: 18%;">Category</th>
-                                                    <th style="width: 57%;">Details</th>
+                                                    <th class="ps-4" style="width: 20%;">Category</th>
+                                                    <th style="width: 55%;">Details</th>
                                                     <th class="pe-4 text-end" style="width: 25%;">Received</th>
                                                 </tr>
                                             </thead>
@@ -288,61 +293,72 @@
                                                             <i class="bi bi-journal-text me-1"></i> Academics
                                                         </span>
                                                     </td>
-                                                    <td>
-                                                        Your Midterm Grade for <span class="fw-bold text-dark">IT211 - Integrative Programming</span> has been officially posted.
-                                                    </td>
+                                                    <td>Your Midterm Grade for <span class="fw-bold text-dark">IT211 - Integrative Programming</span> has been officially posted.</td>
                                                     <td class="pe-4 text-end text-muted small"><i class="bi bi-clock me-1"></i> Just now</td>
                                                 </tr>
-                                                
                                                 <tr>
                                                     <td class="ps-4">
                                                         <span class="badge bg-warning-subtle text-warning-emphasis tab-indicator">
                                                             <i class="bi bi-calendar-event-fill me-1"></i> Campus Life
                                                         </span>
                                                     </td>
-                                                    <td>
-                                                        Reminder: Intramural Sports sign-ups close this Friday at the University Gymnasium.
-                                                    </td>
+                                                    <td>Reminder: Intramural Sports sign-ups close this Friday.</td>
                                                     <td class="pe-4 text-end text-muted small"><i class="bi bi-clock me-1"></i> 3 hours ago</td>
                                                 </tr>
-                                                
                                                 <tr>
                                                     <td class="ps-4">
                                                         <span class="badge bg-danger-subtle text-danger tab-indicator">
                                                             <i class="bi bi-exclamation-circle-fill me-1"></i> Action Required
                                                         </span>
                                                     </td>
-                                                    <td>
-                                                        Please submit your <span class="fw-bold text-dark">Annual Medical Clearance Form</span> to the campus clinic to avoid registration holds for next semester.
-                                                    </td>
+                                                    <td>Please submit your <span class="fw-bold text-dark">Annual Medical Clearance Form</span> to the campus clinic.</td>
                                                     <td class="pe-4 text-end text-muted small"><i class="bi bi-clock me-1"></i> Yesterday</td>
-                                                </tr>
-                                                
-                                                <tr>
-                                                    <td class="ps-4">
-                                                        <span class="badge bg-success-subtle text-success tab-indicator">
-                                                            <i class="bi bi-check-circle-fill me-1"></i> Financial Aid
-                                                        </span>
-                                                    </td>
-                                                    <td>
-                                                        Your Academic Scholarship grant for the current semester has been successfully disbursed to your account.
-                                                    </td>
-                                                    <td class="pe-4 text-end text-muted small"><i class="bi bi-clock me-1"></i> 2 days ago</td>
                                                 </tr>
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
-                                <div class="card-footer bg-white border-top py-3 text-center">
-                                    <small class="text-muted font-semibold"><i class="bi bi-info-circle me-1"></i> Check your specific tabs for detailed records and comprehensive academic reports.</small>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4 col-12 mb-4">
+                            <div class="card activity-card h-100">
+                                <div class="card-header bg-white py-3 border-bottom d-flex align-items-center justify-content-between">
+                                    <h5 class="card-title mb-0 fw-bold text-dark">
+                                        <i class="bi bi-shield-lock-fill me-2 text-warning"></i>Clearance Status
+                                    </h5>
+                                </div>
+                                <div class="card-body">
+                                    <p class="small text-muted mb-3">All units must be cleared before the Schedule Builder is unlocked for enrollment.</p>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                            <span><i class="bi bi-cash me-2 text-secondary"></i>Accounting</span>
+                                            <span class="badge bg-success rounded-pill px-3 py-2"><i class="bi bi-check-circle-fill me-1"></i> Cleared</span>
+                                        </li>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                            <span><i class="bi bi-book me-2 text-secondary"></i>Library</span>
+                                            <span class="badge bg-success rounded-pill px-3 py-2"><i class="bi bi-check-circle-fill me-1"></i> Cleared</span>
+                                        </li>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                            <span><i class="bi bi-person-hearts me-2 text-secondary"></i>Guidance</span>
+                                            <span class="badge bg-success rounded-pill px-3 py-2"><i class="bi bi-check-circle-fill me-1"></i> Cleared</span>
+                                        </li>
+                                        <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                            <span><i class="bi bi-building me-2 text-secondary"></i>Dean's Office</span>
+                                            <span class="badge bg-danger rounded-pill px-3 py-2"><i class="bi bi-x-circle-fill me-1"></i> Hold</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="card-footer bg-light border-top py-3 text-center">
+                                    <a href="#" class="btn btn-sm btn-outline-primary w-100 fw-bold">Resolve Holds</a>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
+                    </div>
                 </div>
             </div>
-            </main>
+        </main>
 
         <footer class="app-footer">
             <div class="float-start d-none d-sm-inline">Poblacion Central College - </div>

@@ -248,10 +248,9 @@
                                             <label class="form-label text-muted fw-semibold small mb-1">Select Enrolled Subject to Drop</label>
                                             <select class="form-select border-light-subtle rounded-3 bg-body-tertiary text-secondary fw-medium p-2.5 px-3">
                                                 <option selected disabled>-- Select Course --</option>
-                                                <option value="1">IT311 - Advanced Database Management Systems (3 Units)</option>
-                                                <option value="2">IT312 - Web Development Frameworks (3 Units)</option>
-                                                <option value="3">IT313 - Systems Analysis and Design (3 Units)</option>
-                                                <option value="4">GE108 - Ethics (3 Units)</option>
+                                                <option value="1">IT411 - Capstone Project 1</option>
+                                                <option value="2">IT412 - Information Assurance 2</option>
+                                                <option value="3">PE400 - Advanced Team Sports</option>
                                             </select>
                                         </div>
                                         <div class="col-12">

@@ -138,6 +138,17 @@
             color: #000;
         }
 
+        /* Completed Step Styling */
+        .timeline-item.completed .timeline-bubble {
+            background-color: #0A1140;
+            border-color: #0A1140;
+            color: #FFFFFF;
+        }
+
+        .timeline-item.completed .timeline-label {
+            color: #0A1140;
+        }
+
         .main-container {
             max-width: 1000px;
             margin: 50px auto;
@@ -244,7 +255,6 @@
             border-color: #ced4da;
         }
 
-        /* Review Page Specific Styles for Verification Elements */
         .file-review-badge {
             display: inline-flex;
             align-items: center;
@@ -344,6 +354,104 @@
             background-color: #146c43;
         }
 
+        /* ----- CSS-ONLY MODAL STYLES ----- */
+        .modal-overlay {
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .modal-overlay:target {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-backdrop {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            cursor: default;
+        }
+
+        .modal-content {
+            background-color: #FFFFFF;
+            padding: 40px 50px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 550px;
+            position: relative;
+            z-index: 1001;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            transform: translateY(-20px);
+            transition: transform 0.3s ease;
+        }
+
+        .modal-overlay:target .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-close-btn {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            font-size: 28px;
+            color: #adb5bd;
+            text-decoration: none;
+            cursor: pointer;
+            transition: color 0.2s;
+            line-height: 1;
+        }
+
+        .modal-close-btn:hover {
+            color: #000;
+        }
+
+        .modal-content h3 {
+            font-family: var(--font-heading);
+            font-size: 24px;
+            color: #0A1140;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .modal-content hr {
+            border: 0;
+            border-top: 1px solid #dee2e6;
+            margin-bottom: 25px;
+        }
+
+        .course-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .course-list li {
+            font-size: 15px;
+            color: var(--text-main);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .course-list li i {
+            color: var(--accent-yellow);
+            font-size: 18px;
+            margin-top: -2px;
+        }
+
         @media (max-width: 768px) {
             .top-navbar {
                 padding: 14px 25px;
@@ -362,6 +470,10 @@
             .timeline-label {
                 display: none;
             }
+
+            .modal-content {
+                padding: 30px;
+            }
         }
     </style>
 </head>
@@ -369,20 +481,20 @@
 <body>
 
     <nav class="top-navbar">
-        <a href="#home">Home</a>
-        <a href="#courses">Courses Offered</a>
+        <a href="../new_student_registration.php">Home</a>
+        <a href="#coursesModal">Courses Offered</a>
     </nav>
 
     <img src="../../../images/PCC_Admission.png" alt="Admission Portal Header" class="header-banner">
 
     <div class="timeline-bar">
         <div class="timeline-wrapper">
-            <div class="timeline-item">
-                <div class="timeline-bubble">1</div>
+            <div class="timeline-item completed">
+                <div class="timeline-bubble"><i class="bi bi-check"></i></div>
                 <div class="timeline-label">Student Profile</div>
             </div>
-            <div class="timeline-item">
-                <div class="timeline-bubble">2</div>
+            <div class="timeline-item completed">
+                <div class="timeline-bubble"><i class="bi bi-check"></i></div>
                 <div class="timeline-label">Credentials</div>
             </div>
             <div class="timeline-item active">
@@ -399,7 +511,7 @@
                 you will no longer be able to edit these fields.</p>
         </div>
 
-        <form action="submit_application.php" method="post">
+        <form action="admission_complete.php" method="post">
 
             <div class="form-section-divider">
                 <h4>I. Personal Demographics</h4>
@@ -553,6 +665,18 @@
                         <i class="bi bi-check-circle-fill"></i> psa_birth_cert_johndoe.pdf
                     </div>
                 </div>
+                <div class="grid-col-6">
+                    <label>Certificate of Good Moral Character</label>
+                    <div class="file-review-badge">
+                        <i class="bi bi-check-circle-fill"></i> good_moral_johndoe.pdf
+                    </div>
+                </div>
+                <div class="grid-col-6">
+                    <label>Recent 2x2 ID Picture</label>
+                    <div class="file-review-badge">
+                        <i class="bi bi-check-circle-fill"></i> 2x2_id_picture_johndoe.jpg
+                    </div>
+                </div>
             </div>
 
             <div class="affirmation-box">
@@ -568,8 +692,8 @@
             </div>
 
             <div class="action-footer">
-                <a href="application_step2.html" class="btn-cancel-app">
-                    <i class="bi bi-arrow-left"></i> Back to Credentials
+                <a href="new_student_updocs.php" class="btn-cancel-app">
+                    <i class="bi bi-arrow-left"></i> Back to Uploading of Documents
                 </a>
                 <button type="submit" class="btn-advance-step btn-submit-app">
                     Submit Application <i class="bi bi-send-fill"></i>
@@ -578,6 +702,23 @@
 
         </form>
     </main>
+
+    <div id="coursesModal" class="modal-overlay">
+        <a href="#" class="modal-backdrop"></a>
+        <div class="modal-content">
+            <a href="#" class="modal-close-btn">&times;</a>
+            <h3>Programs & Courses Offered</h3>
+            <hr>
+            <ul class="course-list">
+                <li><i class="bi bi-book-half"></i> Bachelor of Science in Computer Science (BSCS)</li>
+                <li><i class="bi bi-laptop"></i> Bachelor of Science in Information Technology (BSIT)</li>
+                <li><i class="bi bi-briefcase-fill"></i> Bachelor of Science in Business Administration (BSBA)</li>
+                <li><i class="bi bi-buildings-fill"></i> Bachelor of Science in Hospitality Management (BSHM)</li>
+                <li><i class="bi bi-mortarboard-fill"></i> Bachelor of Secondary Education (BSEd)</li>
+                <li><i class="bi bi-shield-fill-check"></i> Bachelor of Science in Criminology (BSCrim)</li>
+            </ul>
+        </div>
+    </div>
 
 </body>
 

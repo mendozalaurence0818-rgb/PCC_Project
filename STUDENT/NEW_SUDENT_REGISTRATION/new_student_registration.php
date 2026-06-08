@@ -37,12 +37,12 @@
                     <div class="card-body" style="padding: 15px;">
                         <h6 style="font-weight: bold; margin-bottom: 15px; text-align: center; color: #212529;">Start
                             New Application</h6>
-                        <form action="admission_application.html" method="get">
+                        <form action="NEW_STUDENT_ADMISSION/new_student_profile.php" method="get">
                             <div class="mb-2">
                                 <label
                                     style="font-size: 12px; font-weight: bold; color: #495057; margin-bottom: 3px;">Applicant
                                     Classification</label>
-                                <select class="form-select"
+                                <select name="classification" class="form-select"
                                     style="padding: 6px 10px; font-size: 13px; border-color: #CED4DA; cursor: pointer;"
                                     required>
                                     <option value="" disabled selected>Select Classification</option>
@@ -57,13 +57,11 @@
                                     style="font-size: 12px; font-weight: bold; color: #495057; margin-bottom: 3px;">Academic
                                     Term</label>
                                 <select class="form-select"
-                                    style="padding: 6px 10px; font-size: 13px; border-color: #CED4DA; cursor: pointer;"
-                                    required>
-                                    <option value="" disabled selected>Select Term</option>
-                                    <option value="1st_sem">1st Semester, AY 2026-2027</option>
-                                    <option value="2nd_sem">2nd Semester, AY 2026-2027</option>
-                                    <option value="summer">Summer, AY 2025-2026</option>
+                                    style="padding: 6px 10px; font-size: 13px; border-color: #CED4DA; background-color: #e9ecef; color: #6c757d; cursor: not-allowed;"
+                                    disabled>
+                                    <option value="1st_sem" selected>1st Semester, AY 2026-2027</option>
                                 </select>
+                                <input type="hidden" name="academic_term" value="1st_sem">
                             </div>
                             <button type="submit" class="btn w-100"
                                 style="background-color: #0D6EFD; border-color: #0D6EFD; color: #FFFFFF; font-weight: bold; padding: 8px; border-radius: 6px; font-size: 14px;">
@@ -81,7 +79,8 @@
                             applied? Check your admission status here.</p>
                         <form action="application_status.html" method="post">
                             <div class="mb-2">
-                                <input type="text" class="form-control" placeholder="Application Reference Number"
+                                <input type="text" name="reference_number" class="form-control"
+                                    placeholder="Application Reference Number"
                                     style="padding: 6px 10px; font-size: 13px; border-color: #CED4DA;" required>
                             </div>
                             <button type="submit" class="btn w-100"

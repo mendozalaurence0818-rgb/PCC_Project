@@ -110,6 +110,7 @@
             </div>
         </nav>
 
+        <!-- START OF INTEGRATED DASHBOARD SIDEBAR -->
         <aside class="app-sidebar sidebar-bg">
             <div class="sidebar-brand" style="border-right: 1px solid rgba(255, 255, 255, 0.1); border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
                 <a href="#" class="brand-link">
@@ -128,7 +129,7 @@
                         <div class="user-info avatar-wrapper">
                             <div class="username">Juan Dela Cruz</div>
                             <div class="status-text" style="color: #f1b813; font-size: 0.80rem; margin-top: -3px">ID: 2024-001234</div>
-                            <div class="status-text" style="color: #f1b813; font-size: 0.80rem; margin-top: -3px">BSIT - 4th Year</div>
+                            <div class="status-text" style="color: #f1b813; font-size: 0.80rem; margin-top: -3px">BSIT - 3rd Year</div>
                             <div class="status-text" style="color: #4ade80; font-size: 0.75rem; margin-top: 2px"><i class="bi bi-circle-fill" style="font-size: 0.5rem; vertical-align: middle;"></i> Regular Standing</div>
                         </div>
                     </div>
@@ -192,6 +193,8 @@
                 </nav>
             </div>
         </aside>
+        <!-- END OF INTEGRATED DASHBOARD SIDEBAR -->
+
         <main class="app-main py-4">
             <div class="app-content-header mb-4">
                 <div class="container-fluid">
@@ -493,7 +496,6 @@
                                                     <th>Subject Narrative Description</th>
                                                     <th class="text-center">Units</th>
                                                     <th>Assigned Facility Room Layout</th>
-                                                    <th>Faculty Registry Authority</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -502,21 +504,18 @@
                                                     <td>Capstone Project 1 (Proposal & Prototyping)</td>
                                                     <td class="text-center">3</td>
                                                     <td>Laboratory Station 1</td>
-                                                    <td>Prof. A. Santos</td>
                                                 </tr>
                                                 <tr>
                                                     <td class="fw-bold text-dark">IT412</td>
                                                     <td>Information Assurance and Security 2</td>
                                                     <td class="text-center">3</td>
                                                     <td>Lecture Hall 304</td>
-                                                    <td>Prof. M. Torres</td>
                                                 </tr>
                                                 <tr>
                                                     <td class="fw-bold text-dark">PE400</td>
                                                     <td>Advanced Team Sports Elective</td>
                                                     <td class="text-center">2</td>
                                                     <td>Physical Campus Gymnasium</td>
-                                                    <td>Coach J. Perez</td>
                                                 </tr>
                                             </tbody>
                                         </table>

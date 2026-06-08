@@ -161,7 +161,7 @@
                             <a href="#" class="nav-link">
                                 <i class="nav-icon bi bi-laptop"></i>
                                 <p>
-                                    LMS / Canvas
+                                    Dropping of Subject
                                     <i class="nav-arrow bi bi-chevron-left"></i>
                                 </p>
                             </a>
@@ -171,7 +171,7 @@
                             <a href="#" class="nav-link">
                                 <i class="nav-icon bi bi-file-earmark-person-fill"></i>
                                 <p>
-                                    Clearance & Holds
+                                    Online Enrollment
                                     <i class="nav-arrow bi bi-chevron-left"></i>
                                 </p>
                             </a>

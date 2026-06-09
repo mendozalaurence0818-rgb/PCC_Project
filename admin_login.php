@@ -1,5 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+$backgrounds = [
+    'images/PCC_Main_Background.png',
+    'images/PCC_Background2.png'
+];
+
+$random_bg = $backgrounds[array_rand($backgrounds)];
+?>
 
 <head>
     <meta charset="UTF-8">
@@ -14,13 +22,26 @@
         crossorigin="anonymous" />
     <link rel="stylesheet" href="css/adminlte.css" />
     <link rel="icon" href="images/PCC_favicon.png" type="image/png" />
+    <style>
+        body {
+            background-image: url('<?php echo $random_bg; ?>');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+
+        @media (max-width: 900px) {
+            body {
+                background-image: url('images/PCC_Smaller_BG.png');
+                background-attachment: scroll;
+            }
+        }
+    </style>
 </head>
 
-<body class="login-page bg-body-secondary"
-    style="background-image: url('images/PCC_Background.png'); background-repeat: no-repeat; background-attachment: fixed; background-size: cover;">
+<body class="login-page bg-body-secondary">
     <div class="login-box">
         <div class="login-logo" style="color: white;">
-            <a href="#"></a>
             <i><img src="images/PCC_Logo.png" alt="" style="width: 100px; height: 100px;"></i>
             <br>
             <p style="font-size: 25px; font-weight: bold; margin-bottom: -10px; margin-top: 5px;">POBLACION CENTRAL
@@ -31,7 +52,7 @@
             <div class="card-body login-card-body">
                 <p class="login-box-msg" style="font-size:30px; margin-bottom: -25px;"><b>Admin</b> Portal</p>
                 <p class="login-box-msg">Sign in to start your session</p>
-                <form action="../index3.html" method="post">
+                <form action="admin_dashboard.php" method="post">
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" placeholder="Admin ID" required />
                         <div class="input-group-text">
@@ -68,7 +89,6 @@
                 </form>
             </div>
         </div>
-    </div>
     </div>
 </body>
 

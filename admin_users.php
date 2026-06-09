@@ -5,21 +5,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PCC | Users Management</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/source-sans-3@5.0.12/index.css" crossorigin="anonymous" media="print" onload="this.media = 'all'" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.11.0/styles/overlayscrollbars.min.css" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/source-sans-3@5.0.12/index.css"
+        crossorigin="anonymous" media="print" onload="this.media = 'all'" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.11.0/styles/overlayscrollbars.min.css"
+        crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+        crossorigin="anonymous" />
     <link rel="stylesheet" href="css/adminlte.css" />
     <link rel="icon" href="images/PCC_favicon.png" type="image/png" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        .sidebar-bg { background-color: #002c5e !important; }
-        .sidebar-bg .nav-link, .sidebar-bg .brand-link, .sidebar-bg .nav-header { color: #ffffff !important; }
-        .sidebar-bg-active { color: #002c5e !important; background-color: #f1b813 !important; }
-        .user-profile { display: flex; align-items: center; gap: 12px; padding: 15px 20px; }
-        .avatar-placeholder { width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; color: #ffffff; background-color: #001d3d; }
-        .user-info .username { color: #ffffff; font-weight: 600; }
-        .user-info .status-text { color: #ffffff; }
+        .sidebar-bg {
+            background-color: #002c5e !important;
+        }
+
+        .sidebar-bg .nav-link,
+        .sidebar-bg .brand-link,
+        .sidebar-bg .nav-header {
+            color: #ffffff !important;
+        }
+
+        .sidebar-bg-active {
+            color: #002c5e !important;
+            background-color: #f1b813 !important;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 15px 20px;
+        }
+
+        .avatar-placeholder {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: #ffffff;
+            background-color: #001d3d;
+        }
+
+        .user-info .username {
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .user-info .status-text {
+            color: #ffffff;
+        }
     </style>
 </head>
 
@@ -32,7 +70,8 @@
                     <li class="nav-item dropdown user-menu">
                         <span class="d-none d-md-inline">
                             <div class="nav-date" style="margin-top:6px; margin-bottom: 9px;">
-                                <?php date_default_timezone_set('Asia/Manila'); echo date('F j, Y') . " - " . date("h:iA"); ?>
+                                <?php date_default_timezone_set('Asia/Manila');
+                                echo date('F j, Y') . " - " . date("h:iA"); ?>
                             </div>
                         </span>
                     </li>
@@ -55,7 +94,7 @@
                                 <i class="fa-solid fa-user"></i>
                             </div>
                         </div>
-                        <div class="user-info avatar-wrapper">
+                        <div class="user-info">
                             <div class="username">Admin 1</div>
                             <div class="status-text" style="color: #35e400; margin-top: -5px">Online</div>
                         </div>
@@ -128,7 +167,8 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="admin_login.php" class="nav-link text-danger-emphasis" onclick="return confirm('Are you sure you want to end your session?');">
+                            <a href="admin_login.php" class="nav-link text-danger-emphasis"
+                                onclick="return confirm('Are you sure you want to end your session?');">
                                 <i class="nav-icon bi bi-box-arrow-left text-danger"></i>
                                 <p>Logout</p>
                             </a>
@@ -142,7 +182,8 @@
                 <div class="container-fluid">
                     <div class="d-flex justify-content-between align-items-center my-3">
                         <h3 class="fw-bold m-0">System Users Accounts</h3>
-                        <button class="btn btn-sm text-white" style="background-color: #002c5e;"><i class="bi bi-plus-circle me-1"></i> Create New User</button>
+                        <button class="btn btn-sm text-white" style="background-color: #002c5e;"><i
+                                class="bi bi-plus-circle me-1"></i> Create New User</button>
                     </div>
                 </div>
             </div>
@@ -151,7 +192,9 @@
                 <div class="container-fluid">
                     <div class="card border-0 shadow-sm rounded-3">
                         <div class="card-header bg-white py-3">
-                            <h5 class="card-title mb-0 fw-bold text-dark"><i class="bi bi-people me-2 text-secondary"></i>Authorized Role Distribution Accounts</h5>
+                            <h5 class="card-title mb-0 fw-bold text-dark"><i
+                                    class="bi bi-people me-2 text-secondary"></i>Authorized Role Distribution Accounts
+                            </h5>
                         </div>
                         <div class="card-body p-0">
                             <table class="table table-hover align-middle mb-0">
@@ -170,14 +213,16 @@
                                         <td>System Administrator</td>
                                         <td><span class="badge bg-danger">Admin</span></td>
                                         <td><span class="text-success small fw-bold">Active</span></td>
-                                        <td class="pe-4 text-end"><button class="btn btn-sm btn-outline-secondary">Manage</button></td>
+                                        <td class="pe-4 text-end"><button
+                                                class="btn btn-sm btn-outline-secondary">Manage</button></td>
                                     </tr>
                                     <tr>
                                         <td class="ps-4 fw-semibold">std_2026_001</td>
                                         <td>Agudon, Miguelito M. (IT Student)</td>
                                         <td><span class="badge bg-primary">Student</span></td>
                                         <td><span class="text-success small fw-bold">Active</span></td>
-                                        <td class="pe-4 text-end"><button class="btn btn-sm btn-outline-secondary">Manage</button></td>
+                                        <td class="pe-4 text-end"><button
+                                                class="btn btn-sm btn-outline-secondary">Manage</button></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -193,4 +238,5 @@
         </footer>
     </div>
 </body>
+
 </html>

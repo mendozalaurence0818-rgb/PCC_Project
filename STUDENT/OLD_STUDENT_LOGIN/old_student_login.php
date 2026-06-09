@@ -1,5 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+$backgrounds = [
+    '../../images/PCC_Main_Background.png',
+    '../../images/PCC_Background2.png'
+];
+
+$random_bg = $backgrounds[array_rand($backgrounds)];
+?>
 
 <head>
     <meta charset="UTF-8">
@@ -14,18 +22,34 @@
         crossorigin="anonymous" />
     <link rel="stylesheet" href="../../css/adminlte.css" />
     <link rel="icon" href="../../images/PCC_favicon.png" type="image/png" />
+    <style>
+        body {
+            background-image:
+                url('<?php echo $random_bg; ?>');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+
+        @media (max-width: 900px) {
+            body {
+                background-image:
+                    url('../../images/PCC_Smaller_BG.png');
+                background-attachment: scroll;
+            }
+        }
+    </style>
 </head>
 
-<body class="login-page bg-body-secondary"
-    style="background-image: url('../../images/PCC_Main_Background.png'); background-repeat: no-repeat; background-attachment: fixed; background-size: cover;">
+<body class="login-page bg-body-secondary">
     <div class="login-box">
         <div class="login-logo" style="color: white;">
             <a href="#"></a>
-            <i><img src="../../images/PCC_Logo.png" alt="" style="width: 100px; height: 100px;"></i>
+            <i><img src="../../images/PCC_Logo.png" alt="" style="width: 100px; height: 100px; text-shadow: 1px 1px 3px black;"></i>
             <br>
-            <p style="font-size: 25px; font-weight: bold; margin-bottom: -10px; margin-top: 5px;">POBLACION CENTRAL
+            <p style="font-size: 25px; font-weight: bold; margin-bottom: -10px; margin-top: 5px; text-shadow: 1px 1px 3px black;">POBLACION CENTRAL
                 COLLEGE</p>
-            <p style="font-size: 15px; margin-top: 5px;">Home of the PCC Chiefs</p>
+            <p style="font-size: 15px; margin-top: 5px; text-shadow: 1px 1px 3px black;">Home of the PCC Chiefs</p>
         </div>
         <div>
             <div class="card-body login-card-body">

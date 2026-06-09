@@ -1,10 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+$backgrounds = [
+    'images/PCC_Main_Background.png',
+    'images/PCC_Background2.png'
+];
+
+$random_bg = $backgrounds[array_rand($backgrounds)];
+?>
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PCC | Select Portal</title>
+    <title>Poblacion Central College - GoPCC</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/source-sans-3@5.0.12/index.css"
         integrity="sha256-tXJfXfp6Ewt1ilPzLDtQnJV4hclT9XuaZUKyUvmyr+Q=" crossorigin="anonymous" media="print"
         onload="this.media = 'all'" />
@@ -46,14 +54,27 @@
             color: #FFFFFF;
             border-color: #0D6EFD;
         }
+
+        body {
+            background-image: url('<?php echo $random_bg; ?>');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+
+        @media (max-width: 900px) {
+            body {
+                background-image: url('images/PCC_Smaller_BG.png');
+                background-attachment: scroll;
+            }
+        }
     </style>
 </head>
 
 <body class="login-page bg-body-secondary"
-    style="background-image: url('images/PCC_Background.png'); background-repeat: no-repeat; background-attachment: fixed; background-size: cover; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0;">
+    style="display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0;">
     <div style="width: 100%; max-width: 450px; padding: 10px;">
         <div class="text-center" style="color: #FFFFFF; margin-bottom: 20px;">
-            <a href="#"></a>
             <i><img src="images/PCC_Logo.png" alt="PCC Logo" style="width: 75px; height: 75px;"></i>
             <br>
             <p style="font-size: 22px; font-weight: bold; margin-bottom: -5px; margin-top: 5px;">POBLACION CENTRAL

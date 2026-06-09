@@ -32,7 +32,6 @@
             background-color: #f4f6f9 !important;
         }
 
-        /* Sidebar Styles (Matched exactly to Dashboard) */
         .sidebar-bg {
             background-color: #002c5e !important;
         }
@@ -64,6 +63,7 @@
             align-items: center;
             gap: 12px;
             padding: 15px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .avatar-placeholder {
@@ -87,7 +87,6 @@
             color: #ffffff;
         }
 
-        /* Card Styles */
         .schedule-card {
             border: none;
             box-shadow: 0 0 25px rgba(0, 0, 0, 0.06);
@@ -176,6 +175,7 @@
 </head>
 
 <body class="fixed-header sidebar-expand-lg bg-body-tertiary">
+
     <div class="app-wrapper">
         <!-- Top Navigation -->
         <nav class="app-header navbar navbar-expand bg-body">
@@ -207,12 +207,12 @@
             <div class="sidebar-wrapper" style="border-right: 1px solid rgba(255, 255, 255, 0.1)">
                 <nav class="mt-2">
                     <div class="user-profile">
-                        <div class="avatar-wrapper">
+                        <div>
                             <div class="avatar-placeholder">
                                 <i class="fa-solid fa-user-graduate"></i>
                             </div>
                         </div>
-                        <div class="user-info avatar-wrapper">
+                        <div class="user-info">
                             <div class="username">Juan Dela Cruz</div>
                             <div class="status-text" style="color: #f1b813; font-size: 0.80rem; margin-top: -3px">ID:
                                 2024-001234</div>
@@ -280,13 +280,19 @@
                                 </p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="old_student_login.php" class="nav-link text-danger-emphasis" onclick="return confirm('Are you sure you want to end your session?');">
+                                <i class="nav-icon bi bi-box-arrow-left text-danger"></i>
+                                <p>Logout</p>
+                            </a>
+                        </li>
                     </ul>
                 </nav>
             </div>
         </aside>
 
         <!-- Main Content -->
-        <main class="app-main py-4">
+        <main class="app-main p-4">
             <div class="app-content-header mb-4">
                 <div class="container-fluid">
                     <div class="row align-items-center">
@@ -471,9 +477,15 @@
                 </div>
             </div>
         </main>
+        <footer class="app-footer">
+            <div class="float-start d-none d-sm-inline">Poblacion Central College - </div>
+            <strong>
+                <span>&nbsp;All rights reserved.</span>
+            </strong>
+        </footer>
+    </div>
     </div>
 
-    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>

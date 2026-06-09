@@ -48,6 +48,7 @@
             align-items: center;
             gap: 12px;
             padding: 15px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .avatar-placeholder {
@@ -69,19 +70,6 @@
 
         .user-info .status-text {
             color: #ffffff;
-        }
-
-        .activity-card {
-            border: none;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-            border-radius: 10px;
-        }
-
-        .tab-indicator {
-            font-weight: 600;
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
         }
     </style>
 </head>
@@ -116,12 +104,12 @@
             <div class="sidebar-wrapper" style="border-right: 1px solid rgba(255, 255, 255, 0.1)">
                 <nav class="mt-2">
                     <div class="user-profile">
-                        <div class="avatar-wrapper">
+                        <div>
                             <div class="avatar-placeholder">
                                 <i class="fa-solid fa-user-graduate"></i>
                             </div>
                         </div>
-                        <div class="user-info avatar-wrapper">
+                        <div class="user-info">
                             <div class="username">Juan Dela Cruz</div>
                             <div class="status-text" style="color: #f1b813; font-size: 0.80rem; margin-top: -3px">ID:
                                 2024-001234</div>
@@ -189,17 +177,24 @@
                                 </p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="old_student_login.php" class="nav-link text-danger-emphasis"
+                                onclick="return confirm('Are you sure you want to end your session?');">
+                                <i class="nav-icon bi bi-box-arrow-left text-danger"></i>
+                                <p>Logout</p>
+                            </a>
+                        </li>
                     </ul>
                 </nav>
             </div>
         </aside>
 
-        <main class="app-main">
+        <main class="app-main p-4">
             <div class="app-content-header">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-sm-6">
-                            <h3 class="mb-3 mt-3 fw-bold">Student Dashboard</h3>
+                            <h3 class="mb-3 fw-bold">Student Dashboard</h3>
                         </div>
                     </div>
                 </div>

@@ -148,7 +148,7 @@
                         <div class="avatar-wrapper">
                             <div class="avatar-placeholder"><i class="fa-solid fa-user"></i></div>
                         </div>
-                        <div class="user-info avatar-wrapper">
+                        <div class="user-info">
                             <div class="username">Admin 1</div>
                             <div class="status-text" style="color: #35e400; margin-top: -5px">Online</div>
                         </div>
@@ -170,38 +170,25 @@
                         <li class="nav-item">
                             <a href="admin_admissions.php" class="nav-link">
                                 <i class="nav-icon bi bi-clipboard-fill"></i>
-                                <p>
-                                    Admissions
-                                    <i class="nav-arrow bi bi-chevron-left"></i>
-                                </p>
+                                <p>Admissions <i class="nav-arrow bi bi-chevron-left"></i></p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="admin_programs.php" class="nav-link">
                                 <i class="nav-icon bi bi-clipboard-data-fill"></i>
-                                <p>
-                                    Programs
-                                    <i class="nav-arrow bi bi-chevron-left"></i>
-                                </p>
+                                <p>Programs <i class="nav-arrow bi bi-chevron-left"></i></p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="admin_subjects.php" class="nav-link">
                                 <i class="nav-icon bi bi-clipboard2-minus-fill"></i>
-                                <p>
-                                    Subjects
-                                    <i class="nav-arrow bi bi-chevron-left"></i>
-                                </p>
+                                <p>Subjects <i class="nav-arrow bi bi-chevron-left"></i></p>
                             </a>
                         </li>
-
                         <li class="nav-item">
                             <a href="admin_schedules.php" class="nav-link">
                                 <i class="nav-icon bi bi-calendar3"></i>
-                                <p>
-                                    Schedules
-                                    <i class="nav-arrow bi bi-chevron-left"></i>
-                                </p>
+                                <p>Schedules <i class="nav-arrow bi bi-chevron-left"></i></p>
                             </a>
                         </li>
 
@@ -209,41 +196,30 @@
                         <li class="nav-item">
                             <a href="admin_reports.php" class="nav-link">
                                 <i class="nav-icon bi bi-flag-fill"></i>
-                                <p>
-                                    Reports
-                                    <i class="nav-arrow bi bi-chevron-left"></i>
-                                </p>
+                                <p>Reports <i class="nav-arrow bi bi-chevron-left"></i></p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="admin_notice.php" class="nav-link">
                                 <i class="nav-icon bi bi-exclamation-circle-fill"></i>
-                                <p>
-                                    Notice
-                                    <i class="nav-arrow bi bi-chevron-left"></i>
-                                </p>
+                                <p>Notice <i class="nav-arrow bi bi-chevron-left"></i></p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="admin_users.php" class="nav-link">
                                 <i class="nav-icon bi bi-person-check-fill"></i>
-                                <p>
-                                    Users
-                                    <i class="nav-arrow bi bi-chevron-left"></i>
-                                </p>
+                                <p>Users <i class="nav-arrow bi bi-chevron-left"></i></p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="admin_settings.php" class="nav-link">
                                 <i class="nav-icon bi bi-gear-fill"></i>
-                                <p>
-                                    Settings
-                                    <i class="nav-arrow bi bi-chevron-left"></i>
-                                </p>
+                                <p>Settings <i class="nav-arrow bi bi-chevron-left"></i></p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="admin_login.php" class="nav-link text-danger-emphasis" onclick="return confirm('Are you sure you want to end your session?');">
+                            <a href="admin_login.php" class="nav-link text-danger-emphasis"
+                                onclick="return confirm('Are you sure you want to end your session?');">
                                 <i class="nav-icon bi bi-box-arrow-left text-danger"></i>
                                 <p>Logout</p>
                             </a>
@@ -252,8 +228,6 @@
                 </nav>
             </div>
         </aside>
-
-        <img src="images/PCC_Logo.png" alt="PCC Logo" class="brand-image" style="display: none;" />
 
         <main class="app-main">
             <div class="app-content-header">
@@ -393,7 +367,6 @@
                                                 onclick="return confirm('CRITICAL ACCESSIBILITY ALERT:\n\nAre you sure you want to permanently drop this student from records index? This operation cannot be rolled back.');">
                                                 <i class="bi bi-trash-fill me-1"></i>Delete Student
                                             </a>
-
                                             <div class="ms-auto">
                                                 <a href="?" class="btn btn-sm btn-secondary me-2">Cancel</a>
                                                 <button type="submit" name="update_student"
@@ -411,18 +384,15 @@
                                     class="card-header bg-white py-3 border-bottom d-flex justify-content-between align-items-center">
                                     <h5 class="card-title mb-0 fw-bold text-dark"><i
                                             class="bi bi-people-fill me-2 text-primary"></i>PCC Student List</h5>
-
                                     <div class="card-tools">
                                         <form method="GET" action="" class="d-flex gap-2">
                                             <?php if (isset($_GET['edit_id'])): ?>
                                                 <input type="hidden" name="edit_id"
                                                     value="<?php echo htmlspecialchars($_GET['edit_id']); ?>">
                                             <?php endif; ?>
-
                                             <div class="input-group input-group-sm" style="width: 16rem">
-                                                <span class="input-group-text">
-                                                    <i class="bi bi-search" aria-hidden="true"></i>
-                                                </span>
+                                                <span class="input-group-text"><i class="bi bi-search"
+                                                        aria-hidden="true"></i></span>
                                                 <input id="table-filter" type="search" name="search"
                                                     class="form-control" placeholder="Search code or name..."
                                                     aria-label="Search rows"
@@ -471,7 +441,7 @@
                                                         <td class="text-center">
                                                             <?php
                                                             $status = $student['status'];
-                                                            $badge_color = ($status === 'Enrolled') ? 'bg-success-subtle text-success' : (($status === 'Pending') ? 'bg-warning-subtle text-warning-emphasis' : 'bg-danger-subtle text-danger');
+                                                            $badge_color = ($status === 'Enrolled') ? 'bg-success-subtle text-success' : ($status === 'Pending' ? 'bg-warning-subtle text-warning-emphasis' : 'bg-danger-subtle text-danger');
                                                             ?>
                                                             <span
                                                                 class="badge <?php echo $badge_color; ?> tab-indicator d-inline-block w-75 text-center"><?php echo htmlspecialchars($status); ?></span>
@@ -491,7 +461,6 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -501,6 +470,49 @@
             <strong><span>&nbsp;All rights reserved.</span></strong>
         </footer>
     </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const searchInput = document.getElementById("table-filter");
+            const tableBody = document.querySelector("table tbody");
+            const tableRows = tableBody.querySelectorAll("tr");
+
+            const noResultsRow = document.createElement("tr");
+            noResultsRow.style.display = "none";
+            noResultsRow.innerHTML = `
+        <td colspan="7" class="text-center text-muted py-4">
+            No student records found matching your search.
+        </td>
+    `;
+            tableBody.appendChild(noResultsRow);
+
+            searchInput.addEventListener("input", function () {
+                const query = searchInput.value.toLowerCase().trim();
+                let visibleCount = 0;
+
+                tableRows.forEach(row => {
+                    if (row === noResultsRow) return;
+
+                    const studentNo = row.cells[0]?.textContent.toLowerCase() || "";
+                    const studentName = row.cells[1]?.textContent.toLowerCase() || "";
+
+                    // Check if the query matches either field
+                    if (studentNo.includes(query) || studentName.includes(query)) {
+                        row.style.display = "";
+                        visibleCount++;
+                    } else {
+                        row.style.display = "none";
+                    }
+                });
+
+                if (visibleCount === 0 && query !== "") {
+                    noResultsRow.style.display = "";
+                } else {
+                    noResultsRow.style.display = "none";
+                }
+            });
+        });
+    </script>
+
 </body>
 
 </html>

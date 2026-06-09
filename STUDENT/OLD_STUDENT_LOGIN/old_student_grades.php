@@ -32,7 +32,6 @@
             background-color: #f4f6f9 !important;
         }
 
-        /* Sidebar Styles */
         .sidebar-bg {
             background-color: #002c5e !important;
         }
@@ -46,7 +45,6 @@
         .sidebar-bg-active {
             color: #002c5e !important;
             background-color: #f1b813 !important;
-            font-weight: 600;
         }
 
         .user-profile {
@@ -78,7 +76,6 @@
             color: #ffffff;
         }
 
-        /* Card Styles */
         .content-card {
             border: none;
             box-shadow: 0 0 25px rgba(0, 0, 0, 0.06);
@@ -107,7 +104,6 @@
             color: #fff;
         }
 
-        /* Grade Table Styles */
         .grade-excellent {
             color: #198754;
             font-weight: 800;
@@ -141,7 +137,6 @@
 
 <body class="fixed-header sidebar-expand-lg bg-body-tertiary">
     <div class="app-wrapper">
-        <!-- Top Navigation -->
         <nav class="app-header navbar navbar-expand bg-body">
             <div class="container-fluid">
                 <ul class="navbar-nav">
@@ -160,7 +155,6 @@
             </div>
         </nav>
 
-        <!-- Sidebar (Copied from Dashboard) -->
         <aside class="app-sidebar sidebar-bg">
             <div class="sidebar-brand" style="border-right: 1px solid rgba(255, 255, 255, 0.1);">
                 <a href="#" class="brand-link">
@@ -172,7 +166,7 @@
                 <nav class="mt-2">
                     <div class="user-profile">
                         <div class="avatar-wrapper">
-                            <div class="avatar-placeholder">
+                            <div class="avatar-placeholder shadow-sm">
                                 <i class="fa-solid fa-user-graduate"></i>
                             </div>
                         </div>
@@ -245,20 +239,25 @@
                                 </p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="old_student_login.php" class="nav-link text-danger-emphasis"
+                                onclick="return confirm('Are you sure you want to end your session?');">
+                                <i class="nav-icon bi bi-box-arrow-left text-danger"></i>
+                                <p>Logout</p>
+                            </a>
+                        </li>
                     </ul>
                 </nav>
             </div>
         </aside>
 
         <!-- Main Content -->
-        <main class="app-main py-4">
+        <main class="app-main p-4">
             <div class="app-content-header mb-4">
                 <div class="container-fluid">
                     <div class="row align-items-center">
                         <div class="col-sm-8">
-                            <h3 class="mb-1 fw-bold text-dark" style="letter-spacing: -0.5px;">Grades & Transcripts</h3>
-                            <p class="text-muted small mb-0 fw-medium">View your academic performance and request
-                                official records.</p>
+                            <h3 class="mb-3 fw-bold">Grades & Transcripts</h3>
                         </div>
                         <div class="col-sm-4 text-sm-end mt-3 mt-sm-0">
                             <button class="btn btn-pcc-primary btn-sm fw-semibold rounded-pill px-3"
@@ -273,7 +272,6 @@
             <div class="app-content">
                 <div class="container-fluid">
 
-                    <!-- Academic Summary Widgets -->
                     <div class="row g-4 mb-4">
                         <div class="col-12 col-md-6">
                             <div
@@ -308,7 +306,6 @@
                         </div>
                     </div>
 
-                    <!-- Grades Table Card -->
                     <div class="row">
                         <div class="col-12 mb-5">
                             <div class="card content-card h-100">
@@ -318,7 +315,6 @@
                                         <i class="bi bi-file-text-fill me-2 text-primary"></i>Semester Grades
                                     </h5>
 
-                                    <!-- Semester Selector -->
                                     <div class="d-flex align-items-center">
                                         <label for="semesterSelect"
                                             class="me-2 small fw-bold text-secondary text-nowrap">Filter By:</label>
@@ -403,15 +399,15 @@
             </div>
         </main>
 
-        <footer class="app-footer bg-white border-top shadow-sm py-3 mt-auto">
-            <div class="container-fluid text-center text-sm-start text-muted small fw-medium">
-                <div class="float-start d-none d-sm-inline">Poblacion Central College - </div>
-                <strong>&nbsp;All rights reserved.</strong>
-            </div>
+        <footer class="app-footer">
+            <div class="float-start d-none d-sm-inline">Poblacion Central College - </div>
+            <strong>
+                <span>&nbsp;All rights reserved.</span>
+            </strong>
         </footer>
     </div>
+    </div>
 
-    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>

@@ -5,21 +5,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PCC | Reports</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/source-sans-3@5.0.12/index.css" crossorigin="anonymous" media="print" onload="this.media = 'all'" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.11.0/styles/overlayscrollbars.min.css" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/source-sans-3@5.0.12/index.css"
+        crossorigin="anonymous" media="print" onload="this.media = 'all'" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.11.0/styles/overlayscrollbars.min.css"
+        crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+        crossorigin="anonymous" />
     <link rel="stylesheet" href="css/adminlte.css" />
     <link rel="icon" href="images/PCC_favicon.png" type="image/png" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        .sidebar-bg { background-color: #002c5e !important; }
-        .sidebar-bg .nav-link, .sidebar-bg .brand-link, .sidebar-bg .nav-header { color: #ffffff !important; }
-        .sidebar-bg-active { color: #002c5e !important; background-color: #f1b813 !important; }
-        .user-profile { display: flex; align-items: center; gap: 12px; padding: 15px 20px; }
-        .avatar-placeholder { width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; color: #ffffff; background-color: #001d3d; }
-        .user-info .username { color: #ffffff; font-weight: 600; }
-        .user-info .status-text { color: #ffffff; }
+        .sidebar-bg {
+            background-color: #002c5e !important;
+        }
+
+        .sidebar-bg .nav-link,
+        .sidebar-bg .brand-link,
+        .sidebar-bg .nav-header {
+            color: #ffffff !important;
+        }
+
+        .sidebar-bg-active {
+            color: #002c5e !important;
+            background-color: #f1b813 !important;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 15px 20px;
+        }
+
+        .avatar-placeholder {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: #ffffff;
+            background-color: #001d3d;
+        }
+
+        .user-info .username {
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .user-info .status-text {
+            color: #ffffff;
+        }
     </style>
 </head>
 
@@ -32,7 +70,8 @@
                     <li class="nav-item dropdown user-menu">
                         <span class="d-none d-md-inline">
                             <div class="nav-date" style="margin-top:6px; margin-bottom: 9px;">
-                                <?php date_default_timezone_set('Asia/Manila'); echo date('F j, Y') . " - " . date("h:iA"); ?>
+                                <?php date_default_timezone_set('Asia/Manila');
+                                echo date('F j, Y') . " - " . date("h:iA"); ?>
                             </div>
                         </span>
                     </li>
@@ -55,7 +94,7 @@
                                 <i class="fa-solid fa-user"></i>
                             </div>
                         </div>
-                        <div class="user-info avatar-wrapper">
+                        <div class="user-info">
                             <div class="username">Admin 1</div>
                             <div class="status-text" style="color: #35e400; margin-top: -5px">Online</div>
                         </div>
@@ -128,7 +167,8 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="admin_login.php" class="nav-link text-danger-emphasis" onclick="return confirm('Are you sure you want to end your session?');">
+                            <a href="admin_login.php" class="nav-link text-danger-emphasis"
+                                onclick="return confirm('Are you sure you want to end your session?');">
                                 <i class="nav-icon bi bi-box-arrow-left text-danger"></i>
                                 <p>Logout</p>
                             </a>
@@ -153,7 +193,8 @@
                                 <i class="bi bi-file-earmark-pdf-fill text-danger display-6 mb-2"></i>
                                 <h6 class="fw-bold mb-1">Enrollment Report</h6>
                                 <p class="text-muted small mb-3">Download complete demographic summaries.</p>
-                                <button class="btn btn-sm btn-outline-danger w-100"><i class="bi bi-download me-1"></i> Export PDF</button>
+                                <button class="btn btn-sm btn-outline-danger w-100"><i class="bi bi-download me-1"></i>
+                                    Export PDF</button>
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -161,15 +202,18 @@
                                 <i class="bi bi-file-earmark-excel-fill text-success display-6 mb-2"></i>
                                 <h6 class="fw-bold mb-1">Subject Load Sheets</h6>
                                 <p class="text-muted small mb-3">Check section and subject assignment distributions.</p>
-                                <button class="btn btn-sm btn-outline-success w-100"><i class="bi bi-download me-1"></i> Export Excel</button>
+                                <button class="btn btn-sm btn-outline-success w-100"><i class="bi bi-download me-1"></i>
+                                    Export Excel</button>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="card p-3 border-0 shadow-sm bg-white text-center">
                                 <i class="bi bi-printer-fill text-primary display-6 mb-2"></i>
                                 <h6 class="fw-bold mb-1">Class Schedules Printable</h6>
-                                <p class="text-muted small mb-3">Generate printable formats for campus bulletin boards.</p>
-                                <button class="btn btn-sm btn-outline-primary w-100"><i class="bi bi-printer me-1"></i> Print Layout</button>
+                                <p class="text-muted small mb-3">Generate printable formats for campus bulletin boards.
+                                </p>
+                                <button class="btn btn-sm btn-outline-primary w-100"><i class="bi bi-printer me-1"></i>
+                                    Print Layout</button>
                             </div>
                         </div>
                     </div>
@@ -178,7 +222,9 @@
                         <div class="col-12">
                             <div class="card border-0 shadow-sm rounded-3">
                                 <div class="card-header bg-white py-3 border-bottom">
-                                    <h5 class="card-title mb-0 fw-bold text-dark"><i class="bi bi-shield-lock-fill text-secondary me-2"></i>System Security Audit Trail</h5>
+                                    <h5 class="card-title mb-0 fw-bold text-dark"><i
+                                            class="bi bi-shield-lock-fill text-secondary me-2"></i>System Security Audit
+                                        Trail</h5>
                                 </div>
                                 <div class="card-body p-0">
                                     <div class="table-responsive">
@@ -198,14 +244,16 @@
                                                     <td><span class="badge bg-danger">Admin</span></td>
                                                     <td>Created new available sections for 1st/2nd year IT students</td>
                                                     <td>Subjects Module</td>
-                                                    <td class="pe-4 text-end text-muted small">June 08, 2026 11:15 AM</td>
+                                                    <td class="pe-4 text-end text-muted small">June 08, 2026 11:15 AM
+                                                    </td>
                                                 </tr>
                                                 <tr>
                                                     <td class="ps-4 fw-semibold">admin_02</td>
                                                     <td><span class="badge bg-danger">Admin</span></td>
                                                     <td>Approved pending student application</td>
                                                     <td>Admissions Module</td>
-                                                    <td class="pe-4 text-end text-muted small">June 08, 2026 11:15 AM</td>
+                                                    <td class="pe-4 text-end text-muted small">June 08, 2026 11:15 AM
+                                                    </td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -224,4 +272,5 @@
         </footer>
     </div>
 </body>
+
 </html>

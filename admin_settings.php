@@ -29,17 +29,6 @@
             background-color: #f1b813 !important;
         }
 
-        .status-dot {
-            width: 12px;
-            height: 12px;
-            background-color: var(--bs-success);
-            border-radius: 50%;
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            border: 2px solid #002c5e;
-        }
-
         .user-profile {
             display: flex;
             align-items: center;
@@ -72,7 +61,6 @@
 
 <body class="fixed-header sidebar-expand-lg bg-body-tertiary">
     <?php
-    // --- BASIC SERVER-SIDE SETTINGS DATA (MOCK) ---
     $current_school_year = '2026 - 2027';
     $current_semester = '1st Semester';
     $enrollment_status = 'Open';
@@ -120,7 +108,7 @@
                         <div class="avatar-wrapper">
                             <div class="avatar-placeholder"><i class="fa-solid fa-user"></i></div>
                         </div>
-                        <div class="user-info avatar-wrapper">
+                        <div class="user-info">
                             <div class="username">Admin 1</div>
                             <div class="status-text" style="color: #35e400; margin-top: -5px">Online</div>
                         </div>
@@ -190,7 +178,8 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="admin_login.php" class="nav-link text-danger-emphasis" onclick="return confirm('Are you sure you want to end your session?');">
+                            <a href="admin_login.php" class="nav-link text-danger-emphasis"
+                                onclick="return confirm('Are you sure you want to end your session?');">
                                 <i class="nav-icon bi bi-box-arrow-left text-danger"></i>
                                 <p>Logout</p>
                             </a>
@@ -213,7 +202,7 @@
 
             <div class="app-content">
                 <div class="container-fluid">
-                    
+
                     <div class="row g-4">
                         <div class="col-12">
                             <div class="card shadow-sm border-0" style="border-radius: 10px;">
@@ -234,7 +223,8 @@
                                                 </select>
                                             </div>
                                             <div class="col-md-3">
-                                                <label class="form-label small fw-bold">Current Academic Semester</label>
+                                                <label class="form-label small fw-bold">Current Academic
+                                                    Semester</label>
                                                 <select name="semester" class="form-select form-select-sm" required>
                                                     <option value="1st Semester" <?php echo $current_semester === '1st Semester' ? 'selected' : ''; ?>>1st Semester</option>
                                                     <option value="2nd Semester" <?php echo $current_semester === '2nd Semester' ? 'selected' : ''; ?>>2nd Semester</option>
@@ -285,15 +275,21 @@
                                         <div class="row g-3">
                                             <div class="col-md-4">
                                                 <label class="form-label small fw-bold">Current Access Code</label>
-                                                <input type="password" name="current_code" class="form-control form-control-sm" placeholder="••••••••" required>
+                                                <input type="password" name="current_code"
+                                                    class="form-control form-control-sm" placeholder="••••••••"
+                                                    required>
                                             </div>
                                             <div class="col-md-4">
                                                 <label class="form-label small fw-bold">New Access Code</label>
-                                                <input type="password" name="new_code" class="form-control form-control-sm" placeholder="Enter new access key..." required>
+                                                <input type="password" name="new_code"
+                                                    class="form-control form-control-sm"
+                                                    placeholder="Enter new access key..." required>
                                             </div>
                                             <div class="col-md-4">
                                                 <label class="form-label small fw-bold">Confirm New Access Code</label>
-                                                <input type="password" name="confirm_code" class="form-control form-control-sm" placeholder="Confirm new access key..." required>
+                                                <input type="password" name="confirm_code"
+                                                    class="form-control form-control-sm"
+                                                    placeholder="Confirm new access key..." required>
                                             </div>
                                         </div>
                                     </div>
@@ -310,13 +306,16 @@
                             <div class="card shadow-sm border-0" style="border-radius: 10px;">
                                 <div class="card-header bg-white py-3 border-bottom">
                                     <h5 class="card-title mb-0 fw-bold text-dark">
-                                        <i class="bi bi-database-fill-gear me-2 text-primary"></i>System Maintenance & Database Utilities
+                                        <i class="bi bi-database-fill-gear me-2 text-primary"></i>System Maintenance &
+                                        Database Utilities
                                     </h5>
                                 </div>
                                 <div class="card-body bg-white text-dark">
-                                    <p class="small text-secondary mb-3">Maintain database indexing health by generating regular data snapshots and cleanups manually below.</p>
+                                    <p class="small text-secondary mb-3">Maintain database indexing health by generating
+                                        regular data snapshots and cleanups manually below.</p>
                                     <form method="POST" action="" class="d-inline-block">
-                                        <button type="submit" name="trigger_backup" class="btn btn-sm btn-outline-primary fw-semibold me-2">
+                                        <button type="submit" name="trigger_backup"
+                                            class="btn btn-sm btn-outline-primary fw-semibold me-2">
                                             <i class="bi bi-cloud-arrow-down-fill me-1"></i>Backup Database (.SQL)
                                         </button>
                                     </form>
@@ -328,7 +327,7 @@
                 </div>
             </div>
         </main>
-        
+
         <footer class="app-footer">
             <div class="float-start d-none d-sm-inline">Poblacion Central College - </div>
             <strong><span>&nbsp;All rights reserved.</span></strong>

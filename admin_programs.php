@@ -85,7 +85,6 @@
 
 <body class="fixed-header sidebar-expand-lg bg-body-tertiary">
     <?php
-    // --- SERVER-SIDE OPERATION PROCESSOR ---
     $program_list = [
         ['program_code' => 'BSIT', 'name' => 'Bachelor of Science in Information Technology', 'major' => 'Network & Web Systems', 'status' => 'Active'],
         ['program_code' => 'BSCS', 'name' => 'Bachelor of Science in Computer Science', 'major' => 'Core Software Engineering', 'status' => 'Active'],
@@ -94,7 +93,6 @@
         ['program_code' => 'ACT', 'name' => 'Associate in Computer Technology', 'major' => 'Application Development Tier', 'status' => 'Archived']
     ];
 
-    // Intercept Delete Action
     if (isset($_GET['delete_code'])) {
         $delete_code = $_GET['delete_code'];
         echo "<div class='alert alert-danger position-fixed bottom-0 end-0 m-3 z-3 shadow'><strong>Record Deleted!</strong> Program code #" . ($delete_code) . " dropped from configuration mappings.</div>";
@@ -114,7 +112,6 @@
         }
     }
 
-    // Process Updates Sent Via POST Execution
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_program'])) {
         echo "<div class='alert alert-success position-fixed bottom-0 end-0 m-3 z-3 shadow'>Program record updated successfully! (Database sync mock triggered)</div>";
         $edit_mode = false;
@@ -151,7 +148,7 @@
                         <div class="avatar-wrapper">
                             <div class="avatar-placeholder"><i class="fa-solid fa-user"></i></div>
                         </div>
-                        <div class="user-info avatar-wrapper">
+                        <div class="user-info">
                             <div class="username">Admin 1</div>
                             <div class="status-text" style="color: #35e400; margin-top: -5px">Online</div>
                         </div>
@@ -173,38 +170,25 @@
                         <li class="nav-item">
                             <a href="admin_admissions.php" class="nav-link">
                                 <i class="nav-icon bi bi-clipboard-fill"></i>
-                                <p>
-                                    Admissions
-                                    <i class="nav-arrow bi bi-chevron-left"></i>
-                                </p>
+                                <p>Admissions <i class="nav-arrow bi bi-chevron-left"></i></p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="admin_programs.php" class="nav-link sidebar-bg-active">
                                 <i class="nav-icon bi bi-clipboard-data-fill"></i>
-                                <p>
-                                    Programs
-                                    <i class="nav-arrow bi bi-chevron-right"></i>
-                                </p>
+                                <p>Programs <i class="nav-arrow bi bi-chevron-right"></i></p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="admin_subjects.php" class="nav-link">
                                 <i class="nav-icon bi bi-clipboard2-minus-fill"></i>
-                                <p>
-                                    Subjects
-                                    <i class="nav-arrow bi bi-chevron-left"></i>
-                                </p>
+                                <p>Subjects <i class="nav-arrow bi bi-chevron-left"></i></p>
                             </a>
                         </li>
-
                         <li class="nav-item">
                             <a href="admin_schedules.php" class="nav-link">
                                 <i class="nav-icon bi bi-calendar3"></i>
-                                <p>
-                                    Schedules
-                                    <i class="nav-arrow bi bi-chevron-left"></i>
-                                </p>
+                                <p>Schedules <i class="nav-arrow bi bi-chevron-left"></i></p>
                             </a>
                         </li>
 
@@ -212,37 +196,25 @@
                         <li class="nav-item">
                             <a href="admin_reports.php" class="nav-link">
                                 <i class="nav-icon bi bi-flag-fill"></i>
-                                <p>
-                                    Reports
-                                    <i class="nav-arrow bi bi-chevron-left"></i>
-                                </p>
+                                <p>Reports <i class="nav-arrow bi bi-chevron-left"></i></p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="admin_notice.php" class="nav-link">
                                 <i class="nav-icon bi bi-exclamation-circle-fill"></i>
-                                <p>
-                                    Notice
-                                    <i class="nav-arrow bi bi-chevron-left"></i>
-                                </p>
+                                <p>Notice <i class="nav-arrow bi bi-chevron-left"></i></p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="admin_users.php" class="nav-link">
                                 <i class="nav-icon bi bi-person-check-fill"></i>
-                                <p>
-                                    Users
-                                    <i class="nav-arrow bi bi-chevron-left"></i>
-                                </p>
+                                <p>Users <i class="nav-arrow bi bi-chevron-left"></i></p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="admin_settings.php" class="nav-link">
                                 <i class="nav-icon bi bi-gear-fill"></i>
-                                <p>
-                                    Settings
-                                    <i class="nav-arrow bi bi-chevron-left"></i>
-                                </p>
+                                <p>Settings <i class="nav-arrow bi bi-chevron-left"></i></p>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -277,8 +249,7 @@
                     <div class="row g-4 mb-4">
                         <div class="col-12 col-sm-6 col-xl-3">
                             <div class="info-box bg-white shadow-sm d-flex align-items-center p-3 rounded">
-                                <span
-                                    class="info-box-icon bg-primary text-white d-flex align-items-center justify-content-center rounded"
+                                <span class="info-box-icon bg-primary text-white d-flex align-items-center justify-content-center rounded"
                                     style="width: 50px; height: 50px; font-size: 22px;">
                                     <i class="bi bi-clipboard-data-fill"></i>
                                 </span>
@@ -290,8 +261,7 @@
                         </div>
                         <div class="col-12 col-sm-6 col-xl-3">
                             <div class="info-box bg-white shadow-sm d-flex align-items-center p-3 rounded">
-                                <span
-                                    class="info-box-icon bg-success text-white d-flex align-items-center justify-content-center rounded"
+                                <span class="info-box-icon bg-success text-white d-flex align-items-center justify-content-center rounded"
                                     style="width: 50px; height: 50px; font-size: 22px;">
                                     <i class="bi bi-people-fill"></i>
                                 </span>
@@ -303,8 +273,7 @@
                         </div>
                         <div class="col-12 col-sm-6 col-xl-3">
                             <div class="info-box bg-white shadow-sm d-flex align-items-center p-3 rounded">
-                                <span
-                                    class="info-box-icon bg-warning text-dark d-flex align-items-center justify-content-center rounded"
+                                <span class="info-box-icon bg-warning text-dark d-flex align-items-center justify-content-center rounded"
                                     style="width: 50px; height: 50px; font-size: 22px;">
                                     <i class="bi bi-person-badge-fill"></i>
                                 </span>
@@ -316,8 +285,7 @@
                         </div>
                         <div class="col-12 col-sm-6 col-xl-3">
                             <div class="info-box bg-white shadow-sm d-flex align-items-center p-3 rounded">
-                                <span
-                                    class="info-box-icon bg-info text-white d-flex align-items-center justify-content-center rounded"
+                                <span class="info-box-icon bg-info text-white d-flex align-items-center justify-content-center rounded"
                                     style="width: 50px; height: 50px; font-size: 22px;">
                                     <i class="bi bi-check-circle-fill"></i>
                                 </span>
@@ -334,10 +302,9 @@
                         <?php if ($edit_mode && $selected_program): ?>
                             <div class="col-12">
                                 <div class="card border-warning shadow-sm mb-0">
-                                    <div
-                                        class="card-header bg-warning-subtle text-dark-emphasis py-3 d-flex justify-content-between align-items-center">
+                                    <div class="card-header bg-warning-subtle text-dark-emphasis py-3 d-flex justify-content-between align-items-center">
                                         <h5 class="card-title mb-0 fw-bold">
-                                            <i class="bi bi-pencil-square me-2"></i>Edit Student Profile / Program:
+                                            <i class="bi bi-pencil-square me-2"></i>Edit Profile / Program:
                                             <?php echo ($selected_program['program_code']); ?>
                                         </h5>
                                         <a href="?" class="btn-close" aria-label="Close"></a>
@@ -374,8 +341,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div
-                                            class="card-footer bg-light d-flex justify-content-between align-items-center py-2">
+                                        <div class="card-footer bg-light d-flex justify-content-between align-items-center py-2">
                                             <a href="?delete_code=<?php echo urlencode($selected_program['program_code']); ?>"
                                                 class="btn btn-sm btn-danger"
                                                 onclick="return confirm('CRITICAL ACCESSIBILITY ALERT:\n\nAre you sure you want to permanently delete this academic program architecture? Connected tracks and subject mappings will fall out of system indexing.');">
@@ -394,8 +360,7 @@
 
                         <div class="col-12">
                             <div class="card shadow-sm border-0" style="border-radius: 10px;">
-                                <div
-                                    class="card-header bg-white py-3 border-bottom d-flex justify-content-between align-items-center">
+                                <div class="card-header bg-white py-3 border-bottom d-flex justify-content-between align-items-center">
                                     <h5 class="card-title mb-0 fw-bold text-dark"><i
                                             class="bi bi-mortarboard-fill me-2 text-primary"></i>Active Program
                                         Catalogues</h5>
@@ -490,12 +455,9 @@
             const searchInput = document.getElementById('table-filter');
             const tableRows = document.querySelectorAll('table tbody tr');
 
-            const hasLteAnnounce = typeof adminlte !== 'undefined' && typeof adminlte.announce === 'function';
-
             if (searchInput) {
                 searchInput.addEventListener('input', function (e) {
                     const query = e.target.value.toLowerCase().trim();
-                    let visibleCount = 0;
 
                     tableRows.forEach(row => {
                         const programCode = row.querySelector('td:nth-child(1)').textContent.toLowerCase();
@@ -504,19 +466,10 @@
 
                         if (programCode.includes(query) || programName.includes(query) || majorTrack.includes(query)) {
                             row.style.display = '';
-                            visibleCount++;
                         } else {
                             row.style.display = 'none';
                         }
                     });
-
-                    if (hasLteAnnounce) {
-                        if (query === '') {
-                            adminlte.announce("Search cleared. Displaying all programs.", "polite");
-                        } else {
-                            adminlte.announce(`Filtering complete. Found ${visibleCount} matching entries.`, "polite");
-                        }
-                    }
                 });
             }
         });

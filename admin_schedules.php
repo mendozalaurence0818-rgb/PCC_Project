@@ -56,7 +56,7 @@
         .user-info .status-text {
             color: #ffffff;
         }
-        
+
         .status-pill {
             font-weight: 600;
             padding: 6px 16px !important;
@@ -71,7 +71,6 @@
 
 <body class="fixed-header sidebar-expand-lg bg-body-tertiary">
     <?php
-    // --- SERVER-SIDE OPERATION PROCESSOR (MOCK) ---
     $schedule_list = [
         ['id' => 'SCH-101', 'subject' => 'IT211 - Integrative Programming', 'section' => 'BSIT-201', 'room' => 'Computer Laboratory 1', 'day' => 'Mon / Wed', 'time' => '09:00 AM - 11:30 AM', 'instructor' => 'Prof. M. Racho', 'status' => 'Confirmed'],
         ['id' => 'SCH-102', 'subject' => 'CS312 - Automata Theory', 'section' => 'BSCS-301', 'room' => 'Room 302', 'day' => 'Tue / Thu', 'time' => '01:00 PM - 03:00 PM', 'instructor' => 'Dr. J. Villarta', 'status' => 'Confirmed'],
@@ -131,7 +130,9 @@
             <div class="sidebar-wrapper" style="border-right: 1px solid rgba(255, 255, 255, 0.1)">
                 <nav class="mt-2">
                     <div class="user-profile">
-                        <div class="avatar-placeholder"><i class="fa-solid fa-user"></i></div>
+                        <div class="avatar-wrapper">
+                            <div class="avatar-placeholder"><i class="fa-solid fa-user"></i></div>
+                        </div>
                         <div class="user-info">
                             <div class="username">Admin 1</div>
                             <div class="status-text" style="color: #35e400; margin-top: -5px">Online</div>
@@ -139,20 +140,51 @@
                     </div>
                     <ul class="nav sidebar-menu flex-column" id="navigation">
                         <li class="nav-header">MAIN MENU</li>
-                        <li class="nav-item"><a href="admin_dashboard.php" class="nav-link"><i class="nav-icon bi bi-speedometer"></i><p>Dashboard <i class="nav-arrow bi bi-chevron-left"></i></p></a></li>
-                        <li class="nav-item"><a href="admin_student.php" class="nav-link"><i class="nav-icon bi bi-people-fill"></i><p>Students <i class="nav-arrow bi bi-chevron-left"></i></p></a></li>
-                        <li class="nav-item"><a href="admin_admissions.php" class="nav-link"><i class="nav-icon bi bi-clipboard-fill"></i><p>Admissions <i class="nav-arrow bi bi-chevron-left"></i></p></a></li>
-                        <li class="nav-item"><a href="admin_programs.php" class="nav-link"><i class="nav-icon bi bi-clipboard-data-fill"></i><p>Programs <i class="nav-arrow bi bi-chevron-left"></i></p></a></li>
-                        <li class="nav-item"><a href="admin_subjects.php" class="nav-link"><i class="nav-icon bi bi-clipboard2-minus-fill"></i><p>Subjects <i class="nav-arrow bi bi-chevron-left"></i></p></a></li>
-                        <li class="nav-item"><a href="admin_schedules.php" class="nav-link sidebar-bg-active"><i class="nav-icon bi bi-calendar3"></i><p>Schedules <i class="nav-arrow bi bi-chevron-right"></i></p></a></li>
-                        
+                        <li class="nav-item"><a href="admin_dashboard.php" class="nav-link"><i
+                                    class="nav-icon bi bi-speedometer"></i>
+                                <p>Dashboard <i class="nav-arrow bi bi-chevron-left"></i></p>
+                            </a></li>
+                        <li class="nav-item"><a href="admin_student.php" class="nav-link"><i
+                                    class="nav-icon bi bi-people-fill"></i>
+                                <p>Students <i class="nav-arrow bi bi-chevron-left"></i></p>
+                            </a></li>
+                        <li class="nav-item"><a href="admin_admissions.php" class="nav-link"><i
+                                    class="nav-icon bi bi-clipboard-fill"></i>
+                                <p>Admissions <i class="nav-arrow bi bi-chevron-left"></i></p>
+                            </a></li>
+                        <li class="nav-item"><a href="admin_programs.php" class="nav-link"><i
+                                    class="nav-icon bi bi-clipboard-data-fill"></i>
+                                <p>Programs <i class="nav-arrow bi bi-chevron-left"></i></p>
+                            </a></li>
+                        <li class="nav-item"><a href="admin_subjects.php" class="nav-link"><i
+                                    class="nav-icon bi bi-clipboard2-minus-fill"></i>
+                                <p>Subjects <i class="nav-arrow bi bi-chevron-left"></i></p>
+                            </a></li>
+                        <li class="nav-item"><a href="admin_schedules.php" class="nav-link sidebar-bg-active"><i
+                                    class="nav-icon bi bi-calendar3"></i>
+                                <p>Schedules <i class="nav-arrow bi bi-chevron-right"></i></p>
+                            </a></li>
+
                         <li class="nav-header">OTHERS</li>
-                        <li class="nav-item"><a href="admin_reports.php" class="nav-link"><i class="nav-icon bi bi-flag-fill"></i><p>Reports <i class="nav-arrow bi bi-chevron-left"></i></p></a></li>
-                        <li class="nav-item"><a href="admin_notice.php" class="nav-link"><i class="nav-icon bi bi-exclamation-circle-fill"></i><p>Notice <i class="nav-arrow bi bi-chevron-left"></i></p></a></li>
-                        <li class="nav-item"><a href="admin_users.php" class="nav-link"><i class="nav-icon bi bi-person-check-fill"></i><p>Users <i class="nav-arrow bi bi-chevron-left"></i></p></a></li>
-                        <li class="nav-item"><a href="admin_settings.php" class="nav-link"><i class="nav-icon bi bi-gear-fill"></i><p>Settings <i class="nav-arrow bi bi-chevron-left"></i></p></a></li>
+                        <li class="nav-item"><a href="admin_reports.php" class="nav-link"><i
+                                    class="nav-icon bi bi-flag-fill"></i>
+                                <p>Reports <i class="nav-arrow bi bi-chevron-left"></i></p>
+                            </a></li>
+                        <li class="nav-item"><a href="admin_notice.php" class="nav-link"><i
+                                    class="nav-icon bi bi-exclamation-circle-fill"></i>
+                                <p>Notice <i class="nav-arrow bi bi-chevron-left"></i></p>
+                            </a></li>
+                        <li class="nav-item"><a href="admin_users.php" class="nav-link"><i
+                                    class="nav-icon bi bi-person-check-fill"></i>
+                                <p>Users <i class="nav-arrow bi bi-chevron-left"></i></p>
+                            </a></li>
+                        <li class="nav-item"><a href="admin_settings.php" class="nav-link"><i
+                                    class="nav-icon bi bi-gear-fill"></i>
+                                <p>Settings <i class="nav-arrow bi bi-chevron-left"></i></p>
+                            </a></li>
                         <li class="nav-item">
-                            <a href="admin_login.php" class="nav-link text-danger-emphasis" onclick="return confirm('Are you sure you want to end your session?');">
+                            <a href="admin_login.php" class="nav-link text-danger-emphasis"
+                                onclick="return confirm('Are you sure you want to end your session?');">
                                 <i class="nav-icon bi bi-box-arrow-left text-danger"></i>
                                 <p>Logout</p>
                             </a>
@@ -166,38 +198,65 @@
             <div class="app-content-header">
                 <div class="container-fluid">
                     <div class="row align-items-center">
-                        <div class="col-sm-6"><h3 class="mb-3 mt-3 fw-bold">Class Schedules</h3></div>
-                        <div class="col-sm-6 text-end"><button class="btn btn-primary shadow-sm fw-semibold"><i class="bi bi-calendar-plus me-2"></i>Add New Entry</button></div>
+                        <div class="col-sm-6">
+                            <h3 class="mb-3 mt-3 fw-bold">Class Schedules</h3>
+                        </div>
+                        <div class="col-sm-6 text-end"><button class="btn btn-primary shadow-sm fw-semibold"><i
+                                    class="bi bi-calendar-plus me-2"></i>Add New Entry</button></div>
                     </div>
                 </div>
             </div>
 
             <div class="app-content">
                 <div class="container-fluid">
-                    
+
                     <div class="row g-4 mb-4">
-                        <div class="col-12 col-sm-6 col-xl-3">
+                        <div class="col-12 col-md-6 col-xl-3">
                             <div class="info-box bg-white shadow-sm d-flex align-items-center p-3 rounded">
-                                <span class="info-box-icon bg-primary text-white d-flex align-items-center justify-content-center rounded" style="width: 50px; height: 50px; font-size: 22px;"><i class="bi bi-calendar3"></i></span>
-                                <div class="info-box-content ms-3"><span class="text-muted small text-uppercase d-block">Total Schedules</span><h4 class="fw-bold mb-0">36 Slots</h4></div>
+                                <span
+                                    class="info-box-icon bg-primary text-white d-flex align-items-center justify-content-center rounded"
+                                    style="width: 50px; height: 50px; font-size: 22px;"><i
+                                        class="bi bi-calendar3"></i></span>
+                                <div class="info-box-content ms-3"><span
+                                        class="text-muted small text-uppercase d-block">Total Schedules</span>
+                                    <h4 class="fw-bold mb-0">36 Slots</h4>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-12 col-sm-6 col-xl-3">
+                        <div class="col-12 col-md-6 col-xl-3">
                             <div class="info-box bg-white shadow-sm d-flex align-items-center p-3 rounded">
-                                <span class="info-box-icon bg-success text-white d-flex align-items-center justify-content-center rounded" style="width: 50px; height: 50px; font-size: 22px;"><i class="bi bi-building-check"></i></span>
-                                <div class="info-box-content ms-3"><span class="text-muted small text-uppercase d-block">Room Allocations</span><h4 class="fw-bold mb-0 text-success">12 Active</h4></div>
+                                <span
+                                    class="info-box-icon bg-success text-white d-flex align-items-center justify-content-center rounded"
+                                    style="width: 50px; height: 50px; font-size: 22px;"><i
+                                        class="bi bi-building-check"></i></span>
+                                <div class="info-box-content ms-3"><span
+                                        class="text-muted small text-uppercase d-block">Room Allocations</span>
+                                    <h4 class="fw-bold mb-0 text-success">12 Active</h4>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-12 col-sm-6 col-xl-3">
+                        <div class="col-12 col-md-6 col-xl-3">
                             <div class="info-box bg-white shadow-sm d-flex align-items-center p-3 rounded">
-                                <span class="info-box-icon bg-warning text-dark d-flex align-items-center justify-content-center rounded" style="width: 50px; height: 50px; font-size: 22px;"><i class="bi bi-person-badge-fill"></i></span>
-                                <div class="info-box-content ms-3"><span class="text-muted small text-uppercase d-block">Total Instructors</span><h4 class="fw-bold mb-0 text-warning">18 Assigned</h4></div>
+                                <span
+                                    class="info-box-icon bg-warning text-dark d-flex align-items-center justify-content-center rounded"
+                                    style="width: 50px; height: 50px; font-size: 22px;"><i
+                                        class="bi bi-person-badge-fill"></i></span>
+                                <div class="info-box-content ms-3"><span
+                                        class="text-muted small text-uppercase d-block">Total Instructors</span>
+                                    <h4 class="fw-bold mb-0 text-warning">18 Assigned</h4>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-12 col-sm-6 col-xl-3">
+                        <div class="col-12 col-md-6 col-xl-3">
                             <div class="info-box bg-white shadow-sm d-flex align-items-center p-3 rounded">
-                                <span class="info-box-icon bg-info text-white d-flex align-items-center justify-content-center rounded" style="width: 50px; height: 50px; font-size: 22px;"><i class="bi bi-calendar-check"></i></span>
-                                <div class="info-box-content ms-3"><span class="text-muted small text-uppercase d-block">School Year</span><h4 class="fw-bold mb-0 text-info">2026 - 2027</h4></div>
+                                <span
+                                    class="info-box-icon bg-info text-white d-flex align-items-center justify-content-center rounded"
+                                    style="width: 50px; height: 50px; font-size: 22px;"><i
+                                        class="bi bi-calendar-check"></i></span>
+                                <div class="info-box-content ms-3"><span
+                                        class="text-muted small text-uppercase d-block">School Year</span>
+                                    <h4 class="fw-bold mb-0 text-info">2026 - 2027</h4>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -206,17 +265,22 @@
                         <?php if ($edit_mode && $selected_schedule): ?>
                             <div class="col-12">
                                 <div class="card border-warning shadow-sm mb-4">
-                                    <div class="card-header bg-warning-subtle text-dark-emphasis py-3 d-flex justify-content-between align-items-center">
-                                        <h5 class="card-title mb-0 fw-bold"><i class="bi bi-pencil-square me-2"></i>Edit Schedule [<?php echo htmlspecialchars($selected_schedule['id']); ?>]</h5>
+                                    <div
+                                        class="card-header bg-warning-subtle text-dark-emphasis py-3 d-flex justify-content-between align-items-center">
+                                        <h5 class="card-title mb-0 fw-bold"><i class="bi bi-pencil-square me-2"></i>Edit
+                                            Schedule [<?php echo htmlspecialchars($selected_schedule['id']); ?>]</h5>
                                         <a href="?" class="btn-close" aria-label="Close"></a>
                                     </div>
                                     <form method="POST" action="?">
                                         <div class="card-body bg-white text-dark">
-                                            <input type="hidden" name="schedule_id" value="<?php echo htmlspecialchars($selected_schedule['id']); ?>">
+                                            <input type="hidden" name="schedule_id"
+                                                value="<?php echo htmlspecialchars($selected_schedule['id']); ?>">
                                             <div class="row g-3">
                                                 <div class="col-md-3">
                                                     <label class="form-label small fw-bold">Subject</label>
-                                                    <input type="text" name="subject" class="form-control form-control-sm" value="<?php echo htmlspecialchars($selected_schedule['subject']); ?>" required>
+                                                    <input type="text" name="subject" class="form-control form-control-sm"
+                                                        value="<?php echo htmlspecialchars($selected_schedule['subject']); ?>"
+                                                        required>
                                                 </div>
                                                 <div class="col-md-2">
                                                     <label class="form-label small fw-bold">Section</label>
@@ -232,22 +296,30 @@
                                                     <select name="room" class="form-select form-select-sm" required>
                                                         <option value="Computer Laboratory 1" <?php echo $selected_schedule['room'] === 'Computer Laboratory 1' ? 'selected' : ''; ?>>Computer Laboratory 1</option>
                                                         <option value="Computer Laboratory 2" <?php echo $selected_schedule['room'] === 'Computer Laboratory 2' ? 'selected' : ''; ?>>Computer Laboratory 2</option>
-                                                        <option value="Room 302" <?php echo $selected_schedule['room'] === 'Room 302' ? 'selected' : ''; ?>>Room 302</option>
-                                                        <option value="Room 405" <?php echo $selected_schedule['room'] === 'Room 405' ? 'selected' : ''; ?>>Room 405</option>
+                                                        <option value="Room 302" <?php echo $selected_schedule['room'] === 'Room 302' ? 'selected' : ''; ?>>
+                                                            Room 302</option>
+                                                        <option value="Room 405" <?php echo $selected_schedule['room'] === 'Room 405' ? 'selected' : ''; ?>>
+                                                            Room 405</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-md-2">
                                                     <label class="form-label small fw-bold">Days</label>
                                                     <select name="day" class="form-select form-select-sm" required>
-                                                        <option value="Mon / Wed" <?php echo $selected_schedule['day'] === 'Mon / Wed' ? 'selected' : ''; ?>>Mon / Wed</option>
-                                                        <option value="Tue / Thu" <?php echo $selected_schedule['day'] === 'Tue / Thu' ? 'selected' : ''; ?>>Tue / Thu</option>
-                                                        <option value="Friday" <?php echo $selected_schedule['day'] === 'Friday' ? 'selected' : ''; ?>>Friday</option>
-                                                        <option value="Saturday" <?php echo $selected_schedule['day'] === 'Saturday' ? 'selected' : ''; ?>>Saturday</option>
+                                                        <option value="Mon / Wed" <?php echo $selected_schedule['day'] === 'Mon / Wed' ? 'selected' : ''; ?>>
+                                                            Mon / Wed</option>
+                                                        <option value="Tue / Thu" <?php echo $selected_schedule['day'] === 'Tue / Thu' ? 'selected' : ''; ?>>
+                                                            Tue / Thu</option>
+                                                        <option value="Friday" <?php echo $selected_schedule['day'] === 'Friday' ? 'selected' : ''; ?>>
+                                                            Friday</option>
+                                                        <option value="Saturday" <?php echo $selected_schedule['day'] === 'Saturday' ? 'selected' : ''; ?>>
+                                                            Saturday</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-md-3">
                                                     <label class="form-label small fw-bold">Time Window</label>
-                                                    <input type="text" name="time" class="form-control form-control-sm" value="<?php echo htmlspecialchars($selected_schedule['time']); ?>" placeholder="e.g. 09:00 AM - 11:30 AM" required>
+                                                    <input type="text" name="time" class="form-control form-control-sm"
+                                                        value="<?php echo htmlspecialchars($selected_schedule['time']); ?>"
+                                                        required>
                                                 </div>
                                                 <div class="col-md-3 mt-2">
                                                     <label class="form-label small fw-bold">Instructor</label>
@@ -267,13 +339,17 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="card-footer bg-light d-flex justify-content-between align-items-center py-2">
-                                            <a href="?delete_id=<?php echo urlencode($selected_schedule['id']); ?>" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this schedule entry?');">
+                                        <div
+                                            class="card-footer bg-light d-flex justify-content-between align-items-center py-2">
+                                            <a href="?delete_id=<?php echo urlencode($selected_schedule['id']); ?>"
+                                                class="btn btn-sm btn-danger"
+                                                onclick="return confirm('Are you sure you want to delete this schedule entry?');">
                                                 <i class="bi bi-trash3-fill me-1"></i>Delete Entry
                                             </a>
                                             <div class="ms-auto">
                                                 <a href="?" class="btn btn-sm btn-secondary me-2">Cancel</a>
-                                                <button type="submit" name="update_schedule" class="btn btn-sm btn-primary">Save Changes</button>
+                                                <button type="submit" name="update_schedule"
+                                                    class="btn btn-sm btn-primary">Save Changes</button>
                                             </div>
                                         </div>
                                     </form>
@@ -283,16 +359,22 @@
 
                         <div class="col-12">
                             <div class="card shadow-sm border-0" style="border-radius: 10px;">
-                                <div class="card-header bg-white py-3 border-bottom d-flex align-items-center justify-content-between">
-                                    <h5 class="card-title mb-0 fw-bold text-dark"><i class="bi bi-calendar3 me-2 text-primary"></i>Schedules List</h5>
+                                <div
+                                    class="card-header bg-white py-3 border-bottom d-flex align-items-center justify-content-between">
+                                    <h5 class="card-title mb-0 fw-bold text-dark"><i
+                                            class="bi bi-calendar3 me-2 text-primary"></i>Schedules List</h5>
                                     <div class="card-tools">
                                         <form method="GET" action="" class="d-flex gap-2">
                                             <?php if (isset($_GET['edit_id'])): ?>
-                                                <input type="hidden" name="edit_id" value="<?php echo htmlspecialchars($_GET['edit_id']); ?>">
+                                                <input type="hidden" name="edit_id"
+                                                    value="<?php echo htmlspecialchars($_GET['edit_id']); ?>">
                                             <?php endif; ?>
                                             <div class="input-group input-group-sm" style="width: 16rem">
                                                 <span class="input-group-text"><i class="bi bi-search"></i></span>
-                                                <input id="table-filter" type="search" name="search" class="form-control" placeholder="Search section, room, or instructor..." value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>" />
+                                                <input id="table-filter" type="search" name="search"
+                                                    class="form-control"
+                                                    placeholder="Search section, room, or instructor..."
+                                                    value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>" />
                                             </div>
                                             <button type="submit" class="btn btn-sm btn-primary px-3">Search</button>
                                             <?php if (isset($_GET['search']) && $_GET['search'] !== ''): ?>
@@ -318,27 +400,47 @@
                                             </thead>
                                             <tbody>
                                                 <?php foreach ($schedule_list as $sched): ?>
-                                                    <tr class="<?php echo ($edit_mode && $edit_id === $sched['id']) ? 'table-warning-subtle fw-semibold' : ''; ?>">
-                                                        <td class="ps-4 font-monospace text-secondary small"><?php echo htmlspecialchars($sched['id']); ?></td>
-                                                        <td><div class="fw-bold text-dark"><?php echo htmlspecialchars($sched['subject']); ?></div></td>
-                                                        <td><span class="badge bg-primary-subtle text-primary tab-indicator"><?php echo htmlspecialchars($sched['section']); ?></span></td>
-                                                        <td><span class="text-dark small"><i class="bi bi-geo-alt-fill me-1 text-muted"></i><?php echo htmlspecialchars($sched['room']); ?></span></td>
-                                                        <td>
-                                                            <div class="text-dark small fw-semibold"><?php echo htmlspecialchars($sched['day']); ?></div>
-                                                            <div class="text-muted small" style="font-size: 0.75rem;"><i class="bi bi-clock me-1"></i><?php echo htmlspecialchars($sched['time']); ?></div>
+                                                    <tr
+                                                        class="<?php echo ($edit_mode && $edit_id === $sched['id']) ? 'table-warning-subtle fw-semibold' : ''; ?>">
+                                                        <td class="ps-4 font-monospace text-secondary small">
+                                                            <?php echo htmlspecialchars($sched['id']); ?>
                                                         </td>
-                                                        <td><span class="text-secondary small"><?php echo htmlspecialchars($sched['instructor']); ?></span></td>
+                                                        <td>
+                                                            <div class="fw-bold text-dark">
+                                                                <?php echo htmlspecialchars($sched['subject']); ?>
+                                                            </div>
+                                                        </td>
+                                                        <td><span
+                                                                class="badge bg-primary-subtle text-primary tab-indicator"><?php echo htmlspecialchars($sched['section']); ?></span>
+                                                        </td>
+                                                        <td><span class="text-dark small"><i
+                                                                    class="bi bi-geo-alt-fill me-1 text-muted"></i><?php echo htmlspecialchars($sched['room']); ?></span>
+                                                        </td>
+                                                        <td>
+                                                            <div class="text-dark small fw-semibold">
+                                                                <?php echo htmlspecialchars($sched['day']); ?>
+                                                            </div>
+                                                            <div class="text-muted small" style="font-size: 0.75rem;"><i
+                                                                    class="bi bi-clock me-1"></i><?php echo htmlspecialchars($sched['time']); ?>
+                                                            </div>
+                                                        </td>
+                                                        <td><span
+                                                                class="text-secondary small"><?php echo htmlspecialchars($sched['instructor']); ?></span>
+                                                        </td>
                                                         <td class="text-center py-3">
                                                             <?php
                                                             $status = $sched['status'];
                                                             $badge_color = ($status === 'Confirmed') ? 'bg-success-subtle text-success' : 'bg-warning-subtle text-warning-emphasis';
                                                             ?>
-                                                            <span class="status-pill <?php echo $badge_color; ?>"><?php echo htmlspecialchars($status); ?></span>
+                                                            <span
+                                                                class="status-pill <?php echo $badge_color; ?>"><?php echo htmlspecialchars($status); ?></span>
                                                         </td>
                                                         <td class="pe-4 text-center py-3">
                                                             <a href="?edit_id=<?php echo urlencode($sched['id']); ?><?php echo isset($_GET['search']) ? '&search=' . urlencode($_GET['search']) : ''; ?>"
-                                                                class="btn btn-xs btn-outline-primary border py-2 px-2 d-inline-block fw-semibold text-decoration-none" style="font-size: 0.78rem; width: 84px; line-height: 1.2;">
-                                                                <i class="bi bi-pencil-square d-block mb-0.5" style="font-size: 0.9rem;"></i>Edit / Manage
+                                                                class="btn btn-xs btn-outline-primary border py-2 px-2 d-inline-block fw-semibold text-decoration-none"
+                                                                style="font-size: 0.78rem; width: 84px; line-height: 1.2;">
+                                                                <i class="bi bi-pencil-square d-block mb-0.5"
+                                                                    style="font-size: 0.9rem;"></i>Edit / Manage
                                                             </a>
                                                         </td>
                                                     </tr>
@@ -348,7 +450,9 @@
                                     </div>
                                 </div>
                                 <div class="card-footer bg-white border-top py-3 text-center">
-                                    <small class="text-muted font-semibold"><i class="bi bi-info-circle me-1"></i> Updates made here apply immediately to student and faculty dashboard views.</small>
+                                    <small class="text-muted font-semibold"><i class="bi bi-info-circle me-1"></i>
+                                        Updates made here apply immediately to student and faculty dashboard
+                                        views.</small>
                                 </div>
                             </div>
                         </div>
@@ -367,34 +471,23 @@
         document.addEventListener('DOMContentLoaded', function () {
             const searchInput = document.getElementById('table-filter');
             const tableRows = document.querySelectorAll('table tbody tr');
-            const hasLteAnnounce = typeof adminlte !== 'undefined' && typeof adminlte.announce === 'function';
 
             if (searchInput) {
                 searchInput.addEventListener('input', function (e) {
                     const query = e.target.value.toLowerCase().trim();
-                    let visibleCount = 0;
 
                     tableRows.forEach(row => {
-                        const subject    = row.querySelector('td:nth-child(2)').textContent.toLowerCase();
-                        const section    = row.querySelector('td:nth-child(3)').textContent.toLowerCase();
-                        const room       = row.querySelector('td:nth-child(4)').textContent.toLowerCase();
+                        const subject = row.querySelector('td:nth-child(2)').textContent.toLowerCase();
+                        const section = row.querySelector('td:nth-child(3)').textContent.toLowerCase();
+                        const room = row.querySelector('td:nth-child(4)').textContent.toLowerCase();
                         const instructor = row.querySelector('td:nth-child(6)').textContent.toLowerCase();
 
                         if (subject.includes(query) || section.includes(query) || room.includes(query) || instructor.includes(query)) {
                             row.style.display = '';
-                            visibleCount++;
                         } else {
                             row.style.display = 'none';
                         }
                     });
-
-                    if (hasLteAnnounce) {
-                        if (query === '') {
-                            adminlte.announce("Search cleared. Displaying all schedules.", "polite");
-                        } else {
-                            adminlte.announce(`Filtering complete. Found ${visibleCount} entries matching criteria.`, "polite");
-                        }
-                    }
                 });
             }
         });

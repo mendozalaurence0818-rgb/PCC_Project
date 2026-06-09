@@ -70,13 +70,13 @@
         .user-info .status-text {
             color: #ffffff;
         }
-        
+
         .activity-card {
             border: none;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
             border-radius: 10px;
         }
-        
+
         .tab-indicator {
             font-weight: 600;
             padding: 6px 12px;
@@ -84,15 +84,14 @@
             font-size: 0.8rem;
         }
 
-        /* Interactive styling transitions for the Quick Access blocks */
         .quick-access-card {
             transition: all 0.2s ease-in-out;
-            border: 1px solid rgba(0,0,0,0.06) !important;
+            border: 1px solid rgba(0, 0, 0, 0.06) !important;
         }
+
         .quick-access-card:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 15px rgba(0,44,94,0.08) !important;
-            border-color: #002c5e !important;
+            box-shadow: 0 8px 15px rgba(0, 44, 94, 0.08) !important;
         }
     </style>
 </head>
@@ -132,7 +131,7 @@
                                 <i class="fa-solid fa-user"></i>
                             </div>
                         </div>
-                        <div class="user-info avatar-wrapper">
+                        <div class="user-info">
                             <div class="username">Admin 1</div>
                             <div class="status-text" style="color: #35e400; margin-top: -5px">Online</div>
                         </div>
@@ -205,7 +204,8 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="admin_login.php" class="nav-link text-danger-emphasis" onclick="return confirm('Are you sure you want to end your session?');">
+                            <a href="admin_login.php" class="nav-link text-danger-emphasis"
+                                onclick="return confirm('Are you sure you want to end your session?');">
                                 <i class="nav-icon bi bi-box-arrow-left text-danger"></i>
                                 <p>Logout</p>
                             </a>
@@ -225,14 +225,16 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="app-content">
                 <div class="container-fluid">
-                    
+
                     <div class="row g-4 mb-4">
                         <div class="col-12 col-sm-6 col-xl-3">
                             <div class="info-box bg-white shadow-sm d-flex align-items-center p-3 rounded">
-                                <span class="info-box-icon bg-primary text-white d-flex align-items-center justify-content-center rounded" style="width: 50px; height: 50px; font-size: 22px;">
+                                <span
+                                    class="info-box-icon bg-primary text-white d-flex align-items-center justify-content-center rounded"
+                                    style="width: 50px; height: 50px; font-size: 22px;">
                                     <i class="bi bi-people-fill"></i>
                                 </span>
                                 <div class="info-box-content ms-3">
@@ -241,10 +243,12 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="col-12 col-sm-6 col-xl-3">
                             <div class="info-box bg-white shadow-sm d-flex align-items-center p-3 rounded">
-                                <span class="info-box-icon bg-warning text-dark d-flex align-items-center justify-content-center rounded" style="width: 50px; height: 50px; font-size: 22px;">
+                                <span
+                                    class="info-box-icon bg-warning text-dark d-flex align-items-center justify-content-center rounded"
+                                    style="width: 50px; height: 50px; font-size: 22px;">
                                     <i class="bi bi-clipboard-fill"></i>
                                 </span>
                                 <div class="info-box-content ms-3">
@@ -256,7 +260,9 @@
 
                         <div class="col-12 col-sm-6 col-xl-3">
                             <div class="info-box bg-white shadow-sm d-flex align-items-center p-3 rounded">
-                                <span class="info-box-icon bg-success text-white d-flex align-items-center justify-content-center rounded" style="width: 50px; height: 50px; font-size: 22px;">
+                                <span
+                                    class="info-box-icon bg-success text-white d-flex align-items-center justify-content-center rounded"
+                                    style="width: 50px; height: 50px; font-size: 22px;">
                                     <i class="bi bi-clipboard2-minus-fill"></i>
                                 </span>
                                 <div class="info-box-content ms-3">
@@ -268,7 +274,9 @@
 
                         <div class="col-12 col-sm-6 col-xl-3">
                             <div class="info-box bg-white shadow-sm d-flex align-items-center p-3 rounded">
-                                <span class="info-box-icon bg-info text-white d-flex align-items-center justify-content-center rounded" style="width: 50px; height: 50px; font-size: 22px;">
+                                <span
+                                    class="info-box-icon bg-info text-white d-flex align-items-center justify-content-center rounded"
+                                    style="width: 50px; height: 50px; font-size: 22px;">
                                     <i class="bi bi-calendar3"></i>
                                 </span>
                                 <div class="info-box-content ms-3">
@@ -279,7 +287,8 @@
                         </div>
                     </div>
 
-                    <h5 class="fw-bold text-dark mb-3"><i class="bi bi-grid-fill me-2 text-primary"></i>Quick Navigation Shortcuts</h5>
+                    <h5 class="fw-bold text-dark mb-3"><i class="bi bi-grid-fill me-2 text-primary"></i>Quick Navigation
+                        Shortcuts</h5>
                     <div class="row g-3 mb-4">
                         <div class="col-6 col-md-4 col-xl-2">
                             <a href="admin_student.php" class="text-decoration-none">
@@ -300,7 +309,8 @@
                         <div class="col-6 col-md-4 col-xl-2">
                             <a href="admin_programs.php" class="text-decoration-none">
                                 <div class="card p-3 quick-access-card bg-white text-center rounded-3">
-                                    <i class="bi bi-clipboard-data-fill text-danger mb-2" style="font-size: 1.6rem;"></i>
+                                    <i class="bi bi-clipboard-data-fill text-danger mb-2"
+                                        style="font-size: 1.6rem;"></i>
                                     <div class="fw-bold text-dark small">Programs</div>
                                 </div>
                             </a>
@@ -308,7 +318,8 @@
                         <div class="col-6 col-md-4 col-xl-2">
                             <a href="admin_subjects.php" class="text-decoration-none">
                                 <div class="card p-3 quick-access-card bg-white text-center rounded-3">
-                                    <i class="bi bi-clipboard2-minus-fill text-success mb-2" style="font-size: 1.6rem;"></i>
+                                    <i class="bi bi-clipboard2-minus-fill text-success mb-2"
+                                        style="font-size: 1.6rem;"></i>
                                     <div class="fw-bold text-dark small">Subjects</div>
                                 </div>
                             </a>
@@ -316,7 +327,8 @@
                         <div class="col-6 col-md-4 col-xl-2">
                             <a href="admin_notice.php" class="text-decoration-none">
                                 <div class="card p-3 quick-access-card bg-white text-center rounded-3">
-                                    <i class="bi bi-exclamation-circle-fill text-info mb-2" style="font-size: 1.6rem;"></i>
+                                    <i class="bi bi-exclamation-circle-fill text-info mb-2"
+                                        style="font-size: 1.6rem;"></i>
                                     <div class="fw-bold text-dark small">Notices</div>
                                 </div>
                             </a>
@@ -334,11 +346,14 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="card activity-card">
-                                <div class="card-header bg-white py-3 border-bottom d-flex align-items-center justify-content-between">
+                                <div
+                                    class="card-header bg-white py-3 border-bottom d-flex align-items-center justify-content-between">
                                     <h5 class="card-title mb-0 fw-bold text-dark">
-                                        <i class="bi bi-arrow-repeat me-2 text-primary"></i>Recent System & Module Updates
+                                        <i class="bi bi-arrow-repeat me-2 text-primary"></i>Recent System & Module
+                                        Updates
                                     </h5>
-                                    <span class="badge bg-primary-subtle text-primary px-3 py-1 rounded-pill">Live Monitoring Feed</span>
+                                    <span class="badge bg-primary-subtle text-primary px-3 py-1 rounded-pill">Live
+                                        Monitoring Feed</span>
                                 </div>
                                 <div class="card-body p-0">
                                     <div class="table-responsive">
@@ -353,28 +368,37 @@
                                             <tbody>
                                                 <tr>
                                                     <td class="ps-4">
-                                                        <span class="badge bg-primary-subtle text-primary tab-indicator">
+                                                        <span
+                                                            class="badge bg-primary-subtle text-primary tab-indicator">
                                                             <i class="bi bi-people-fill me-1"></i> Students
                                                         </span>
                                                     </td>
                                                     <td>
-                                                        Profile status of student <span class="fw-bold text-dark">Yoyenk D. Creator</span> (ID: 2026-0412) was successfully changed to <span class="text-success fw-semibold">Officially Enrolled</span>.
+                                                        Profile status of student <span class="fw-bold text-dark">Yoyenk
+                                                            D. Creator</span> (ID: 2026-0412) was successfully changed
+                                                        to <span class="text-success fw-semibold">Officially
+                                                            Enrolled</span>.
                                                     </td>
-                                                    <td class="pe-4 text-end text-muted small"><i class="bi bi-clock me-1"></i> Just now</td>
+                                                    <td class="pe-4 text-end text-muted small"><i
+                                                            class="bi bi-clock me-1"></i> Just now</td>
                                                 </tr>
-                                                
+
                                                 <tr>
                                                     <td class="ps-4">
-                                                        <span class="badge bg-warning-subtle text-warning-emphasis tab-indicator">
+                                                        <span
+                                                            class="badge bg-warning-subtle text-warning-emphasis tab-indicator">
                                                             <i class="bi bi-clipboard-fill me-1"></i> Admissions
                                                         </span>
                                                     </td>
                                                     <td>
-                                                        New enrollment application received from transferee applicant <span class="fw-bold text-dark">Miguelito Agudon</span> (Pending Requirements Review).
+                                                        New enrollment application received from transferee applicant
+                                                        <span class="fw-bold text-dark">Miguelito Agudon</span> (Pending
+                                                        Requirements Review).
                                                     </td>
-                                                    <td class="pe-4 text-end text-muted small"><i class="bi bi-clock me-1"></i> 5 mins ago</td>
+                                                    <td class="pe-4 text-end text-muted small"><i
+                                                            class="bi bi-clock me-1"></i> 5 mins ago</td>
                                                 </tr>
-                                                
+
                                                 <tr>
                                                     <td class="ps-4">
                                                         <span class="badge bg-danger-subtle text-danger tab-indicator">
@@ -382,52 +406,69 @@
                                                         </span>
                                                     </td>
                                                     <td>
-                                                        Curriculum structure modifications were applied to the <span class="fw-bold text-dark">Bachelor of Science in Information Technology (BSIT)</span> program.
+                                                        Curriculum structure modifications were applied to the <span
+                                                            class="fw-bold text-dark">Bachelor of Science in Information
+                                                            Technology (BSIT)</span> program.
                                                     </td>
-                                                    <td class="pe-4 text-end text-muted small"><i class="bi bi-clock me-1"></i> 24 mins ago</td>
+                                                    <td class="pe-4 text-end text-muted small"><i
+                                                            class="bi bi-clock me-1"></i> 24 mins ago</td>
                                                 </tr>
-                                                
+
                                                 <tr>
                                                     <td class="ps-4">
-                                                        <span class="badge bg-success-subtle text-success tab-indicator">
+                                                        <span
+                                                            class="badge bg-success-subtle text-success tab-indicator">
                                                             <i class="bi bi-clipboard2-minus-fill me-1"></i> Subjects
                                                         </span>
                                                     </td>
                                                     <td>
-                                                        A new curriculum subject course entry <span class="font-monospace fw-bold text-dark">IT211 - Integrative Programming</span> was added by the admin system.
+                                                        A new curriculum subject course entry <span
+                                                            class="font-monospace fw-bold text-dark">IT211 - Integrative
+                                                            Programming</span> was added by the admin system.
                                                     </td>
-                                                    <td class="pe-4 text-end text-muted small"><i class="bi bi-clock me-1"></i> 42 mins ago</td>
+                                                    <td class="pe-4 text-end text-muted small"><i
+                                                            class="bi bi-clock me-1"></i> 42 mins ago</td>
                                                 </tr>
-                                                
+
                                                 <tr>
                                                     <td class="ps-4">
-                                                        <span class="badge bg-info-subtle text-info-emphasis tab-indicator">
+                                                        <span
+                                                            class="badge bg-info-subtle text-info-emphasis tab-indicator">
                                                             <i class="bi bi-calendar3 me-1"></i> Schedules
                                                         </span>
                                                     </td>
                                                     <td>
-                                                        Room configuration for <span class="fw-bold text-dark">BSIT - Section 201</span> was updated from Room 302 to Computer Laboratory Room 1.
+                                                        Room configuration for <span class="fw-bold text-dark">BSIT -
+                                                            Section 201</span> was updated from Room 302 to Computer
+                                                        Laboratory Room 1.
                                                     </td>
-                                                    <td class="pe-4 text-end text-muted small"><i class="bi bi-clock me-1"></i> 1 hour ago</td>
+                                                    <td class="pe-4 text-end text-muted small"><i
+                                                            class="bi bi-clock me-1"></i> 1 hour ago</td>
                                                 </tr>
-                                                
+
                                                 <tr>
                                                     <td class="ps-4">
-                                                        <span class="badge bg-secondary-subtle text-secondary-emphasis tab-indicator">
+                                                        <span
+                                                            class="badge bg-secondary-subtle text-secondary-emphasis tab-indicator">
                                                             <i class="bi bi-person-check-fill me-1"></i> Users
                                                         </span>
                                                     </td>
                                                     <td>
-                                                        Password recovery access credentials token generated for user account <span class="font-monospace text-dark">registrar_staff_02</span>.
+                                                        Password recovery access credentials token generated for user
+                                                        account <span
+                                                            class="font-monospace text-dark">registrar_staff_02</span>.
                                                     </td>
-                                                    <td class="pe-4 text-end text-muted small"><i class="bi bi-clock me-1"></i> 2 hours ago</td>
+                                                    <td class="pe-4 text-end text-muted small"><i
+                                                            class="bi bi-clock me-1"></i> 2 hours ago</td>
                                                 </tr>
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
                                 <div class="card-footer bg-white border-top py-3 text-center">
-                                    <small class="text-muted font-semibold"><i class="bi bi-info-circle me-1"></i> This interface acts as the secondary monitoring layer showing real-time feedback loop iterations from connected workspace tabs.</small>
+                                    <small class="text-muted font-semibold"><i class="bi bi-info-circle me-1"></i> This
+                                        interface acts as the secondary monitoring layer showing real-time feedback loop
+                                        iterations from connected workspace tabs.</small>
                                 </div>
                             </div>
                         </div>

@@ -161,7 +161,7 @@
                         <div class="avatar-wrapper">
                             <div class="avatar-placeholder"><i class="fa-solid fa-user"></i></div>
                         </div>
-                        <div class="user-info avatar-wrapper">
+                        <div class="user-info">
                             <div class="username">Admin 1</div>
                             <div class="status-text" style="color: #35e400; margin-top: -5px">Online</div>
                         </div>
@@ -447,12 +447,10 @@
                                                         </td>
                                                         <td>
                                                             <div class="fw-bold text-dark">
-                                                                <?php echo htmlspecialchars($notice['title']); ?>
-                                                            </div>
+                                                                <?php echo htmlspecialchars($notice['title']); ?></div>
                                                             <div class="text-muted small text-truncate"
                                                                 style="max-width: 400px;">
-                                                                <?php echo htmlspecialchars($notice['content']); ?>
-                                                            </div>
+                                                                <?php echo htmlspecialchars($notice['content']); ?></div>
                                                         </td>
                                                         <td><span
                                                                 class="badge bg-primary-subtle text-primary fw-medium px-2 py-1"><?php echo htmlspecialchars($notice['audience']); ?></span>
@@ -466,8 +464,7 @@
                                                                 class="badge <?php echo $badge_theme; ?> tab-indicator d-inline-block text-center"><?php echo htmlspecialchars($notice['target_program']); ?></span>
                                                         </td>
                                                         <td class="text-secondary small">
-                                                            <?php echo htmlspecialchars($notice['date']); ?>
-                                                        </td>
+                                                            <?php echo htmlspecialchars($notice['date']); ?></td>
                                                         <td class="pe-4 text-end">
                                                             <a href="?edit_id=<?php echo urlencode($notice['id']); ?><?php echo isset($_GET['search']) ? '&search=' . urlencode($_GET['search']) : ''; ?>"
                                                                 class="btn btn-xs btn-outline-primary border py-1 px-2"

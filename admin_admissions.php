@@ -24,6 +24,39 @@
 </head>
 
 <body class="fixed-header sidebar-expand-lg bg-body-tertiary">
+    <?php
+    $applicant_list = [
+        ['applicant_id' => 'APP-2026-001', 'name' => 'Agudon, Miguelito M.', 'classification' => 'New Student', 'program' => 'BS Information Technology', 'year' => '1st Year'],
+        ['applicant_id' => 'APP-2026-002', 'name' => 'Depollo, Ralph Geofrey G.', 'classification' => 'New Student', 'program' => 'BS Information Technology', 'year' => '1st Year'],
+        ['applicant_id' => 'APP-2024-001', 'name' => 'Mendoza, Laurence C.', 'classification' => 'Old Student', 'program' => 'BS Information Technology', 'year' => '2nd Year'],
+        ['applicant_id' => 'APP-2024-002', 'name' => 'Villarta, Joeshua Louis', 'classification' => 'Old Student', 'program' => 'BS Information Technology', 'year' => '2nd Year']
+    ];
+
+    if (isset($_GET['delete_id'])) {
+        $delete_id = $_GET['delete_id'];
+        echo "<div class='alert alert-danger position-fixed bottom-0 end-0 m-3 z-3 shadow'><strong>Record Deleted!</strong> Applicant Profile code #" . htmlspecialchars($delete_id) . " dropped from config matrices.</div>";
+    }
+
+    $edit_mode = false;
+    $selected_applicant = null;
+
+    if (isset($_GET['edit_id'])) {
+        $edit_id = $_GET['edit_id'];
+        foreach ($applicant_list as $applicant) {
+            if ($applicant['applicant_id'] === $edit_id) {
+                $selected_applicant = $applicant;
+                $edit_mode = true;
+                break;
+            }
+        }
+    }
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_applicant'])) {
+        echo "<div class='alert alert-success position-fixed bottom-0 end-0 m-3 z-3 shadow'>Applicant record updated successfully! (Database sync mock triggered)</div>";
+        $edit_mode = false;
+    }
+    ?>
+
     <div class="app-wrapper">
         <nav class="app-header navbar navbar-expand bg-body">
             <div class="container-fluid">
@@ -55,7 +88,7 @@
                                 <i class="fa-solid fa-user"></i>
                             </div>
                         </div>
-                        <div class="user-info avatar-wrapper">
+                        <div class="user-info">
                             <div class="username">Admin 1</div>
                             <div class="status-text" style="color: #35e400; margin-top: -5px">Online</div>
                         </div>
@@ -65,10 +98,7 @@
                         <li class="nav-item">
                             <a href="admin_dashboard.php" class="nav-link">
                                 <i class="nav-icon bi bi-speedometer"></i>
-                                <p>
-                                    Dashboard
-                                    <i class="nav-arrow bi bi-chevron-left"></i>
-                                </p>
+                                <p>Dashboard <i class="nav-arrow bi bi-chevron-left"></i></p>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -183,6 +213,56 @@
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
 
+                    <?php if ($edit_mode && $selected_applicant): ?>
+                        <div class="card border-warning shadow-sm mb-4">
+                            <div class="card-header bg-warning-subtle text-dark-emphasis py-3 d-flex justify-content-between align-items-center">
+                                <h5 class="card-title mb-0 fw-bold"><i class="bi bi-pencil-square me-2"></i>Edit Applicant Profile: <?php echo htmlspecialchars($selected_applicant['applicant_id']); ?></h5>
+                                <a href="?" class="btn-close" aria-label="Close"></a>
+                            </div>
+                            <form method="POST" action="?">
+                                <div class="card-body bg-white text-dark">
+                                    <input type="hidden" name="applicant_id" value="<?php echo htmlspecialchars($selected_applicant['applicant_id']); ?>">
+                                    <div class="row g-3">
+                                        <div class="col-md-3">
+                                            <label class="form-label small fw-bold">Full Name</label>
+                                            <input type="text" name="name" class="form-control form-control-sm" value="<?php echo htmlspecialchars($selected_applicant['name']); ?>" required>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label class="form-label small fw-bold">Classification</label>
+                                            <select name="classification" class="form-select form-select-sm">
+                                                <option <?php echo $selected_applicant['classification'] === 'New Student' ? 'selected' : ''; ?>>New Student</option>
+                                                <option <?php echo $selected_applicant['classification'] === 'Old Student' ? 'selected' : ''; ?>>Old Student</option>
+                                                <option <?php echo $selected_applicant['classification'] === 'Transferee' ? 'selected' : ''; ?>>Transferee</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label class="form-label small fw-bold">Course / Program</label>
+                                            <input type="text" name="program" class="form-control form-control-sm" value="<?php echo htmlspecialchars($selected_applicant['program']); ?>" required>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="form-label small fw-bold">Year Level</label>
+                                            <select name="year" class="form-select form-select-sm">
+                                                <option <?php echo $selected_applicant['year'] === '1st Year' ? 'selected' : ''; ?>>1st Year</option>
+                                                <option <?php echo $selected_applicant['year'] === '2nd Year' ? 'selected' : ''; ?>>2nd Year</option>
+                                                <option <?php echo $selected_applicant['year'] === '3rd Year' ? 'selected' : ''; ?>>3rd Year</option>
+                                                <option <?php echo $selected_applicant['year'] === '4th Year' ? 'selected' : ''; ?>>4th Year</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer bg-light d-flex justify-content-between align-items-center py-2">
+                                    <a href="?delete_id=<?php echo urlencode($selected_applicant['applicant_id']); ?>" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to permanently drop this applicant registration from configuration logs?');">
+                                        <i class="bi bi-trash-fill me-1"></i>Delete Applicant
+                                    </a>
+                                    <div class="ms-auto">
+                                        <a href="?" class="btn btn-sm btn-secondary me-2">Cancel</a>
+                                        <button type="submit" name="update_applicant" class="btn btn-sm btn-primary">Save Modifications</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    <?php endif; ?>
+
                     <div class="card border-0 shadow-sm rounded-3">
                         <div class="card-header bg-white py-3 border-bottom">
                             <h5 class="card-title mb-0 fw-bold text-dark"><i class="bi bi-journal-text me-2 text-secondary"></i>Applicant Classification Records</h5>
@@ -201,38 +281,26 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td class="ps-4 fw-semibold">APP-2026-001</td>
-                                            <td>Agudon, Miguelito M.</td>
-                                            <td><span class="badge bg-success-subtle text-success">New Student</span></td>
-                                            <td>BS Information Technology</td>
-                                            <td>1st Year</td>
-                                            <td class="pe-4 text-end"><button class="btn btn-sm btn-outline-secondary">Manage</button></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="ps-4 fw-semibold">APP-2026-002</td>
-                                            <td>Depollo, Ralph Geofrey G.</td>
-                                            <td><span class="badge bg-success-subtle text-success">New Student</span></td>
-                                            <td>BS Information Technology</td>
-                                            <td>1st Year</td>
-                                            <td class="pe-4 text-end"><button class="btn btn-sm btn-outline-secondary">Manage</button></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="ps-4 fw-semibold">APP-2024-001</td>
-                                            <td>Mendoza, Laurence C.</td>
-                                            <td><span class="badge bg-primary-subtle text-primary">Old Student</span></td>
-                                            <td>BS Information Technology</td>
-                                            <td>2nd Year</td>
-                                            <td class="pe-4 text-end"><button class="btn btn-sm btn-outline-secondary">Manage</button></td>
-                                        </tr>
-                                        <tr>
-                                            <td class="ps-4 fw-semibold">APP-2024-002</td>
-                                            <td>Villarta, Joeshua Louis</td>
-                                            <td><span class="badge bg-primary-subtle text-primary">Old Student</span></td>
-                                            <td>BS Information Technology</td>
-                                            <td>2nd Year</td>
-                                            <td class="pe-4 text-end"><button class="btn btn-sm btn-outline-secondary">Manage</button></td>
-                                        </tr>
+                                        <?php foreach ($applicant_list as $applicant): ?>
+                                            <tr class="<?php echo ($edit_mode && $edit_id === $applicant['applicant_id']) ? 'table-warning-subtle fw-semibold' : ''; ?>">
+                                                <td class="ps-4 font-monospace fw-bold text-secondary"><?php echo htmlspecialchars($applicant['applicant_id']); ?></td>
+                                                <td class="fw-semibold text-dark"><?php echo htmlspecialchars($applicant['name']); ?></td>
+                                                <td>
+                                                    <?php
+                                                    $is_old = ($applicant['classification'] === 'Old Student');
+                                                    $badge_theme = $is_old ? 'bg-primary-subtle text-primary' : 'bg-success-subtle text-success';
+                                                    ?>
+                                                    <span class="badge <?php echo $badge_theme; ?>"><?php echo htmlspecialchars($applicant['classification']); ?></span>
+                                                </td>
+                                                <td><?php echo htmlspecialchars($applicant['program']); ?></td>
+                                                <td class="text-secondary small"><?php echo htmlspecialchars($applicant['year']); ?></td>
+                                                <td class="pe-4 text-end">
+                                                    <a href="?edit_id=<?php echo urlencode($applicant['applicant_id']); ?>" class="btn btn-xs btn-outline-primary border py-1 px-2" style="font-size: 0.75rem;">
+                                                        <i class="bi bi-pencil-square me-1"></i>Edit / Manage
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach; ?>
                                     </tbody>
                                 </table>
                             </div>
@@ -249,4 +317,5 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 </body>
+
 </html>

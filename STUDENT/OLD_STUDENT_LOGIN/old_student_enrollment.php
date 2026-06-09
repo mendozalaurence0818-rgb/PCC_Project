@@ -45,7 +45,6 @@
         .sidebar-bg-active {
             color: var(--pcc-blue) !important;
             background-color: var(--pcc-gold) !important;
-            font-weight: 600;
         }
 
         .user-profile {
@@ -228,12 +227,12 @@
             <div class="sidebar-wrapper" style="border-right: 1px solid rgba(255, 255, 255, 0.1)">
                 <nav class="mt-2">
                     <div class="user-profile">
-                        <div class="avatar-wrapper">
+                        <div>
                             <div class="avatar-placeholder">
                                 <i class="fa-solid fa-user-graduate"></i>
                             </div>
                         </div>
-                        <div class="user-info avatar-wrapper">
+                        <div class="user-info">
                             <div class="username">Juan Dela Cruz</div>
                             <div class="status-text" style="color: #f1b813; font-size: 0.80rem; margin-top: -3px">ID:
                                 2024-001234</div>
@@ -300,13 +299,18 @@
                                 </p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="old_student_login.php" class="nav-link text-danger-emphasis"
+                                onclick="return confirm('Are you sure you want to end your session?');">
+                                <i class="nav-icon bi bi-box-arrow-left text-danger"></i>
+                                <p>Logout</p>
+                            </a>
+                        </li>
                     </ul>
                 </nav>
             </div>
         </aside>
-        <!-- END OF INTEGRATED DASHBOARD SIDEBAR -->
-
-        <main class="app-main py-4">
+        <main class="app-main p-4">
             <div class="app-content-header mb-4">
                 <div class="container-fluid">
                     <div class="row align-items-center">
@@ -787,6 +791,13 @@
                 </div>
             </div>
         </main>
+        <footer class="app-footer">
+            <div class="float-start d-none d-sm-inline">Poblacion Central College - </div>
+            <strong>
+                <span>&nbsp;All rights reserved.</span>
+            </strong>
+        </footer>
+    </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"

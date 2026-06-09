@@ -161,6 +161,12 @@
                                 <p>Settings <i class="nav-arrow bi bi-chevron-left"></i></p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="admin_login.php" class="nav-link text-danger-emphasis" onclick="return confirm('Are you sure you want to end your session?');">
+                                <i class="nav-icon bi bi-box-arrow-left text-danger"></i>
+                                <p>Logout</p>
+                            </a>
+                        </li>
                     </ul>
                 </nav>
             </div>

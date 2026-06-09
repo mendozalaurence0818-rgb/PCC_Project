@@ -107,31 +107,31 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="admin_student.php" class="nav-link">
                                 <i class="nav-icon bi bi-people-fill"></i>
                                 <p>Students <i class="nav-arrow bi bi-chevron-left"></i></p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="admissions.php" class="nav-link sidebar-bg-active">
+                            <a href="admin_admissions.php" class="nav-link sidebar-bg-active">
                                 <i class="nav-icon bi bi-clipboard-fill"></i>
                                 <p>Admissions <i class="nav-arrow bi bi-chevron-right"></i></p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="admin_programs.php" class="nav-link">
                                 <i class="nav-icon bi bi-clipboard-data-fill"></i>
                                 <p>Programs <i class="nav-arrow bi bi-chevron-left"></i></p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="subjects.php" class="nav-link">
+                            <a href="admin_subjects.php" class="nav-link">
                                 <i class="nav-icon bi bi-clipboard2-minus-fill"></i>
                                 <p>Subjects <i class="nav-arrow bi bi-chevron-left"></i></p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="admin_schedules.php" class="nav-link">
                                 <i class="nav-icon bi bi-calendar3"></i>
                                 <p>Schedules <i class="nav-arrow bi bi-chevron-left"></i></p>
                             </a>
@@ -144,7 +144,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="admin_notice.php" class="nav-link">
                                 <i class="nav-icon bi bi-exclamation-circle-fill"></i>
                                 <p>Notice <i class="nav-arrow bi bi-chevron-left"></i></p>
                             </a>
@@ -156,9 +156,16 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="admin_settings.php" class="nav-link">
                                 <i class="nav-icon bi bi-gear-fill"></i>
                                 <p>Settings <i class="nav-arrow bi bi-chevron-left"></i></p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="admin_login.php" class="nav-link text-danger-emphasis"
+                                onclick="return confirm('Are you sure you want to end your session?');">
+                                <i class="nav-icon bi bi-box-arrow-left text-danger"></i>
+                                <p>Logout</p>
                             </a>
                         </li>
                     </ul>
@@ -181,13 +188,15 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="app-content">
                 <div class="container-fluid">
                     <div class="row g-4 mb-4">
                         <div class="col-12 col-sm-6 col-xl-4">
                             <div class="info-box bg-white shadow-sm d-flex align-items-center p-3 rounded">
-                                <span class="info-box-icon bg-warning text-dark d-flex align-items-center justify-content-center rounded" style="width: 50px; height: 50px; font-size: 22px;">
+                                <span
+                                    class="info-box-icon bg-warning text-dark d-flex align-items-center justify-content-center rounded"
+                                    style="width: 50px; height: 50px; font-size: 22px;">
                                     <i class="bi bi-hourglass-split"></i>
                                 </span>
                                 <div class="info-box-content ms-3">
@@ -198,7 +207,9 @@
                         </div>
                         <div class="col-12 col-sm-6 col-xl-4">
                             <div class="info-box bg-white shadow-sm d-flex align-items-center p-3 rounded">
-                                <span class="info-box-icon bg-success text-white d-flex align-items-center justify-content-center rounded" style="width: 50px; height: 50px; font-size: 22px;">
+                                <span
+                                    class="info-box-icon bg-success text-white d-flex align-items-center justify-content-center rounded"
+                                    style="width: 50px; height: 50px; font-size: 22px;">
                                     <i class="bi bi-check-circle-fill"></i>
                                 </span>
                                 <div class="info-box-content ms-3">
@@ -209,7 +220,9 @@
                         </div>
                         <div class="col-12 col-sm-6 col-xl-4">
                             <div class="info-box bg-white shadow-sm d-flex align-items-center p-3 rounded">
-                                <span class="info-box-icon bg-primary text-white d-flex align-items-center justify-content-center rounded" style="width: 50px; height: 50px; font-size: 22px;">
+                                <span
+                                    class="info-box-icon bg-primary text-white d-flex align-items-center justify-content-center rounded"
+                                    style="width: 50px; height: 50px; font-size: 22px;">
                                     <i class="bi bi-clipboard-check-fill"></i>
                                 </span>
                                 <div class="info-box-content ms-3">
@@ -223,15 +236,21 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="card border-0 shadow-sm rounded-3">
-                                <div class="card-header bg-white py-3 border-bottom d-flex align-items-center justify-content-between">
+                                <div
+                                    class="card-header bg-white py-3 border-bottom d-flex align-items-center justify-content-between">
                                     <ul class="nav nav-pills card-header-pills">
-                                        <li class="nav-item"><a class="nav-link active bg-warning text-dark fw-semibold" href="#">Pending Evaluation</a></li>
-                                        <li class="nav-item"><a class="nav-link text-secondary" href="#">Approved</a></li>
-                                        <li class="nav-item"><a class="nav-link text-secondary" href="#">Rejected</a></li>
+                                        <li class="nav-item"><a class="nav-link active bg-warning text-dark fw-semibold"
+                                                href="#">Pending Evaluation</a></li>
+                                        <li class="nav-item"><a class="nav-link text-secondary" href="#">Approved</a>
+                                        </li>
+                                        <li class="nav-item"><a class="nav-link text-secondary" href="#">Rejected</a>
+                                        </li>
                                     </ul>
                                     <div class="input-group style" style="width: 250px;">
-                                        <input type="text" class="form-control form-control-sm" placeholder="Search applicant...">
-                                        <button class="btn btn-outline-secondary btn-sm"><i class="bi bi-search"></i></button>
+                                        <input type="text" class="form-control form-control-sm"
+                                            placeholder="Search applicant...">
+                                        <button class="btn btn-outline-secondary btn-sm"><i
+                                                class="bi bi-search"></i></button>
                                     </div>
                                 </div>
                                 <div class="card-body p-0">
@@ -249,27 +268,39 @@
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td class="ps-4 font-monospace fw-bold text-secondary">PCC-2026-0089</td>
+                                                    <td class="ps-4 font-monospace fw-bold text-secondary">PCC-2026-0089
+                                                    </td>
                                                     <td class="fw-semibold text-dark">Maria Clara Santos</td>
                                                     <td>BSIT</td>
                                                     <td>June 05, 2026</td>
-                                                    <td><span class="badge bg-warning text-dark px-2 py-1 rounded-pill">Pending Review</span></td>
+                                                    <td><span
+                                                            class="badge bg-warning text-dark px-2 py-1 rounded-pill">Pending
+                                                            Review</span></td>
                                                     <td class="pe-4 text-end">
-                                                        <button class="btn btn-sm btn-success me-1"><i class="bi bi-check-lg"></i></button>
-                                                        <button class="btn btn-sm btn-danger me-1"><i class="bi bi-x-lg"></i></button>
-                                                        <button class="btn btn-sm btn-outline-secondary"><i class="bi bi-eye"></i></button>
+                                                        <button class="btn btn-sm btn-success me-1"><i
+                                                                class="bi bi-check-lg"></i></button>
+                                                        <button class="btn btn-sm btn-danger me-1"><i
+                                                                class="bi bi-x-lg"></i></button>
+                                                        <button class="btn btn-sm btn-outline-secondary"><i
+                                                                class="bi bi-eye"></i></button>
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td class="ps-4 font-monospace fw-bold text-secondary">PCC-2026-0090</td>
+                                                    <td class="ps-4 font-monospace fw-bold text-secondary">PCC-2026-0090
+                                                    </td>
                                                     <td class="fw-semibold text-dark">Crisostomo Ibarra Jr.</td>
                                                     <td>BSIT</td>
                                                     <td>June 07, 2026</td>
-                                                    <td><span class="badge bg-warning text-dark px-2 py-1 rounded-pill">Pending Review</span></td>
+                                                    <td><span
+                                                            class="badge bg-warning text-dark px-2 py-1 rounded-pill">Pending
+                                                            Review</span></td>
                                                     <td class="pe-4 text-end">
-                                                        <button class="btn btn-sm btn-success me-1"><i class="bi bi-check-lg"></i></button>
-                                                        <button class="btn btn-sm btn-danger me-1"><i class="bi bi-x-lg"></i></button>
-                                                        <button class="btn btn-sm btn-outline-secondary"><i class="bi bi-eye"></i></button>
+                                                        <button class="btn btn-sm btn-success me-1"><i
+                                                                class="bi bi-check-lg"></i></button>
+                                                        <button class="btn btn-sm btn-danger me-1"><i
+                                                                class="bi bi-x-lg"></i></button>
+                                                        <button class="btn btn-sm btn-outline-secondary"><i
+                                                                class="bi bi-eye"></i></button>
                                                     </td>
                                                 </tr>
                                             </tbody>

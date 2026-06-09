@@ -82,7 +82,7 @@
 
         <aside class="app-sidebar sidebar-bg">
             <div class="sidebar-brand" style="border-right: 1px solid rgba(255, 255, 255, 0.1);">
-                <a href="admin_dashboard.php" class="brand-link">
+                <a href="#" class="brand-link">
                     <img src="images/PCC_Logo.png" alt="PCC Logo" class="brand-image" />
                     <span class="brand-text fw-bold" style="color: white;">PCC Admin</span>
                 </a>
@@ -107,58 +107,91 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="admin_students.php" class="nav-link ">
                                 <i class="nav-icon bi bi-people-fill"></i>
                                 <p>Students <i class="nav-arrow bi bi-chevron-left"></i></p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="admissions.php" class="nav-link">
+                            <a href="admin_admissions.php" class="nav-link">
                                 <i class="nav-icon bi bi-clipboard-fill"></i>
-                                <p>Admissions <i class="nav-arrow bi bi-chevron-left"></i></p>
+                                <p>
+                                    Admissions
+                                    <i class="nav-arrow bi bi-chevron-left"></i>
+                                </p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="admin_programs.php" class="nav-link">
                                 <i class="nav-icon bi bi-clipboard-data-fill"></i>
-                                <p>Programs <i class="nav-arrow bi bi-chevron-left"></i></p>
+                                <p>
+                                    Programs
+                                    <i class="nav-arrow bi bi-chevron-left"></i>
+                                </p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="subjects.php" class="nav-link">
+                            <a href="admin_subjects.php" class="nav-link">
                                 <i class="nav-icon bi bi-clipboard2-minus-fill"></i>
-                                <p>Subjects <i class="nav-arrow bi bi-chevron-left"></i></p>
+                                <p>
+                                    Subjects
+                                    <i class="nav-arrow bi bi-chevron-left"></i>
+                                </p>
                             </a>
                         </li>
+
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="admin_schedules.php" class="nav-link">
                                 <i class="nav-icon bi bi-calendar3"></i>
-                                <p>Schedules <i class="nav-arrow bi bi-chevron-left"></i></p>
+                                <p>
+                                    Schedules
+                                    <i class="nav-arrow bi bi-chevron-left"></i>
+                                </p>
                             </a>
                         </li>
+
                         <li class="nav-header">OTHERS</li>
                         <li class="nav-item">
-                            <a href="reports.php" class="nav-link sidebar-bg-active">
+                            <a href="admin_reports.php" class="nav-link sidebar-bg-active">
                                 <i class="nav-icon bi bi-flag-fill"></i>
-                                <p>Reports <i class="nav-arrow bi bi-chevron-right"></i></p>
+                                <p>
+                                    Reports
+                                    <i class="nav-arrow bi bi-chevron-right"></i>
+                                </p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="admin_notice.php" class="nav-link">
                                 <i class="nav-icon bi bi-exclamation-circle-fill"></i>
-                                <p>Notice <i class="nav-arrow bi bi-chevron-left"></i></p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="users.php" class="nav-link">
-                                <i class="nav-icon bi bi-person-check-fill"></i>
-                                <p>Users <i class="nav-arrow bi bi-chevron-left"></i></p>
+                                <p>
+                                    Notice
+                                    <i class="nav-arrow bi bi-chevron-left"></i>
+                                </p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
+                                <i class="nav-icon bi bi-person-check-fill"></i>
+                                <p>
+                                    Users
+                                    <i class="nav-arrow bi bi-chevron-left"></i>
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="admin_settings.php" class="nav-link">
                                 <i class="nav-icon bi bi-gear-fill"></i>
-                                <p>Settings <i class="nav-arrow bi bi-chevron-left"></i></p>
+                                <p>
+                                    Settings
+                                    <i class="nav-arrow bi bi-chevron-left"></i>
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="admin_login.php" class="nav-link text-danger-emphasis"
+                                onclick="return confirm('Are you sure you want to end your session?');">
+                                <i class="nav-icon bi bi-box-arrow-left text-danger"></i>
+                                <p>Logout</p>
                             </a>
                         </li>
                     </ul>
@@ -185,7 +218,8 @@
                                 <i class="bi bi-file-earmark-pdf-fill text-danger display-6 mb-2"></i>
                                 <h6 class="fw-bold mb-1">Enrollment Report</h6>
                                 <p class="text-muted small mb-3">Download complete demographic summaries.</p>
-                                <button class="btn btn-sm btn-outline-danger w-100"><i class="bi bi-download me-1"></i> Export PDF</button>
+                                <button class="btn btn-sm btn-outline-danger w-100"><i class="bi bi-download me-1"></i>
+                                    Export PDF</button>
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -193,15 +227,18 @@
                                 <i class="bi bi-file-earmark-excel-fill text-success display-6 mb-2"></i>
                                 <h6 class="fw-bold mb-1">Subject Load Sheets</h6>
                                 <p class="text-muted small mb-3">Check section and subject assignment distributions.</p>
-                                <button class="btn btn-sm btn-outline-success w-100"><i class="bi bi-download me-1"></i> Export Excel</button>
+                                <button class="btn btn-sm btn-outline-success w-100"><i class="bi bi-download me-1"></i>
+                                    Export Excel</button>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="card p-3 border-0 shadow-sm bg-white text-center">
                                 <i class="bi bi-printer-fill text-primary display-6 mb-2"></i>
                                 <h6 class="fw-bold mb-1">Class Schedules Printable</h6>
-                                <p class="text-muted small mb-3">Generate printable formats for campus bulletin boards.</p>
-                                <button class="btn btn-sm btn-outline-primary w-100"><i class="bi bi-printer me-1"></i> Print Layout</button>
+                                <p class="text-muted small mb-3">Generate printable formats for campus bulletin boards.
+                                </p>
+                                <button class="btn btn-sm btn-outline-primary w-100"><i class="bi bi-printer me-1"></i>
+                                    Print Layout</button>
                             </div>
                         </div>
                     </div>
@@ -210,7 +247,9 @@
                         <div class="col-12">
                             <div class="card border-0 shadow-sm rounded-3">
                                 <div class="card-header bg-white py-3 border-bottom">
-                                    <h5 class="card-title mb-0 fw-bold text-dark"><i class="bi bi-shield-lock-fill text-secondary me-2"></i>System Security Audit Trail</h5>
+                                    <h5 class="card-title mb-0 fw-bold text-dark"><i
+                                            class="bi bi-shield-lock-fill text-secondary me-2"></i>System Security Audit
+                                        Trail</h5>
                                 </div>
                                 <div class="card-body p-0">
                                     <div class="table-responsive">
@@ -227,17 +266,22 @@
                                             <tbody>
                                                 <tr>
                                                     <td class="ps-4 fw-semibold">admin_01</td>
-                                                    <td><span class="badge bg-danger-subtle text-danger">Super Admin</span></td>
+                                                    <td><span class="badge bg-danger-subtle text-danger">Super
+                                                            Admin</span></td>
                                                     <td>Modified curriculum configurations</td>
                                                     <td>Programs Tab</td>
-                                                    <td class="pe-4 text-end text-muted small">June 08, 2026 11:15 AM</td>
+                                                    <td class="pe-4 text-end text-muted small">June 08, 2026 11:15 AM
+                                                    </td>
                                                 </tr>
                                                 <tr>
                                                     <td class="ps-4 fw-semibold">registrar_staff_02</td>
-                                                    <td><span class="badge bg-primary-subtle text-primary">Registrar</span></td>
+                                                    <td><span
+                                                            class="badge bg-primary-subtle text-primary">Registrar</span>
+                                                    </td>
                                                     <td>Approved transferee profile entry</td>
                                                     <td>Admissions Tab</td>
-                                                    <td class="pe-4 text-end text-muted small">June 08, 2026 10:42 AM</td>
+                                                    <td class="pe-4 text-end text-muted small">June 08, 2026 10:42 AM
+                                                    </td>
                                                 </tr>
                                             </tbody>
                                         </table>

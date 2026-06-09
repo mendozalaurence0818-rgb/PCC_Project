@@ -83,6 +83,17 @@
             border-radius: 20px;
             font-size: 0.8rem;
         }
+
+        /* Interactive styling transitions for the Quick Access blocks */
+        .quick-access-card {
+            transition: all 0.2s ease-in-out;
+            border: 1px solid rgba(0,0,0,0.06) !important;
+        }
+        .quick-access-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(0,44,94,0.08) !important;
+            border-color: #002c5e !important;
+        }
     </style>
 </head>
 
@@ -108,7 +119,7 @@
 
         <aside class="app-sidebar sidebar-bg">
             <div class="sidebar-brand" style="border-right: 1px solid rgba(255, 255, 255, 0.1);">
-                <a href="#" class="brand-link">
+                <a href="admin_dashboard.php" class="brand-link">
                     <img src="images/PCC_Logo.png" alt="PCC Logo" class="brand-image" />
                     <span class="brand-text fw-bold" style="color: white;">PCC Admin</span>
                 </a>
@@ -129,7 +140,7 @@
                     <ul class="nav sidebar-menu flex-column" id="navigation">
                         <li class="nav-header">MAIN MENU</li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link sidebar-bg-active">
+                            <a href="admin_dashboard.php" class="nav-link sidebar-bg-active">
                                 <i class="nav-icon bi bi-speedometer"></i>
                                 <p>
                                     Dashboard
@@ -138,87 +149,65 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="admin_student.php" class="nav-link">
                                 <i class="nav-icon bi bi-people-fill"></i>
-                                <p>
-                                    Students
-                                    <i class="nav-arrow bi bi-chevron-left"></i>
-                                </p>
+                                <p>Students <i class="nav-arrow bi bi-chevron-left"></i></p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="admin_admissions.php" class="nav-link">
                                 <i class="nav-icon bi bi-clipboard-fill"></i>
-                                <p>
-                                    Admissions
-                                    <i class="nav-arrow bi bi-chevron-left"></i>
-                                </p>
+                                <p>Admissions <i class="nav-arrow bi bi-chevron-left"></i></p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="admin_programs.php" class="nav-link">
                                 <i class="nav-icon bi bi-clipboard-data-fill"></i>
-                                <p>
-                                    Programs
-                                    <i class="nav-arrow bi bi-chevron-left"></i>
-                                </p>
+                                <p>Programs <i class="nav-arrow bi bi-chevron-left"></i></p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="admin_subjects.php" class="nav-link">
                                 <i class="nav-icon bi bi-clipboard2-minus-fill"></i>
-                                <p>
-                                    Subjects
-                                    <i class="nav-arrow bi bi-chevron-left"></i>
-                                </p>
+                                <p>Subjects <i class="nav-arrow bi bi-chevron-left"></i></p>
                             </a>
                         </li>
-
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="admin_schedules.php" class="nav-link">
                                 <i class="nav-icon bi bi-calendar3"></i>
-                                <p>
-                                    Schedules
-                                    <i class="nav-arrow bi bi-chevron-left"></i>
-                                </p>
+                                <p>Schedules <i class="nav-arrow bi bi-chevron-left"></i></p>
                             </a>
                         </li>
 
                         <li class="nav-header">OTHERS</li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="admin_reports.php" class="nav-link">
                                 <i class="nav-icon bi bi-flag-fill"></i>
-                                <p>
-                                    Reports
-                                    <i class="nav-arrow bi bi-chevron-left"></i>
-                                </p>
+                                <p>Reports <i class="nav-arrow bi bi-chevron-left"></i></p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="admin_notice.php" class="nav-link">
                                 <i class="nav-icon bi bi-exclamation-circle-fill"></i>
-                                <p>
-                                    Notice
-                                    <i class="nav-arrow bi bi-chevron-left"></i>
-                                </p>
+                                <p>Notice <i class="nav-arrow bi bi-chevron-left"></i></p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="admin_users.php" class="nav-link">
                                 <i class="nav-icon bi bi-person-check-fill"></i>
-                                <p>
-                                    Users
-                                    <i class="nav-arrow bi bi-chevron-left"></i>
-                                </p>
+                                <p>Users <i class="nav-arrow bi bi-chevron-left"></i></p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="admin_settings.php" class="nav-link">
                                 <i class="nav-icon bi bi-gear-fill"></i>
-                                <p>
-                                    Settings
-                                    <i class="nav-arrow bi bi-chevron-left"></i>
-                                </p>
+                                <p>Settings <i class="nav-arrow bi bi-chevron-left"></i></p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="admin_login.php" class="nav-link text-danger-emphasis" onclick="return confirm('Are you sure you want to end your session?');">
+                                <i class="nav-icon bi bi-box-arrow-left text-danger"></i>
+                                <p>Logout</p>
                             </a>
                         </li>
                     </ul>
@@ -269,7 +258,7 @@
                             <div class="info-box bg-white shadow-sm d-flex align-items-center p-3 rounded">
                                 <span class="info-box-icon bg-success text-white d-flex align-items-center justify-content-center rounded" style="width: 50px; height: 50px; font-size: 22px;">
                                     <i class="bi bi-clipboard2-minus-fill"></i>
-                                tap</span>
+                                </span>
                                 <div class="info-box-content ms-3">
                                     <span class="text-muted small text-uppercase d-block">Active Subjects</span>
                                     <h4 class="fw-bold mb-0 text-success">185</h4>
@@ -287,6 +276,58 @@
                                     <h4 class="fw-bold mb-0 text-info">36</h4>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+
+                    <h5 class="fw-bold text-dark mb-3"><i class="bi bi-grid-fill me-2 text-primary"></i>Quick Navigation Shortcuts</h5>
+                    <div class="row g-3 mb-4">
+                        <div class="col-6 col-md-4 col-xl-2">
+                            <a href="admin_student.php" class="text-decoration-none">
+                                <div class="card p-3 quick-access-card bg-white text-center rounded-3">
+                                    <i class="bi bi-people-fill text-primary mb-2" style="font-size: 1.6rem;"></i>
+                                    <div class="fw-bold text-dark small">Students</div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-6 col-md-4 col-xl-2">
+                            <a href="admin_admissions.php" class="text-decoration-none">
+                                <div class="card p-3 quick-access-card bg-white text-center rounded-3">
+                                    <i class="bi bi-clipboard-fill text-warning mb-2" style="font-size: 1.6rem;"></i>
+                                    <div class="fw-bold text-dark small">Admissions</div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-6 col-md-4 col-xl-2">
+                            <a href="admin_programs.php" class="text-decoration-none">
+                                <div class="card p-3 quick-access-card bg-white text-center rounded-3">
+                                    <i class="bi bi-clipboard-data-fill text-danger mb-2" style="font-size: 1.6rem;"></i>
+                                    <div class="fw-bold text-dark small">Programs</div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-6 col-md-4 col-xl-2">
+                            <a href="admin_subjects.php" class="text-decoration-none">
+                                <div class="card p-3 quick-access-card bg-white text-center rounded-3">
+                                    <i class="bi bi-clipboard2-minus-fill text-success mb-2" style="font-size: 1.6rem;"></i>
+                                    <div class="fw-bold text-dark small">Subjects</div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-6 col-md-4 col-xl-2">
+                            <a href="admin_notice.php" class="text-decoration-none">
+                                <div class="card p-3 quick-access-card bg-white text-center rounded-3">
+                                    <i class="bi bi-exclamation-circle-fill text-info mb-2" style="font-size: 1.6rem;"></i>
+                                    <div class="fw-bold text-dark small">Notices</div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-6 col-md-4 col-xl-2">
+                            <a href="admin_settings.php" class="text-decoration-none">
+                                <div class="card p-3 quick-access-card bg-white text-center rounded-3">
+                                    <i class="bi bi-gear-fill text-secondary mb-2" style="font-size: 1.6rem;"></i>
+                                    <div class="fw-bold text-dark small">Settings</div>
+                                </div>
+                            </a>
                         </div>
                     </div>
 
@@ -394,7 +435,7 @@
 
                 </div>
             </div>
-            </main>
+        </main>
 
         <footer class="app-footer">
             <div class="float-start d-none d-sm-inline">Poblacion Central College - </div>

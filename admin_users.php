@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PCC | Users</title>
-    <link class="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/source-sans-3@5.0.12/index.css"
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/source-sans-3@5.0.12/index.css"
         integrity="sha256-tXJfXfp6Ewt1ilPzLDtQnJV4hclT9XuaZUKyUvmyr+Q=" crossorigin="anonymous" media="print"
         onload="this.media = 'all'" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.11.0/styles/overlayscrollbars.min.css"
@@ -161,6 +161,13 @@
                                 <p>Settings <i class="nav-arrow bi bi-chevron-left"></i></p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="admin_login.php" class="nav-link text-danger-emphasis"
+                                onclick="return confirm('Are you sure you want to end your session?');">
+                                <i class="nav-icon bi bi-box-arrow-left text-danger"></i>
+                                <p>Logout</p>
+                            </a>
+                        </li>
                     </ul>
                 </nav>
             </div>
@@ -187,9 +194,11 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="card border-0 shadow-sm rounded-3">
-                                <div class="card-header bg-white py-3 border-bottom d-flex align-items-center justify-content-between">
+                                <div
+                                    class="card-header bg-white py-3 border-bottom d-flex align-items-center justify-content-between">
                                     <h6 class="mb-0 fw-bold text-dark">Authorized Portals Access</h6>
-                                    <input type="text" class="form-control form-control-sm" style="width: 220px;" placeholder="Filter by username...">
+                                    <input type="text" class="form-control form-control-sm" style="width: 220px;"
+                                        placeholder="Filter by username...">
                                 </div>
                                 <div class="card-body p-0">
                                     <div class="table-responsive">
@@ -208,18 +217,24 @@
                                                     <td class="ps-4 font-monospace">USR-001</td>
                                                     <td class="fw-semibold text-dark">admin_01</td>
                                                     <td><span class="badge bg-danger">Super Admin</span></td>
-                                                    <td><span class="text-success fw-bold"><i class="bi bi-circle-fill me-1 small"></i> Active</span></td>
+                                                    <td><span class="text-success fw-bold"><i
+                                                                class="bi bi-circle-fill me-1 small"></i> Active</span>
+                                                    </td>
                                                     <td class="pe-4 text-end">
-                                                        <button class="btn btn-sm btn-outline-secondary"><i class="bi bi-gear-fill"></i> Manage</button>
+                                                        <button class="btn btn-sm btn-outline-secondary"><i
+                                                                class="bi bi-gear-fill"></i> Manage</button>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <td class="ps-4 font-monospace">USR-002</td>
                                                     <td class="fw-semibold text-dark">registrar_staff_02</td>
                                                     <td><span class="badge bg-primary">Registrar Portal</span></td>
-                                                    <td><span class="text-success fw-bold"><i class="bi bi-circle-fill me-1 small"></i> Active</span></td>
+                                                    <td><span class="text-success fw-bold"><i
+                                                                class="bi bi-circle-fill me-1 small"></i> Active</span>
+                                                    </td>
                                                     <td class="pe-4 text-end">
-                                                        <button class="btn btn-sm btn-outline-secondary"><i class="bi bi-gear-fill"></i> Manage</button>
+                                                        <button class="btn btn-sm btn-outline-secondary"><i
+                                                                class="bi bi-gear-fill"></i> Manage</button>
                                                     </td>
                                                 </tr>
                                             </tbody>

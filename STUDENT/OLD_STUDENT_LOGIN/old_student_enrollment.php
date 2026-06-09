@@ -198,17 +198,17 @@
 
 <body class="fixed-header sidebar-expand-lg bg-body-tertiary">
     <div class="app-wrapper">
-        <nav class="app-header navbar navbar-expand bg-body shadow-sm">
+        <nav class="app-header navbar navbar-expand bg-body">
             <div class="container-fluid">
-                <ul class="navbar-nav"></ul>
+                <ul class="navbar-nav">
+                </ul>
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item dropdown user-menu">
                         <span class="d-none d-md-inline">
-                            <div class="nav-date fw-semibold text-secondary"
-                                style="margin-top:6px; margin-bottom: 9px; font-size: 0.9rem;">
-                                <i class="bi bi-clock-history me-2"></i>
+                            <div class="nav-date" style="margin-top:6px; margin-bottom: 9px;">
                                 <?php date_default_timezone_set('Asia/Manila'); ?>
-                                <?php echo date('F j, Y') . " - " . date("h:iA"); ?>
+                                <?php echo date('F j, Y') . " -"; ?>
+                                <?php echo date("h:iA"); ?>
                             </div>
                         </span>
                     </li>
@@ -219,7 +219,7 @@
         <!-- START OF INTEGRATED DASHBOARD SIDEBAR -->
         <aside class="app-sidebar sidebar-bg">
             <div class="sidebar-brand"
-                style="border-right: 1px solid rgba(255, 255, 255, 0.1); border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
+                style="border-right: 1px solid rgba(255, 255, 255, 0.1); border-bottom: 1px solid rgb(241, 236, 236);">
                 <a href="#" class="brand-link">
                     <img src="../../images/PCC_Logo.png" alt="PCC Logo" class="brand-image" />
                     <span class="brand-text fw-bold" style="color: white;">PCC Student</span>

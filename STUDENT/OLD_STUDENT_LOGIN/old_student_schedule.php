@@ -178,22 +178,17 @@
 <body class="fixed-header sidebar-expand-lg bg-body-tertiary">
     <div class="app-wrapper">
         <!-- Top Navigation -->
-        <nav class="app-header navbar navbar-expand bg-body shadow-sm">
+        <nav class="app-header navbar navbar-expand bg-body">
             <div class="container-fluid">
                 <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" data-lte-toggle="sidebar" href="#" role="button"><i
-                                class="bi bi-list"></i></a>
-                    </li>
                 </ul>
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item dropdown user-menu">
                         <span class="d-none d-md-inline">
-                            <div class="nav-date fw-semibold text-secondary"
-                                style="margin-top:6px; margin-bottom: 9px; font-size: 0.9rem;">
-                                <i class="bi bi-clock-history me-2"></i>
+                            <div class="nav-date" style="margin-top:6px; margin-bottom: 9px;">
                                 <?php date_default_timezone_set('Asia/Manila'); ?>
-                                <?php echo date('F j, Y') . " - " . date("h:iA"); ?>
+                                <?php echo date('F j, Y') . " -"; ?>
+                                <?php echo date("h:iA"); ?>
                             </div>
                         </span>
                     </li>

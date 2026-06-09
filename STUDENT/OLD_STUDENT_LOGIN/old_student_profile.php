@@ -87,15 +87,15 @@
     <div class="app-wrapper">
         <nav class="app-header navbar navbar-expand bg-body">
             <div class="container-fluid">
-                <ul class="navbar-nav"></ul>
+                <ul class="navbar-nav">
+                </ul>
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item dropdown user-menu">
                         <span class="d-none d-md-inline">
-                            <div class="nav-date text-muted fw-semibold small px-3"
-                                style="margin-top:6px; margin-bottom: 9px;">
+                            <div class="nav-date" style="margin-top:6px; margin-bottom: 9px;">
                                 <?php date_default_timezone_set('Asia/Manila'); ?>
-                                <i class="bi bi-clock me-1 text-primary"></i>
-                                <?php echo date('F j, Y') . " — " . date("h:i A"); ?>
+                                <?php echo date('F j, Y') . " -"; ?>
+                                <?php echo date("h:iA"); ?>
                             </div>
                         </span>
                     </li>

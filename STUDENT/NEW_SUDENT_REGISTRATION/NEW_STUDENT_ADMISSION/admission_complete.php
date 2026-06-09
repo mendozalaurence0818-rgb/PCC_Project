@@ -424,7 +424,7 @@
         <div class="grid-row">
             <div class="grid-col-4">
                 <label>First Name</label>
-                <input type="text" class="form-input-locked" value="Juan" readonly>
+                <input type="text" class="form-input-locked" value="Joeshua" readonly>
             </div>
             <div class="grid-col-4">
                 <label>Middle Name</label>
@@ -470,7 +470,7 @@
         <div class="grid-row">
             <div class="grid-col-6">
                 <label>Active Email Address</label>
-                <input type="email" class="form-input-locked" value="juan.delacruz@example.com" readonly>
+                <input type="email" class="form-input-locked" value="joeshua.delacruz@gmail.com" readonly>
             </div>
             <div class="grid-col-6">
                 <label>Mobile Number</label>

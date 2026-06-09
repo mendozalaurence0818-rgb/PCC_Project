@@ -71,26 +71,6 @@
                     </div>
                 </div>
 
-                <div class="card shadow" style="border-radius: 10px; border: none;">
-                    <div class="card-body" style="padding: 15px;">
-                        <h6 style="font-weight: bold; margin-bottom: 10px; text-align: center; color: #212529;">Retrieve
-                            Application</h6>
-                        <p style="font-size: 12px; color: #6C757D; text-align: center; margin-bottom: 10px;">Already
-                            applied? Check your admission status here.</p>
-                        <form action="application_status.html" method="post">
-                            <div class="mb-2">
-                                <input type="text" name="reference_number" class="form-control"
-                                    placeholder="Application Reference Number"
-                                    style="padding: 6px 10px; font-size: 13px; border-color: #CED4DA;" required>
-                            </div>
-                            <button type="submit" class="btn w-100"
-                                style="background-color: #FFFFFF; color: #0D6EFD; border: 1px solid #0D6EFD; font-weight: bold; padding: 6px; border-radius: 6px; font-size: 13px;">
-                                <i class="bi bi-search" style="margin-right: 5px;"></i>Check Status
-                            </button>
-                        </form>
-                    </div>
-                </div>
-
             </div>
 
             <div class="col-lg-7">

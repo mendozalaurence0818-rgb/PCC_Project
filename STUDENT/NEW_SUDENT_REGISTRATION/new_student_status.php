@@ -440,7 +440,9 @@
 
         <div class="section-intro">
             <h2>Application Profile Status</h2>
-            <p>Tracking enrollment record file structures for Control Reference ID: <strong>PCC-2026-10492</strong></p>
+            <p>Tracking Application Status for Application Reference Number:
+                <strong>PCC-2026-89421-AR</strong>
+            </p>
         </div>
 
         <div class="status-card status-review">
@@ -653,6 +655,7 @@
             <ul class="course-list">
                 <li><i class="bi bi-book-half"></i> Bachelor of Science in Computer Science (BSCS)</li>
                 <li><i class="bi bi-laptop"></i> Bachelor of Science in Information Technology (BSIT)</li>
+            </ul>
         </div>
     </div>
 

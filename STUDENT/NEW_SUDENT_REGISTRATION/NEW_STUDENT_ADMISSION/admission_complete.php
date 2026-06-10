@@ -113,6 +113,30 @@
             font-family: var(--font-body);
         }
 
+        /* Reference Code Formatting */
+        .reference-code-box {
+            margin-top: 15px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #0f5132;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .reference-code-box strong {
+            font-family: monospace;
+            font-size: 18px;
+            background-color: #ffffff;
+            color: var(--primary-blue);
+            padding: 4px 12px;
+            border-radius: 4px;
+            border: 1px solid #badbcc;
+            letter-spacing: 1px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+        }
+
         .form-section-divider {
             margin: 50px 0 30px 0;
         }
@@ -344,9 +368,32 @@
             .top-navbar,
             .header-banner,
             .action-footer,
-            .success-banner,
             .modal-overlay {
                 display: none !important;
+            }
+
+            .success-banner {
+                background-color: transparent !important;
+                border: 1px solid #ced4da !important;
+                color: #212529 !important;
+                box-shadow: none !important;
+                padding: 20px !important;
+                margin-bottom: 40px !important;
+            }
+
+            .success-icon {
+                color: #212529 !important;
+            }
+
+            .reference-code-box {
+                color: #212529 !important;
+            }
+
+            .reference-code-box strong {
+                background-color: transparent !important;
+                border: 1px solid #212529 !important;
+                color: #212529 !important;
+                box-shadow: none !important;
             }
 
             .main-container {
@@ -389,6 +436,10 @@
                 text-align: center;
             }
 
+            .reference-code-box {
+                justify-content: center;
+            }
+
             .modal-content {
                 padding: 30px;
             }
@@ -413,6 +464,9 @@
                 <h2>Application Successfully Submitted!</h2>
                 <p>Your admission application has been received. Please save a copy of this form for your records. We
                     will contact you at your registered email regarding the next steps.</p>
+                <div class="reference-code-box">
+                    Application Reference Number: <strong>PCC-2026-89421-AR</strong>
+                </div>
             </div>
         </div>
 

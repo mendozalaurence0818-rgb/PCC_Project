@@ -5,28 +5,66 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PCC | Admissions</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/source-sans-3@5.0.12/index.css" crossorigin="anonymous" media="print" onload="this.media = 'all'" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.11.0/styles/overlayscrollbars.min.css" crossorigin="anonymous" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/source-sans-3@5.0.12/index.css"
+        crossorigin="anonymous" media="print" onload="this.media = 'all'" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.11.0/styles/overlayscrollbars.min.css"
+        crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+        crossorigin="anonymous" />
     <link rel="stylesheet" href="css/adminlte.css" />
-    <link rel="icon" href="images/PCC_favicon.png" type="image/png" />
+    <link class="icon" href="images/PCC_favicon.png" type="image/png" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        .sidebar-bg { background-color: #002c5e !important; }
-        .sidebar-bg .nav-link, .sidebar-bg .brand-link, .sidebar-bg .nav-header { color: #ffffff !important; }
-        .sidebar-bg-active { color: #002c5e !important; background-color: #f1b813 !important; }
-        .user-profile { display: flex; align-items: center; gap: 12px; padding: 15px 20px; }
-        .avatar-placeholder { width: 45px; height: 45px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; color: #ffffff; background-color: #001d3d; }
-        .user-info .username { color: #ffffff; font-weight: 600; }
-        .user-info .status-text { color: #ffffff; }
+        .sidebar-bg {
+            background-color: #002c5e !important;
+        }
+
+        .sidebar-bg .nav-link,
+        .sidebar-bg .brand-link,
+        .sidebar-bg .nav-header {
+            color: #ffffff !important;
+        }
+
+        .sidebar-bg-active {
+            color: #002c5e !important;
+            background-color: #f1b813 !important;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 15px 20px;
+        }
+
+        .avatar-placeholder {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: #ffffff;
+            background-color: #001d3d;
+        }
+
+        .user-info .username {
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .user-info .status-text {
+            color: #ffffff;
+        }
     </style>
 </head>
 
 <body class="fixed-header sidebar-expand-lg bg-body-tertiary">
     <?php
     $applicant_list = [
-        ['applicant_id' => 'APP-2026-001', 'name' => 'Agudon, Miguelito M.', 'classification' => 'New Student', 'program' => 'BS Information Technology', 'year' => '1st Year'],
+        ['applicant_id' => 'APP-2026-001', 'name' => 'Santos, Joeshua Reyes', 'classification' => 'New Student', 'program' => 'BS Computer Science', 'year' => '1st Year'],
         ['applicant_id' => 'APP-2026-002', 'name' => 'Depollo, Ralph Geofrey G.', 'classification' => 'New Student', 'program' => 'BS Information Technology', 'year' => '1st Year'],
         ['applicant_id' => 'APP-2024-001', 'name' => 'Mendoza, Laurence C.', 'classification' => 'Old Student', 'program' => 'BS Information Technology', 'year' => '2nd Year'],
         ['applicant_id' => 'APP-2024-002', 'name' => 'Villarta, Joeshua Louis', 'classification' => 'Old Student', 'program' => 'BS Information Technology', 'year' => '2nd Year']
@@ -35,6 +73,16 @@
     if (isset($_GET['delete_id'])) {
         $delete_id = $_GET['delete_id'];
         echo "<div class='alert alert-danger position-fixed bottom-0 end-0 m-3 z-3 shadow'><strong>Record Deleted!</strong> Applicant Profile code #" . htmlspecialchars($delete_id) . " dropped from config matrices.</div>";
+    }
+
+    if (isset($_GET['accept_id'])) {
+        $accept_id = $_GET['accept_id'];
+        echo "<div class='alert alert-success position-fixed bottom-0 end-0 m-3 z-3 shadow'><strong>Admission Approved!</strong> Applicant #" . htmlspecialchars($accept_id) . " has been successfully admitted.</div>";
+    }
+
+    if (isset($_GET['reject_id'])) {
+        $reject_id = $_GET['reject_id'];
+        echo "<div class='alert alert-danger position-fixed bottom-0 end-0 m-3 z-3 shadow'><strong>Application Rejected!</strong> Applicant #" . htmlspecialchars($reject_id) . " has been turned down.</div>";
     }
 
     $edit_mode = false;
@@ -65,7 +113,8 @@
                     <li class="nav-item dropdown user-menu">
                         <span class="d-none d-md-inline">
                             <div class="nav-date" style="margin-top:6px; margin-bottom: 9px;">
-                                <?php date_default_timezone_set('Asia/Manila'); echo date('F j, Y') . " - " . date("h:iA"); ?>
+                                <?php date_default_timezone_set('Asia/Manila');
+                                echo date('F j, Y') . " - " . date("h:iA"); ?>
                             </div>
                         </span>
                     </li>
@@ -73,7 +122,7 @@
             </div>
         </nav>
 
-       <aside class="app-sidebar sidebar-bg">
+        <aside class="app-sidebar sidebar-bg">
             <div class="sidebar-brand" style="border-right: 1px solid rgba(255, 255, 255, 0.1);">
                 <a href="admin_dashboard.php" class="brand-link">
                     <img src="images/PCC_Logo.png" alt="PCC Logo" class="brand-image" />
@@ -134,12 +183,6 @@
 
                         <li class="nav-header">OTHERS</li>
                         <li class="nav-item">
-                            <a href="admin_reports.php" class="nav-link">
-                                <i class="nav-icon bi bi-flag-fill"></i>
-                                <p>Reports <i class="nav-arrow bi bi-chevron-left"></i></p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
                             <a href="admin_notice.php" class="nav-link">
                                 <i class="nav-icon bi bi-exclamation-circle-fill"></i>
                                 <p>Notice <i class="nav-arrow bi bi-chevron-left"></i></p>
@@ -158,7 +201,8 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="admin_login.php" class="nav-link text-danger-emphasis" onclick="return confirm('Are you sure you want to end your session?');">
+                            <a href="admin_login.php" class="nav-link text-danger-emphasis"
+                                onclick="return confirm('Are you sure you want to end your session?');">
                                 <i class="nav-icon bi bi-box-arrow-left text-danger"></i>
                                 <p>Logout</p>
                             </a>
@@ -173,7 +217,8 @@
                 <div class="container-fluid">
                     <div class="d-flex justify-content-between align-items-center">
                         <h3 class="fw-bold my-3">Admission Management</h3>
-                        <button class="btn btn-primary" style="background-color: #002c5e; border: none;"><i class="bi bi-person-plus-fill me-2"></i>Add New Applicant</button>
+                        <button class="btn btn-primary" style="background-color: #002c5e; border: none;"><i
+                                class="bi bi-person-plus-fill me-2"></i>Add New Applicant</button>
                     </div>
                 </div>
             </div>
@@ -207,25 +252,24 @@
                         </div>
                     </div>
 
-                    <div class="alert alert-warning alert-dismissible fade show border-0 shadow-sm bg-white text-dark mb-4" role="alert" style="border-left: 5px solid #ffc107 !important;">
-                        <i class="bi bi-exclamation-triangle-fill text-warning me-2"></i>
-                        <strong>System Alert:</strong> A student account has an unresolved balance payment issue. Action required within the records department.
-                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                    </div>
-
                     <?php if ($edit_mode && $selected_applicant): ?>
                         <div class="card border-warning shadow-sm mb-4">
-                            <div class="card-header bg-warning-subtle text-dark-emphasis py-3 d-flex justify-content-between align-items-center">
-                                <h5 class="card-title mb-0 fw-bold"><i class="bi bi-pencil-square me-2"></i>Edit Applicant Profile: <?php echo htmlspecialchars($selected_applicant['applicant_id']); ?></h5>
+                            <div
+                                class="card-header bg-warning-subtle text-dark-emphasis py-3 d-flex justify-content-between align-items-center">
+                                <h5 class="card-title mb-0 fw-bold"><i class="bi bi-pencil-square me-2"></i>Edit Applicant
+                                    Profile: <?php echo htmlspecialchars($selected_applicant['applicant_id']); ?></h5>
                                 <a href="?" class="btn-close" aria-label="Close"></a>
                             </div>
                             <form method="POST" action="?">
                                 <div class="card-body bg-white text-dark">
-                                    <input type="hidden" name="applicant_id" value="<?php echo htmlspecialchars($selected_applicant['applicant_id']); ?>">
+                                    <input type="hidden" name="applicant_id"
+                                        value="<?php echo htmlspecialchars($selected_applicant['applicant_id']); ?>">
                                     <div class="row g-3">
                                         <div class="col-md-3">
                                             <label class="form-label small fw-bold">Full Name</label>
-                                            <input type="text" name="name" class="form-control form-control-sm" value="<?php echo htmlspecialchars($selected_applicant['name']); ?>" required>
+                                            <input type="text" name="name" class="form-control form-control-sm"
+                                                value="<?php echo htmlspecialchars($selected_applicant['name']); ?>"
+                                                required>
                                         </div>
                                         <div class="col-md-3">
                                             <label class="form-label small fw-bold">Classification</label>
@@ -237,7 +281,9 @@
                                         </div>
                                         <div class="col-md-4">
                                             <label class="form-label small fw-bold">Course / Program</label>
-                                            <input type="text" name="program" class="form-control form-control-sm" value="<?php echo htmlspecialchars($selected_applicant['program']); ?>" required>
+                                            <input type="text" name="program" class="form-control form-control-sm"
+                                                value="<?php echo htmlspecialchars($selected_applicant['program']); ?>"
+                                                required>
                                         </div>
                                         <div class="col-md-2">
                                             <label class="form-label small fw-bold">Year Level</label>
@@ -251,12 +297,27 @@
                                     </div>
                                 </div>
                                 <div class="card-footer bg-light d-flex justify-content-between align-items-center py-2">
-                                    <a href="?delete_id=<?php echo urlencode($selected_applicant['applicant_id']); ?>" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to permanently drop this applicant registration from configuration logs?');">
-                                        <i class="bi bi-trash-fill me-1"></i>Delete Applicant
-                                    </a>
+                                    <div>
+                                        <a href="?accept_id=<?php echo urlencode($selected_applicant['applicant_id']); ?>"
+                                            class="btn btn-sm btn-success text-white me-2"
+                                            onclick="return confirm('Are you sure you want to approve this student\'s admission?');">
+                                            <i class="bi bi-check-circle-fill me-1"></i>Accept Admission
+                                        </a>
+                                        <a href="?reject_id=<?php echo urlencode($selected_applicant['applicant_id']); ?>"
+                                            class="btn btn-sm btn-danger me-2"
+                                            onclick="return confirm('Are you sure you want to reject this applicant?');">
+                                            <i class="bi bi-x-circle-fill me-1"></i>Reject Application
+                                        </a>
+                                        <a href="?delete_id=<?php echo urlencode($selected_applicant['applicant_id']); ?>"
+                                            class="btn btn-sm btn-outline-danger"
+                                            onclick="return confirm('Are you sure you want to permanently drop this applicant registration from configuration logs?');">
+                                            <i class="bi bi-trash-fill me-1"></i>Drop Log
+                                        </a>
+                                    </div>
                                     <div class="ms-auto">
                                         <a href="?" class="btn btn-sm btn-secondary me-2">Cancel</a>
-                                        <button type="submit" name="update_applicant" class="btn btn-sm btn-primary">Save Modifications</button>
+                                        <button type="submit" name="update_applicant" class="btn btn-sm btn-primary">Save
+                                            Modifications</button>
                                     </div>
                                 </div>
                             </form>
@@ -265,7 +326,9 @@
 
                     <div class="card border-0 shadow-sm rounded-3">
                         <div class="card-header bg-white py-3 border-bottom">
-                            <h5 class="card-title mb-0 fw-bold text-dark"><i class="bi bi-journal-text me-2 text-secondary"></i>Applicant Classification Records</h5>
+                            <h5 class="card-title mb-0 fw-bold text-dark"><i
+                                    class="bi bi-journal-text me-2 text-secondary"></i>Applicant Classification Records
+                            </h5>
                         </div>
                         <div class="card-body p-0">
                             <div class="table-responsive">
@@ -282,20 +345,27 @@
                                     </thead>
                                     <tbody>
                                         <?php foreach ($applicant_list as $applicant): ?>
-                                            <tr class="<?php echo ($edit_mode && $edit_id === $applicant['applicant_id']) ? 'table-warning-subtle fw-semibold' : ''; ?>">
-                                                <td class="ps-4 font-monospace fw-bold text-secondary"><?php echo htmlspecialchars($applicant['applicant_id']); ?></td>
-                                                <td class="fw-semibold text-dark"><?php echo htmlspecialchars($applicant['name']); ?></td>
+                                            <tr
+                                                class="<?php echo ($edit_mode && $edit_id === $applicant['applicant_id']) ? 'table-warning-subtle fw-semibold' : ''; ?>">
+                                                <td class="ps-4 font-monospace fw-bold text-secondary">
+                                                    <?php echo htmlspecialchars($applicant['applicant_id']); ?></td>
+                                                <td class="fw-semibold text-dark">
+                                                    <?php echo htmlspecialchars($applicant['name']); ?></td>
                                                 <td>
                                                     <?php
                                                     $is_old = ($applicant['classification'] === 'Old Student');
                                                     $badge_theme = $is_old ? 'bg-primary-subtle text-primary' : 'bg-success-subtle text-success';
                                                     ?>
-                                                    <span class="badge <?php echo $badge_theme; ?>"><?php echo htmlspecialchars($applicant['classification']); ?></span>
+                                                    <span
+                                                        class="badge <?php echo $badge_theme; ?>"><?php echo htmlspecialchars($applicant['classification']); ?></span>
                                                 </td>
                                                 <td><?php echo htmlspecialchars($applicant['program']); ?></td>
-                                                <td class="text-secondary small"><?php echo htmlspecialchars($applicant['year']); ?></td>
+                                                <td class="text-secondary small">
+                                                    <?php echo htmlspecialchars($applicant['year']); ?></td>
                                                 <td class="pe-4 text-end">
-                                                    <a href="?edit_id=<?php echo urlencode($applicant['applicant_id']); ?>" class="btn btn-xs btn-outline-primary border py-1 px-2" style="font-size: 0.75rem;">
+                                                    <a href="?edit_id=<?php echo urlencode($applicant['applicant_id']); ?>"
+                                                        class="btn btn-xs btn-outline-primary border py-1 px-2"
+                                                        style="font-size: 0.75rem;">
                                                         <i class="bi bi-pencil-square me-1"></i>Edit / Manage
                                                     </a>
                                                 </td>
@@ -315,7 +385,8 @@
             <strong><span>&nbsp;All rights reserved.</span></strong>
         </footer>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>

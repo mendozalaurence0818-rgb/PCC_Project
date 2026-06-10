@@ -166,10 +166,6 @@
                             </a></li>
 
                         <li class="nav-header">OTHERS</li>
-                        <li class="nav-item"><a href="admin_reports.php" class="nav-link"><i
-                                    class="nav-icon bi bi-flag-fill"></i>
-                                <p>Reports <i class="nav-arrow bi bi-chevron-left"></i></p>
-                            </a></li>
                         <li class="nav-item"><a href="admin_notice.php" class="nav-link"><i
                                     class="nav-icon bi bi-exclamation-circle-fill"></i>
                                 <p>Notice <i class="nav-arrow bi bi-chevron-left"></i></p>
@@ -392,10 +388,10 @@
                                                     <th style="width: 23%;">Subject</th>
                                                     <th style="width: 12%;">Section</th>
                                                     <th style="width: 18%;">Room</th>
-                                                    <th style="width: 22%;">Day & Time</th>
-                                                    <th style="width: 12%;">Instructor</th>
-                                                    <th class="text-center" style="width: 13%;">Status</th>
-                                                    <th class="pe-4 text-center" style="width: 12%;">Actions</th>
+                                                    <th style="width: 12%;">Day & Time</th>
+                                                    <th style="width: 8%;">Instructor</th>
+                                                    <th class="text-center" style="width: 6%;">Status</th>
+                                                    <th class="pe-4 text-center" style="width: 22%;">Actions</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -427,7 +423,7 @@
                                                         <td><span
                                                                 class="text-secondary small"><?php echo htmlspecialchars($sched['instructor']); ?></span>
                                                         </td>
-                                                        <td class="text-center py-3">
+                                                        <td class="text-center py-1">
                                                             <?php
                                                             $status = $sched['status'];
                                                             $badge_color = ($status === 'Confirmed') ? 'bg-success-subtle text-success' : 'bg-warning-subtle text-warning-emphasis';
@@ -435,12 +431,12 @@
                                                             <span
                                                                 class="status-pill <?php echo $badge_color; ?>"><?php echo htmlspecialchars($status); ?></span>
                                                         </td>
-                                                        <td class="pe-4 text-center py-3">
+                                                        <td class="pe-4 text-end">
                                                             <a href="?edit_id=<?php echo urlencode($sched['id']); ?><?php echo isset($_GET['search']) ? '&search=' . urlencode($_GET['search']) : ''; ?>"
-                                                                class="btn btn-xs btn-outline-primary border py-2 px-2 d-inline-block fw-semibold text-decoration-none"
-                                                                style="font-size: 0.78rem; width: 84px; line-height: 1.2;">
-                                                                <i class="bi bi-pencil-square d-block mb-0.5"
-                                                                    style="font-size: 0.9rem;"></i>Edit / Manage
+                                                                class="btn btn-xs btn-outline-primary border py-1 px-2"
+                                                                style="font-size: 0.75rem;"><i
+                                                                    class="bi bi-pencil-square me-1"></i>Edit /
+                                                                Manage
                                                             </a>
                                                         </td>
                                                     </tr>

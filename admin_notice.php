@@ -207,12 +207,6 @@
 
                         <li class="nav-header">OTHERS</li>
                         <li class="nav-item">
-                            <a href="admin_reports.php" class="nav-link">
-                                <i class="nav-icon bi bi-flag-fill"></i>
-                                <p>Reports <i class="nav-arrow bi bi-chevron-left"></i></p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
                             <a href="admin_notice.php" class="nav-link sidebar-bg-active">
                                 <i class="nav-icon bi bi-exclamation-circle-fill"></i>
                                 <p>Notice <i class="nav-arrow bi bi-chevron-right"></i></p>

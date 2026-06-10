@@ -44,9 +44,8 @@ $random_bg = $backgrounds[array_rand($backgrounds)];
         <div class="login-logo" style="color: white;">
             <i><img src="images/PCC_Logo.png" alt="" style="width: 100px; height: 100px;"></i>
             <br>
-            <p style="font-size: 25px; font-weight: bold; margin-bottom: -10px; margin-top: 5px;">POBLACION CENTRAL
-                COLLEGE</p>
-            <p style="font-size: 15px; margin-top: 5px;">Home of the PCC Chiefs</p>
+            <p style="font-size: 25px; font-weight: bold; margin-bottom: -10px; margin-top: 5px; text-shadow: 1px 1px 3px black;">POBLACION CENTRAL COLLEGE</p>
+            <p style="font-size: 15px; margin-top: 5px; text-shadow: 1px 1px 3px black;">Home of the PCC Chiefs</p>
         </div>
         <div>
             <div class="card-body login-card-body">
@@ -54,19 +53,19 @@ $random_bg = $backgrounds[array_rand($backgrounds)];
                 <p class="login-box-msg">Sign in to start your session</p>
                 <form action="admin_dashboard.php" method="post">
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Admin ID" required />
+                        <input type="text" class="form-control" placeholder="Admin ID"  />
                         <div class="input-group-text">
                             <i class="bi bi-person-fill"></i>
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="email" class="form-control" placeholder="PCC Email Address" required />
+                        <input type="email" class="form-control" placeholder="PCC Email Address"  />
                         <div class="input-group-text">
                             <i class="bi bi-envelope-fill"></i>
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Admin Access Code" required />
+                        <input type="text" class="form-control" placeholder="Admin Access Code"  />
                         <div class="input-group-text">
                             <i class="bi bi-key-fill"></i>
                         </div>
@@ -74,7 +73,7 @@ $random_bg = $backgrounds[array_rand($backgrounds)];
 
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" placeholder="Antibot Validation" name="antibot_val"
-                            required autocomplete="off" />
+                             autocomplete="off" />
                         <div class="input-group-text">
                             <i class="bi bi-check-lg"></i>
                         </div>
@@ -89,6 +88,12 @@ $random_bg = $backgrounds[array_rand($backgrounds)];
                 </form>
             </div>
         </div>
+    </div>
+
+    <div class="text-center mt-3">
+        <a href="select_login.php" class="text-decoration-none small" style="color: white; text-shadow: 1px 1px 4px rgba(0,0,0,0.8); font-weight: 600; letter-spacing: 0.5px;">
+            <i class="bi bi-arrow-left-short me-1"></i>Go back to Home
+        </a>
     </div>
 </body>
 

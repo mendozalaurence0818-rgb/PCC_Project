@@ -28,7 +28,14 @@
                 style="font-size: 20px; font-weight: 500; margin-top: 2px; color: #333333; text-shadow: 1px 1px 2px #FFFFFF;">
                 College Online Admission Portal
             </p>
+            <div class="mt-3">
+                <a href="../../select_login.php" class="text-decoration-none small"
+                    style="color: black; text-shadow: 1px 1px 4px rgba(0,0,0,0.8); font-weight: 600; letter-spacing: 0.5px;">
+                    <i class="bi bi-arrow-left-short me-1"></i>Go back to Home
+                </a>
+            </div>
         </div>
+
 
         <div class="row g-3">
 
@@ -47,8 +54,7 @@
                                     Applicant Classification
                                 </label>
                                 <select name="classification" class="form-select form-select-lg"
-                                    style="font-size: 15px; border-color: #CED4DA; cursor: pointer; height: 48px;"
-                                    required>
+                                    style="font-size: 15px; border-color: #CED4DA; cursor: pointer; height: 48px;">
                                     <option value="" disabled selected>Select Classification</option>
                                     <option value="freshman">Incoming College Freshman</option>
                                     <option value="transferee">College Transferee</option>
@@ -90,7 +96,7 @@
                             <div class="mb-3">
                                 <input type="text" name="reference_number" class="form-control form-control-lg"
                                     placeholder="Application Reference Number"
-                                    style="font-size: 15px; border-color: #CED4DA; height: 48px;" required>
+                                    style="font-size: 15px; border-color: #CED4DA; height: 48px;">
                             </div>
                             <button type="submit"
                                 class="btn w-100 btn-lg d-flex align-items-center justify-content-center"
@@ -149,9 +155,9 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
+
 </body>
 
 </html>

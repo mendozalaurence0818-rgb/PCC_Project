@@ -77,9 +77,9 @@ $random_bg = $backgrounds[array_rand($backgrounds)];
         <div class="text-center" style="color: #FFFFFF; margin-bottom: 20px;">
             <i><img src="images/PCC_Logo.png" alt="PCC Logo" style="width: 75px; height: 75px;"></i>
             <br>
-            <p style="font-size: 22px; font-weight: bold; margin-bottom: -5px; margin-top: 5px;">POBLACION CENTRAL
+            <p style="font-size: 22px; font-weight: bold; margin-bottom: -5px; margin-top: 5px; text-shadow: 1px 1px 3px black;">POBLACION CENTRAL
                 COLLEGE</p>
-            <p style="font-size: 14px; margin-top: 5px;">Home of the PCC Chiefs</p>
+            <p style="font-size: 14px; margin-top: 5px; text-shadow: 1px 1px 3px black;">Home of the PCC Chiefs</p>
         </div>
         <div class="card" style="margin-bottom: 0;">
             <div class="card-body login-card-body" style="padding: 25px;">

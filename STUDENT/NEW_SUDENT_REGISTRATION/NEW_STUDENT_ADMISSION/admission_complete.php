@@ -81,7 +81,6 @@
             padding: 0 60px 80px 60px;
         }
 
-        /* Success Banner */
         .success-banner {
             background-color: #d1e7dd;
             border: 1px solid #badbcc;
@@ -92,7 +91,7 @@
             display: flex;
             align-items: center;
             gap: 20px;
-            box-shadow: 0 4px 12px rgba(25, 135, 84, 0.1);
+            box-shadow: 0 4px 12px #1987541a;
         }
 
         .success-icon {
@@ -113,7 +112,6 @@
             font-family: var(--font-body);
         }
 
-        /* Reference Code Formatting */
         .reference-code-box {
             margin-top: 15px;
             font-size: 14px;
@@ -134,7 +132,7 @@
             border-radius: 4px;
             border: 1px solid #badbcc;
             letter-spacing: 1px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+            box-shadow: 0 2px 4px #0000000a;
         }
 
         .form-section-divider {
@@ -162,6 +160,12 @@
             flex-wrap: wrap;
             margin-right: -15px;
             margin-left: -15px;
+        }
+
+        .grid-col-3 {
+            width: 25%;
+            padding: 0 15px;
+            margin-bottom: 25px;
         }
 
         .grid-col-4 {
@@ -192,7 +196,8 @@
             letter-spacing: 0.5px;
         }
 
-        .form-input-locked {
+        .form-input-locked,
+        .form-dropdown {
             width: 100%;
             padding: 12px 14px;
             font-size: 14px;
@@ -264,7 +269,6 @@
             transform: translateY(-1px);
         }
 
-        /* ----- CSS-ONLY MODAL STYLES ----- */
         .modal-overlay {
             position: fixed;
             z-index: 2000;
@@ -272,7 +276,7 @@
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.6);
+            background-color: #00000099;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -303,7 +307,7 @@
             max-width: 550px;
             position: relative;
             z-index: 2001;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 10px 25px #00000033;
             transform: translateY(-20px);
             transition: transform 0.3s ease;
         }
@@ -362,7 +366,6 @@
             margin-top: -2px;
         }
 
-        /* Print Settings */
         @media print {
 
             .top-navbar,
@@ -422,6 +425,7 @@
                 gap: 20px;
             }
 
+            .grid-col-3,
             .grid-col-4,
             .grid-col-6 {
                 width: 100%;
@@ -476,24 +480,28 @@
         </div>
 
         <div class="grid-row">
-            <div class="grid-col-4">
+            <div class="grid-col-3">
                 <label>First Name</label>
-                <input type="text" class="form-input-locked" value="Juan" readonly>
+                <input type="text" class="form-input-locked" value="Joeshua" readonly>
             </div>
-            <div class="grid-col-4">
+            <div class="grid-col-3">
                 <label>Middle Name</label>
+                <input type="text" class="form-input-locked" value="Reyes" readonly>
+            </div>
+            <div class="grid-col-3">
+                <label>Last Name</label>
                 <input type="text" class="form-input-locked" value="Santos" readonly>
             </div>
-            <div class="grid-col-4">
-                <label>Last Name</label>
-                <input type="text" class="form-input-locked" value="Dela Cruz" readonly>
+            <div class="grid-col-3">
+                <label>Suffix</label>
+                <input type="text" class="form-input-locked" value="N/A" readonly>
             </div>
         </div>
 
         <div class="grid-row">
             <div class="grid-col-4">
                 <label>Date of Birth</label>
-                <input type="text" class="form-input-locked" value="2005-08-15" readonly>
+                <input type="text" class="form-input-locked" value="2005-05-14" readonly>
             </div>
             <div class="grid-col-4">
                 <label>Gender</label>
@@ -508,7 +516,197 @@
         <div class="grid-row">
             <div class="grid-col-6">
                 <label>Nationality</label>
-                <input type="text" class="form-input-locked" value="Filipino" readonly>
+                <select name="nationality" class="form-input form-input-locked" disabled>
+                    <option value="" disabled selected>Select Nationality</option>
+                    <option value="Filipino" selected>Filipino</option>
+                    <option value="Afghan">Afghan</option>
+                    <option value="Albanian">Albanian</option>
+                    <option value="Algerian">Algerian</option>
+                    <option value="American">American</option>
+                    <option value="Andorran">Andorran</option>
+                    <option value="Angolan">Angolan</option>
+                    <option value="Argentine">Argentine</option>
+                    <option value="Armenian">Armenian</option>
+                    <option value="Australian">Australian</option>
+                    <option value="Austrian">Austrian</option>
+                    <option value="Azerbaijani">Azerbaijani</option>
+                    <option value="Bahamian">Bahamian</option>
+                    <option value="Bahraini">Bahraini</option>
+                    <option value="Bangladeshi">Bangladeshi</option>
+                    <option value="Barbadian">Barbadian</option>
+                    <option value="Belarusian">Belarusian</option>
+                    <option value="Belgian">Belgian</option>
+                    <option value="Belizean">Belizean</option>
+                    <option value="Beninese">Beninese</option>
+                    <option value="Bhutanese">Bhutanese</option>
+                    <option value="Bolivian">Bolivian</option>
+                    <option value="Bosnian">Bosnian</option>
+                    <option value="Brazilian">Brazilian</option>
+                    <option value="British">British</option>
+                    <option value="Bruneian">Bruneian</option>
+                    <option value="Bulgarian">Bulgarian</option>
+                    <option value="Burkinabe">Burkinabe</option>
+                    <option value="Burmese">Burmese</option>
+                    <option value="Burundian">Burundian</option>
+                    <option value="Cambodian">Cambodian</option>
+                    <option value="Cameroonian">Cameroonian</option>
+                    <option value="Canadian">Canadian</option>
+                    <option value="Cape Verdean">Cape Verdean</option>
+                    <option value="Central African">Central African</option>
+                    <option value="Chadian">Chadian</option>
+                    <option value="Chilean">Chilean</option>
+                    <option value="Chinese">Chinese</option>
+                    <option value="Colombian">Colombian</option>
+                    <option value="Comoran">Comoran</option>
+                    <option value="Congolese">Congolese</option>
+                    <option value="Costa Rican">Costa Rican</option>
+                    <option value="Croatian">Croatian</option>
+                    <option value="Cuban">Cuban</option>
+                    <option value="Cypriot">Cypriot</option>
+                    <option value="Czech">Czech</option>
+                    <option value="Danish">Danish</option>
+                    <option value="Djiboutian">Djiboutian</option>
+                    <option value="Dominican">Dominican</option>
+                    <option value="Dutch">Dutch</option>
+                    <option value="East Timorese">East Timorese</option>
+                    <option value="Ecuadorian">Ecuadorian</option>
+                    <option value="Egyptian">Egyptian</option>
+                    <option value="Emirati">Emirati</option>
+                    <option value="Equatorial Guinean">Equatorial Guinean</option>
+                    <option value="Eritrean">Eritrean</option>
+                    <option value="Estonian">Estonian</option>
+                    <option value="Ethiopian">Ethiopian</option>
+                    <option value="Fijian">Fijian</option>
+                    <option value="Finnish">Finnish</option>
+                    <option value="French">French</option>
+                    <option value="Gabonese">Gabonese</option>
+                    <option value="Gambian">Gambian</option>
+                    <option value="Georgian">Georgian</option>
+                    <option value="German">German</option>
+                    <option value="Ghanaian">Ghanaian</option>
+                    <option value="Greek">Greek</option>
+                    <option value="Grenadian">Grenadian</option>
+                    <option value="Guatemalan">Guatemalan</option>
+                    <option value="Guinean">Guinean</option>
+                    <option value="Guyanese">Guyanese</option>
+                    <option value="Haitian">Haitian</option>
+                    <option value="Honduran">Honduran</option>
+                    <option value="Hungarian">Hungarian</option>
+                    <option value="Icelandic">Icelandic</option>
+                    <option value="Indian">Indian</option>
+                    <option value="Indonesian">Indonesian</option>
+                    <option value="Iranian">Iranian</option>
+                    <option value="Iraqi">Iraqi</option>
+                    <option value="Irish">Irish</option>
+                    <option value="Israeli">Israeli</option>
+                    <option value="Italian">Italian</option>
+                    <option value="Ivorian">Ivorian</option>
+                    <option value="Jamaican">Jamaican</option>
+                    <option value="Japanese">Japanese</option>
+                    <option value="Jordanian">Jordanian</option>
+                    <option value="Kazakh">Kazakh</option>
+                    <option value="Kenyan">Kenyan</option>
+                    <option value="Kiribati">Kiribati</option>
+                    <option value="Kuwaiti">Kuwaiti</option>
+                    <option value="Kyrgyz">Kyrgyz</option>
+                    <option value="Laotian">Laotian</option>
+                    <option value="Latvian">Latvian</option>
+                    <option value="Lebanese">Lebanese</option>
+                    <option value="Liberian">Liberian</option>
+                    <option value="Libyan">Libyan</option>
+                    <option value="Liechtenstein citizen">Liechtenstein citizen</option>
+                    <option value="Lithuanian">Lithuanian</option>
+                    <option value="Luxembourgish">Luxembourgish</option>
+                    <option value="Macedonian">Macedonian</option>
+                    <option value="Malagasy">Malagasy</option>
+                    <option value="Malawian">Malawian</option>
+                    <option value="Malaysian">Malaysian</option>
+                    <option value="Maldivian">Maldivian</option>
+                    <option value="Malian">Malian</option>
+                    <option value="Maltese">Maltese</option>
+                    <option value="Marshallese">Marshallese</option>
+                    <option value="Mauritanian">Mauritanian</option>
+                    <option value="Mauritian">Mauritian</option>
+                    <option value="Mexican">Mexican</option>
+                    <option value="Micronesian">Micronesian</option>
+                    <option value="Moldovan">Moldovan</option>
+                    <option value="Monegasque">Monegasque</option>
+                    <option value="Mongolian">Mongolian</option>
+                    <option value="Montenegrin">Montenegrin</option>
+                    <option value="Moroccan">Moroccan</option>
+                    <option value="Mozambican">Mozambican</option>
+                    <option value="Namibian">Namibian</option>
+                    <option value="Nauruan">Nauruan</option>
+                    <option value="Nepalese">Nepalese</option>
+                    <option value="New Zealander">New Zealander</option>
+                    <option value="Nicaraguan">Nicaraguan</option>
+                    <option value="Nigerian">Nigerian</option>
+                    <option value="Nigerien">Nigerien</option>
+                    <option value="North Korean">North Korean</option>
+                    <option value="Norwegian">Norwegian</option>
+                    <option value="Omani">Omani</option>
+                    <option value="Pakistani">Pakistani</option>
+                    <option value="Palauan">Palauan</option>
+                    <option value="Palestinian">Palestinian</option>
+                    <option value="Panamanian">Panamanian</option>
+                    <option value="Papua New Guinean">Papua New Guinean</option>
+                    <option value="Paraguayan">Paraguayan</option>
+                    <option value="Peruvian">Peruvian</option>
+                    <option value="Polish">Polish</option>
+                    <option value="Portuguese">Portuguese</option>
+                    <option value="Qatari">Qatari</option>
+                    <option value="Romanian">Romanian</option>
+                    <option value="Russian">Russian</option>
+                    <option value="Rwandan">Rwandan</option>
+                    <option value="Saint Lucian">Saint Lucian</option>
+                    <option value="Salvadoran">Salvadoran</option>
+                    <option value="Samoan">Samoan</option>
+                    <option value="San Marinese">San Marinese</option>
+                    <option value="Sao Tomean">Sao Tomean</option>
+                    <option value="Saudi">Saudi</option>
+                    <option value="Scottish">Scottish</option>
+                    <option value="Senegalese">Senegalese</option>
+                    <option value="Serbian">Serbian</option>
+                    <option value="Seychellois">Seychellois</option>
+                    <option value="Sierra Leonean">Sierra Leonean</option>
+                    <option value="Singaporean">Singaporean</option>
+                    <option value="Slovak">Spacer</option>
+                    <option value="Slovenian">Slovenian</option>
+                    <option value="Solomon Islander">Solomon Islander</option>
+                    <option value="Somali">Somali</option>
+                    <option value="South African">South African</option>
+                    <option value="South Korean">South Korean</option>
+                    <option value="Spanish">Spanish</option>
+                    <option value="Sri Lankan">Sri Lankan</option>
+                    <option value="Sudanese">Sudanese</option>
+                    <option value="Surinamese">Surinamese</option>
+                    <option value="Swazi">Swazi</option>
+                    <option value="Swedish">Swedish</option>
+                    <option value="Swiss">Swiss</option>
+                    <option value="Syrian">Syrian</option>
+                    <option value="Taiwanese">Taiwanese</option>
+                    <option value="Tajik">Tajik</option>
+                    <option value="Tanzanian">Tanzanian</option>
+                    <option value="Thai">Thai</option>
+                    <option value="Togolese">Togolese</option>
+                    <option value="Tongan">Tongan</option>
+                    <option value="Trinidadian">Trinidadian</option>
+                    <option value="Tunisian">Tunisian</option>
+                    <option value="Turkish">Turkish</option>
+                    <option value="Turkmen">Turkmen</option>
+                    <option value="Tuvaluan">Tuvaluan</option>
+                    <option value="Ugandan">Ugandan</option>
+                    <option value="Ukrainian">Ukrainian</option>
+                    <option value="Uruguayan">Uruguayan</option>
+                    <option value="Uzbek">Uzbek</option>
+                    <option value="Vanuatu citizen">Vanuatu citizen</option>
+                    <option value="Venezuelan">Venezuelan</option>
+                    <option value="Vietnamese">Vietnamese</option>
+                    <option value="Welsh">Welsh</option>
+                    <option value="Yemeni">Yemeni</option>
+                    <option value="Zambian">Zambian</option>
+                    <option value="Zimbabwean">Zimbabwean</option>
+                </select>
             </div>
             <div class="grid-col-6">
                 <label>Religious Affiliation</label>
@@ -524,16 +722,16 @@
         <div class="grid-row">
             <div class="grid-col-6">
                 <label>Active Email Address</label>
-                <input type="email" class="form-input-locked" value="juan.delacruz@example.com" readonly>
+                <input type="email" class="form-input-locked" value="joeshuasantos@email.com" readonly>
             </div>
             <div class="grid-col-6">
                 <label>Mobile Number</label>
-                <input type="tel" class="form-input-locked" value="09123456789" readonly>
+                <input type="tel" class="form-input-locked" value="0912-345-6789" readonly>
             </div>
             <div class="grid-col-12">
                 <label>Current Home Address</label>
                 <textarea class="form-input-locked" rows="2"
-                    readonly>Block 4 Lot 12, Mabini Street, Barangay Commonwealth, Quezon City, Metro Manila</textarea>
+                    readonly>123 Rizal Street, Barangay Central, Quezon City, Metro Manila</textarea>
             </div>
         </div>
 
@@ -545,19 +743,29 @@
         <div class="grid-row">
             <div class="grid-col-6">
                 <label>Last SHS School Attended</label>
-                <input type="text" class="form-input-locked" value="Quezon City Science High School" readonly>
+                <input type="text" class="form-input-locked" value="Quezon City National High School" readonly>
             </div>
             <div class="grid-col-6">
                 <label>SHS Track & Strand</label>
-                <input type="text" class="form-input-locked" value="Academic Track - STEM" readonly>
+                <select name="shs_strand" class="form-dropdown" disabled>
+                    <option value="" disabled selected>Select Strand</option>
+                    <option value="STEM" selected>Academic - STEM (Science, Technology, Engineering, Mathematics)
+                    </option>
+                    <option value="ABM">Academic - ABM (Accountancy, Business, Management)</option>
+                    <option value="HUMSS">Academic - HUMSS (Humanities, Social Sciences)</option>
+                    <option value="GAS">Academic - GAS (General Academic Strand)</option>
+                    <option value="TVL">Technical-Vocational-Livelihood (TVL)</option>
+                    <option value="A&D">Arts and Design</option>
+                    <option value="Sports">Sports Track</option>
+                </select>
             </div>
             <div class="grid-col-6">
                 <label>Year Completed / Graduated</label>
-                <input type="number" class="form-input-locked" value="2024" readonly>
+                <input type="number" class="form-input-locked" value="2026" readonly>
             </div>
             <div class="grid-col-6">
                 <label>SHS School Address</label>
-                <input type="text" class="form-input-locked" value="Bago Bantay, Quezon City" readonly>
+                <input type="text" class="form-input-locked" value="Quezon City, Metro Manila" readonly>
             </div>
         </div>
 
@@ -569,7 +777,11 @@
         <div class="grid-row">
             <div class="grid-col-12">
                 <label>Preferred College Program / Course</label>
-                <input type="text" class="form-input-locked" value="BS Information Technology" readonly>
+                <select name="preferred_program" class="form-dropdown" disabled>
+                    <option value="" disabled>Select preferred program</option>
+                    <option value="BSCS" selected>Bachelor of Science in Computer Science (BSCS)</option>
+                    <option value="BSIT">Bachelor of Science in Information Technology (BSIT)</option>
+                </select>
             </div>
             <div class="grid-col-6">
                 <label>Academic Term Entering</label>
@@ -589,7 +801,7 @@
         <div class="grid-row">
             <div class="grid-col-4">
                 <label>Guardian Name</label>
-                <input type="text" class="form-input-locked" value="Maria Dela Cruz" readonly>
+                <input type="text" class="form-input-locked" value="Kylie Santos" readonly>
             </div>
             <div class="grid-col-4">
                 <label>Relationship</label>
@@ -597,7 +809,7 @@
             </div>
             <div class="grid-col-4">
                 <label>Emergency Phone</label>
-                <input type="tel" class="form-input-locked" value="09987654321" readonly>
+                <input type="tel" class="form-input-locked" value="0998-765-4321" readonly>
             </div>
         </div>
 
@@ -610,25 +822,25 @@
             <div class="grid-col-6">
                 <label>SF10 / Form 138 (Report Card)</label>
                 <div class="file-review-badge">
-                    <i class="bi bi-check-circle-fill"></i> delacruz_sf10.pdf
+                    <i class="bi bi-check-circle-fill"></i> form_138_joeshuasantos.pdf
                 </div>
             </div>
             <div class="grid-col-6">
                 <label>PSA Birth Certificate</label>
                 <div class="file-review-badge">
-                    <i class="bi bi-check-circle-fill"></i> delacruz_psa.pdf
+                    <i class="bi bi-check-circle-fill"></i> psa_birth_cert_joeshuasantos.pdf
                 </div>
             </div>
             <div class="grid-col-6">
                 <label>Certificate of Good Moral Character</label>
                 <div class="file-review-badge">
-                    <i class="bi bi-check-circle-fill"></i> delacruz_goodmoral.pdf
+                    <i class="bi bi-check-circle-fill"></i> good_moral_joeshuasantos.pdf
                 </div>
             </div>
             <div class="grid-col-6">
                 <label>Recent 2x2 ID Picture</label>
                 <div class="file-review-badge">
-                    <i class="bi bi-check-circle-fill"></i> delacruz_2x2.jpg
+                    <i class="bi bi-check-circle-fill"></i> 2x2_id_picture_joeshuasantos.jpg
                 </div>
             </div>
         </div>

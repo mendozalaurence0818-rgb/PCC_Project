@@ -167,7 +167,7 @@
                     <div class="user-profile">
                         <div class="avatar-wrapper">
                             <div class="avatar-placeholder shadow-sm">
-                                <i class="fa-solid fa-user-graduate"></i>
+                                <i class="fa-solid fa-user"></i>
                             </div>
                         </div>
                         <div class="user-info avatar-wrapper">

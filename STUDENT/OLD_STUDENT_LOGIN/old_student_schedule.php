@@ -209,7 +209,7 @@
                     <div class="user-profile">
                         <div>
                             <div class="avatar-placeholder">
-                                <i class="fa-solid fa-user-graduate"></i>
+                                <i class="fa-solid fa-user"></i>
                             </div>
                         </div>
                         <div class="user-info">

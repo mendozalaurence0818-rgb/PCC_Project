@@ -479,7 +479,7 @@
                     <label><i class="bi bi-file-earmark-text me-1"></i> Grade 12 Report Card (Form 138) <span
                             class="required-mark">*</span></label>
                     <span class="label-desc">Upload a copy of your 1st or 2nd semester Grade 12 card.</span>
-                    <input type="file" class="form-input" accept=".pdf,.jpg,.jpeg,.png" required>
+                    <input type="file" class="form-input" accept=".pdf,.jpg,.jpeg,.png">
                 </div>
 
                 <div class="grid-col-12">
@@ -487,7 +487,7 @@
                             class="required-mark">*</span></label>
                     <span class="label-desc">Clear, unblemished copy issued by the Philippine Statistics
                         Authority.</span>
-                    <input type="file" class="form-input" accept=".pdf,.jpg,.jpeg,.png" required>
+                    <input type="file" class="form-input" accept=".pdf,.jpg,.jpeg,.png">
                 </div>
 
                 <div class="grid-col-12">
@@ -495,7 +495,7 @@
                             class="required-mark">*</span></label>
                     <span class="label-desc">Issued by your previous Senior High School Principal or Guidance
                         Office.</span>
-                    <input type="file" class="form-input" accept=".pdf,.jpg,.jpeg,.png" required>
+                    <input type="file" class="form-input" accept=".pdf,.jpg,.jpeg,.png">
                 </div>
 
                 <div class="grid-col-12">
@@ -503,7 +503,7 @@
                             class="required-mark">*</span></label>
                     <span class="label-desc">Must feature a plain white background, taken within the last 6
                         months.</span>
-                    <input type="file" class="form-input" accept=".jpg,.jpeg,.png" required>
+                    <input type="file" class="form-input" accept=".jpg,.jpeg,.png">
                 </div>
             </div>
 

@@ -465,7 +465,7 @@
             <div class="grid-row">
                 <div class="grid-col-4">
                     <label>First Name <span class="required-mark">*</span></label>
-                    <input type="text" class="form-input" required>
+                    <input type="text" class="form-input">
                 </div>
                 <div class="grid-col-4">
                     <label>Middle Name</label>
@@ -473,18 +473,18 @@
                 </div>
                 <div class="grid-col-4">
                     <label>Last Name <span class="required-mark">*</span></label>
-                    <input type="text" class="form-input" required>
+                    <input type="text" class="form-input">
                 </div>
             </div>
 
             <div class="grid-row">
                 <div class="grid-col-4">
                     <label>Date of Birth <span class="required-mark">*</span></label>
-                    <input type="date" class="form-input" required>
+                    <input type="date" class="form-input">
                 </div>
                 <div class="grid-col-4">
                     <label>Gender <span class="required-mark">*</span></label>
-                    <select class="form-dropdown" required>
+                    <select class="form-dropdown">
                         <option value="" disabled selected>Select</option>
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
@@ -492,7 +492,7 @@
                 </div>
                 <div class="grid-col-4">
                     <label>Civil Status <span class="required-mark">*</span></label>
-                    <select class="form-dropdown" required>
+                    <select class="form-dropdown">
                         <option value="" disabled selected>Select</option>
                         <option value="Single">Single</option>
                         <option value="Married">Married</option>
@@ -504,11 +504,7 @@
             <div class="grid-row">
                 <div class="grid-col-6">
                     <label>Nationality <span class="required-mark">*</span></label>
-                    <select class="form-dropdown" required>
-                        <option value="Filipino" selected>Filipino</option>
-                        <option value="American">American</option>
-                        <option value="Other">Other</option>
-                    </select>
+                    <input type="text" class="form-input">
                 </div>
                 <div class="grid-col-6">
                     <label>Religious Affiliation</label>
@@ -524,16 +520,16 @@
             <div class="grid-row">
                 <div class="grid-col-6">
                     <label>Active Email Address <span class="required-mark">*</span></label>
-                    <input type="email" class="form-input" required>
+                    <input type="email" class="form-input">
                 </div>
                 <div class="grid-col-6">
                     <label>Mobile Number <span class="required-mark">*</span></label>
-                    <input type="tel" class="form-input" placeholder="09XX-XXX-XXXX" required>
+                    <input type="tel" class="form-input" placeholder="09XX-XXX-XXXX">
                 </div>
                 <div class="grid-col-12">
                     <label>Current Home Address <span class="required-mark">*</span></label>
                     <textarea class="form-input" rows="3"
-                        placeholder="Street Name, Barangay, City/Municipality, Province" required></textarea>
+                        placeholder="Street Name, Barangay, City/Municipality, Province"></textarea>
                 </div>
             </div>
 
@@ -545,11 +541,11 @@
             <div class="grid-row">
                 <div class="grid-col-6">
                     <label>Last SHS School Attended <span class="required-mark">*</span></label>
-                    <input type="text" class="form-input" placeholder="Senior High School Name" required>
+                    <input type="text" class="form-input" placeholder="Senior High School Name">
                 </div>
                 <div class="grid-col-6">
                     <label>SHS Track & Strand <span class="required-mark">*</span></label>
-                    <select class="form-dropdown" required>
+                    <select class="form-dropdown">
                         <option value="" disabled selected>Select Strand</option>
                         <option value="STEM">Academic - STEM (Science, Technology, Engineering, Mathematics)</option>
                         <option value="ABM">Academic - ABM (Accountancy, Business, Management)</option>
@@ -562,11 +558,11 @@
                 </div>
                 <div class="grid-col-6">
                     <label>Year Completed / Graduated <span class="required-mark">*</span></label>
-                    <input type="number" class="form-input" placeholder="YYYY" min="1900" max="2030" required>
+                    <input type="number" class="form-input" placeholder="YYYY" min="1900" max="2030">
                 </div>
                 <div class="grid-col-6">
                     <label>SHS School Address <span class="required-mark">*</span></label>
-                    <input type="text" class="form-input" placeholder="City, Province" required>
+                    <input type="text" class="form-input" placeholder="City, Province">
                 </div>
             </div>
 
@@ -578,7 +574,7 @@
             <div class="grid-row">
                 <div class="grid-col-12">
                     <label>Preferred College Program / Course <span class="required-mark">*</span></label>
-                    <select class="form-dropdown" required>
+                    <select class="form-dropdown">
                         <option value="" disabled selected>Select preferred program</option>
                         <option value="BSCS">Bachelor of Science in Computer Science (BSCS)</option>
                         <option value="BSIT">Bachelor of Science in Information Technology (BSIT)</option>
@@ -602,15 +598,15 @@
             <div class="grid-row">
                 <div class="grid-col-4">
                     <label>Guardian Name <span class="required-mark">*</span></label>
-                    <input type="text" class="form-input" required>
+                    <input type="text" class="form-input">
                 </div>
                 <div class="grid-col-4">
                     <label>Relationship <span class="required-mark">*</span></label>
-                    <input type="text" class="form-input" required>
+                    <input type="text" class="form-input">
                 </div>
                 <div class="grid-col-4">
                     <label>Emergency Phone <span class="required-mark">*</span></label>
-                    <input type="tel" class="form-input" required>
+                    <input type="tel" class="form-input">
                 </div>
             </div>
 

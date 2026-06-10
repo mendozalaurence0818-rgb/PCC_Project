@@ -11,7 +11,7 @@
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:wght@400;500;600;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" />
-    <link rel="icon" href="../../../images/PCC_favicon.png" type="image/png" />
+    <link rel="icon" href="../../images/PCC_favicon.png" type="image/png" />
     <style>
         :root {
             --nav-bg: #000000;

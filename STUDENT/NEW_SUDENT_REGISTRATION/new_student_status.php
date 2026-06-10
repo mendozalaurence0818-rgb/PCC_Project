@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PCC | Application Submitted</title>
+    <title>PCC | Admission Portal - Application Status</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -22,8 +22,6 @@
             --border-color: #ced4da;
             --font-heading: 'Lora', serif;
             --font-body: 'Inter', sans-serif;
-            --success-green: #198754;
-            --primary-blue: #0A1140;
         }
 
         * {
@@ -38,7 +36,6 @@
             min-height: 100vh;
             color: var(--text-main);
             line-height: 1.5;
-            scroll-behavior: smooth;
         }
 
         .top-navbar {
@@ -48,9 +45,6 @@
             justify-content: flex-end;
             align-items: center;
             gap: 40px;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
         }
 
         .top-navbar a {
@@ -81,36 +75,93 @@
             padding: 0 60px 80px 60px;
         }
 
-        /* Success Banner */
-        .success-banner {
-            background-color: #d1e7dd;
-            border: 1px solid #badbcc;
-            color: #0f5132;
-            padding: 25px 30px;
-            border-radius: 8px;
-            margin-bottom: 50px;
+        .section-intro {
+            margin-bottom: 35px;
+            border-left: 5px solid var(--accent-yellow);
+            padding-left: 25px;
+        }
+
+        .section-intro h2 {
+            font-family: var(--font-heading);
+            font-size: 32px;
+            color: #0A1140;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .section-intro p {
+            color: var(--text-muted);
+            font-size: 15px;
+            font-weight: 400;
+            line-height: 1.6;
+        }
+
+        /* --- APPLICATION STATUS ALERTS --- */
+        .status-card {
+            border-radius: 6px;
+            padding: 24px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            border: 1px solid transparent;
+        }
+
+        /* Under Review State */
+        .status-review {
+            background-color: #FFF9E6;
+            border-color: #FFEBA8;
+        }
+
+        .status-review .status-icon-box {
+            background-color: #FFF0C2;
+            color: #856404;
+        }
+
+        .status-review h5 {
+            color: #856404;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .status-review p {
+            font-size: 14px;
+            color: #66511A;
+        }
+
+        /* Approved State */
+        .status-approved {
+            background-color: #EBF7EE;
+            border-color: #C3E6CB;
+        }
+
+        .status-approved .status-icon-box {
+            background-color: #D4EDDA;
+            color: #155724;
+        }
+
+        .status-approved h5 {
+            color: #155724;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+
+        .status-approved p {
+            font-size: 14px;
+            color: #1E4E2B;
+        }
+
+        .status-icon-box {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
-            gap: 20px;
-            box-shadow: 0 4px 12px rgba(25, 135, 84, 0.1);
-        }
-
-        .success-icon {
-            font-size: 36px;
-            color: var(--success-green);
-        }
-
-        .success-text h2 {
-            font-family: var(--font-heading);
-            font-size: 24px;
-            margin-bottom: 5px;
-            font-weight: 700;
-        }
-
-        .success-text p {
-            font-size: 15px;
-            margin: 0;
-            font-family: var(--font-body);
+            justify-content: center;
+            font-size: 22px;
+            flex-shrink: 0;
         }
 
         .form-section-divider {
@@ -120,7 +171,7 @@
         .form-section-divider h4 {
             font-family: var(--font-heading);
             font-size: 20px;
-            color: var(--primary-blue);
+            color: #0A1140;
             font-weight: 600;
             display: flex;
             align-items: center;
@@ -168,16 +219,24 @@
             letter-spacing: 0.5px;
         }
 
-        .form-input-locked {
+        .form-input {
             width: 100%;
             padding: 12px 14px;
             font-size: 14px;
             font-family: var(--font-body);
-            color: #212529;
-            background-color: #f8f9fa;
-            border: 1px solid #ced4da;
+            color: var(--text-main);
+            background-color: var(--input-bg);
+            border: 1px solid var(--border-color);
             border-radius: 4px;
-            cursor: default;
+            transition: all 0.2s;
+        }
+
+        .form-input-locked {
+            background-color: #e9ecef !important;
+            color: #6c757d !important;
+            cursor: not-allowed;
+            border-color: #ced4da;
+            resize: none;
         }
 
         .file-review-badge {
@@ -194,7 +253,7 @@
         }
 
         .file-review-badge i {
-            color: var(--success-green);
+            color: #198754;
             font-size: 16px;
         }
 
@@ -207,7 +266,7 @@
             border-top: 1px solid #eee;
         }
 
-        .btn-home {
+        .btn-back-portal {
             color: var(--text-muted);
             text-decoration: none;
             font-weight: 500;
@@ -217,33 +276,36 @@
             gap: 8px;
         }
 
-        .btn-print {
-            background-color: var(--primary-blue);
+        .btn-back-portal:hover {
+            color: #000;
+        }
+
+        .btn-print-summary {
+            background-color: #0A1140;
             color: #FFFFFF;
             font-family: var(--font-body);
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 1px;
-            padding: 16px 40px;
+            padding: 14px 30px;
             border-radius: 4px;
-            font-size: 14px;
+            font-size: 13px;
             border: none;
             cursor: pointer;
             display: inline-flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             transition: all 0.2s;
         }
 
-        .btn-print:hover {
+        .btn-print-summary:hover {
             background-color: #000;
-            transform: translateY(-1px);
         }
 
         /* ----- CSS-ONLY MODAL STYLES ----- */
         .modal-overlay {
             position: fixed;
-            z-index: 2000;
+            z-index: 1000;
             left: 0;
             top: 0;
             width: 100%;
@@ -278,7 +340,7 @@
             width: 90%;
             max-width: 550px;
             position: relative;
-            z-index: 2001;
+            z-index: 1001;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
             transform: translateY(-20px);
             transition: transform 0.3s ease;
@@ -338,37 +400,6 @@
             margin-top: -2px;
         }
 
-        /* Print Settings */
-        @media print {
-
-            .top-navbar,
-            .header-banner,
-            .action-footer,
-            .success-banner,
-            .modal-overlay {
-                display: none !important;
-            }
-
-            .main-container {
-                margin: 0;
-                padding: 0;
-                max-width: 100%;
-            }
-
-            .form-input-locked {
-                border: none;
-                background-color: transparent;
-                padding-left: 0;
-                font-weight: 500;
-            }
-
-            .file-review-badge {
-                border: none;
-                background-color: transparent;
-                padding-left: 0;
-            }
-        }
-
         @media (max-width: 768px) {
             .top-navbar {
                 padding: 14px 25px;
@@ -384,9 +415,9 @@
                 padding: 0 25px 50px 25px;
             }
 
-            .success-banner {
+            .status-card {
                 flex-direction: column;
-                text-align: center;
+                gap: 12px;
             }
 
             .modal-content {
@@ -399,22 +430,43 @@
 <body>
 
     <nav class="top-navbar">
-        <a href="../new_student_registration.php">Home</a>
+        <a href="new_student_registration.php">Home</a>
         <a href="#coursesModal">Courses Offered</a>
     </nav>
 
-    <img src="../../../images/PCC_Admission.png" alt="Admission Portal Header" class="header-banner">
+    <img src="../../images/PCC_Admission.png" alt="Admission Portal Header" class="header-banner">
 
     <main class="main-container">
 
-        <div class="success-banner">
-            <i class="bi bi-check-circle-fill success-icon"></i>
-            <div class="success-text">
-                <h2>Application Successfully Submitted!</h2>
-                <p>Your admission application has been received. Please save a copy of this form for your records. We
-                    will contact you at your registered email regarding the next steps.</p>
+        <div class="section-intro">
+            <h2>Application Profile Status</h2>
+            <p>Tracking enrollment record file structures for Control Reference ID: <strong>PCC-2026-10492</strong></p>
+        </div>
+
+        <div class="status-card status-review">
+            <div class="status-icon-box">
+                <i class="bi bi-hourglass-split"></i>
+            </div>
+            <div class="status-details">
+                <h5>Application Status: Under Review / Evaluation</h5>
+                <p>The Admissions Office is currently verifying your submitted biometric information and academic
+                    credentials. Please review the archived parameters listed below to ensure your records remain up to
+                    date.</p>
             </div>
         </div>
+
+        <div class="status-card status-approved" style="display: none;">
+            <div class="status-icon-box">
+                <i class="bi bi-badge-check-fill"></i>
+            </div>
+            <div class="status-details">
+                <h5>Application Status: Approved & Verified</h5>
+                <p>Congratulations! Your academic evaluation records and identification credentials have been cleared
+                    and confirmed. Welcome to PCC! Please check your verified inbox for immediate registration
+                    instructions.</p>
+            </div>
+        </div>
+
 
         <div class="form-section-divider">
             <h4>I. Personal Demographics</h4>
@@ -424,41 +476,41 @@
         <div class="grid-row">
             <div class="grid-col-4">
                 <label>First Name</label>
-                <input type="text" class="form-input-locked" value="Juan" readonly>
+                <input type="text" class="form-input form-input-locked" value="Joeshua" readonly>
             </div>
             <div class="grid-col-4">
                 <label>Middle Name</label>
-                <input type="text" class="form-input-locked" value="Santos" readonly>
+                <input type="text" class="form-input form-input-locked" value="Reyes" readonly>
             </div>
             <div class="grid-col-4">
                 <label>Last Name</label>
-                <input type="text" class="form-input-locked" value="Dela Cruz" readonly>
+                <input type="text" class="form-input form-input-locked" value="Santos" readonly>
             </div>
         </div>
 
         <div class="grid-row">
             <div class="grid-col-4">
                 <label>Date of Birth</label>
-                <input type="text" class="form-input-locked" value="2005-08-15" readonly>
+                <input type="text" class="form-input form-input-locked" value="2005-05-14" readonly>
             </div>
             <div class="grid-col-4">
                 <label>Gender</label>
-                <input type="text" class="form-input-locked" value="Male" readonly>
+                <input type="text" class="form-input form-input-locked" value="Male" readonly>
             </div>
             <div class="grid-col-4">
                 <label>Civil Status</label>
-                <input type="text" class="form-input-locked" value="Single" readonly>
+                <input type="text" class="form-input form-input-locked" value="Single" readonly>
             </div>
         </div>
 
         <div class="grid-row">
             <div class="grid-col-6">
                 <label>Nationality</label>
-                <input type="text" class="form-input-locked" value="Filipino" readonly>
+                <input type="text" class="form-input form-input-locked" value="Filipino" readonly>
             </div>
             <div class="grid-col-6">
                 <label>Religious Affiliation</label>
-                <input type="text" class="form-input-locked" value="Roman Catholic" readonly>
+                <input type="text" class="form-input form-input-locked" value="Roman Catholic" readonly>
             </div>
         </div>
 
@@ -470,16 +522,16 @@
         <div class="grid-row">
             <div class="grid-col-6">
                 <label>Active Email Address</label>
-                <input type="email" class="form-input-locked" value="juan.delacruz@example.com" readonly>
+                <input type="email" class="form-input form-input-locked" value="joeshuasantos@email.com" readonly>
             </div>
             <div class="grid-col-6">
                 <label>Mobile Number</label>
-                <input type="tel" class="form-input-locked" value="09123456789" readonly>
+                <input type="tel" class="form-input form-input-locked" value="0912-345-6789" readonly>
             </div>
             <div class="grid-col-12">
                 <label>Current Home Address</label>
-                <textarea class="form-input-locked" rows="2"
-                    readonly>Block 4 Lot 12, Mabini Street, Barangay Commonwealth, Quezon City, Metro Manila</textarea>
+                <textarea class="form-input form-input-locked" rows="2"
+                    readonly>123 Rizal Street, Barangay Central, Quezon City, Metro Manila</textarea>
             </div>
         </div>
 
@@ -491,19 +543,21 @@
         <div class="grid-row">
             <div class="grid-col-6">
                 <label>Last SHS School Attended</label>
-                <input type="text" class="form-input-locked" value="Quezon City Science High School" readonly>
+                <input type="text" class="form-input form-input-locked" value="Quezon City National High School"
+                    readonly>
             </div>
             <div class="grid-col-6">
                 <label>SHS Track & Strand</label>
-                <input type="text" class="form-input-locked" value="Academic Track - STEM" readonly>
+                <input type="text" class="form-input form-input-locked"
+                    value="Academic - STEM (Science, Technology, Engineering, Mathematics)" readonly>
             </div>
             <div class="grid-col-6">
                 <label>Year Completed / Graduated</label>
-                <input type="number" class="form-input-locked" value="2024" readonly>
+                <input type="number" class="form-input form-input-locked" value="2026" readonly>
             </div>
             <div class="grid-col-6">
                 <label>SHS School Address</label>
-                <input type="text" class="form-input-locked" value="Bago Bantay, Quezon City" readonly>
+                <input type="text" class="form-input form-input-locked" value="Quezon City, Metro Manila" readonly>
             </div>
         </div>
 
@@ -515,15 +569,16 @@
         <div class="grid-row">
             <div class="grid-col-12">
                 <label>Preferred College Program / Course</label>
-                <input type="text" class="form-input-locked" value="BS Information Technology" readonly>
+                <input type="text" class="form-input form-input-locked"
+                    value="Bachelor of Science in Computer Science (BSCS)" readonly>
             </div>
             <div class="grid-col-6">
                 <label>Academic Term Entering</label>
-                <input type="text" class="form-input-locked" value="1st Semester" readonly>
+                <input type="text" class="form-input form-input-locked" value="1st Semester" readonly>
             </div>
             <div class="grid-col-6">
                 <label>School Year (A.Y.)</label>
-                <input type="text" class="form-input-locked" value="2026-2027" readonly>
+                <input type="text" class="form-input form-input-locked" value="2026-2027" readonly>
             </div>
         </div>
 
@@ -535,15 +590,15 @@
         <div class="grid-row">
             <div class="grid-col-4">
                 <label>Guardian Name</label>
-                <input type="text" class="form-input-locked" value="Maria Dela Cruz" readonly>
+                <input type="text" class="form-input form-input-locked" value="Kylie Santos" readonly>
             </div>
             <div class="grid-col-4">
                 <label>Relationship</label>
-                <input type="text" class="form-input-locked" value="Mother" readonly>
+                <input type="text" class="form-input form-input-locked" value="Mother" readonly>
             </div>
             <div class="grid-col-4">
                 <label>Emergency Phone</label>
-                <input type="tel" class="form-input-locked" value="09987654321" readonly>
+                <input type="tel" class="form-input form-input-locked" value="0998-765-4321" readonly>
             </div>
         </div>
 
@@ -556,38 +611,37 @@
             <div class="grid-col-6">
                 <label>SF10 / Form 138 (Report Card)</label>
                 <div class="file-review-badge">
-                    <i class="bi bi-check-circle-fill"></i> delacruz_sf10.pdf
+                    <i class="bi bi-check-circle-fill"></i> form_138_joeshuasantos.pdf
                 </div>
             </div>
             <div class="grid-col-6">
                 <label>PSA Birth Certificate</label>
                 <div class="file-review-badge">
-                    <i class="bi bi-check-circle-fill"></i> delacruz_psa.pdf
+                    <i class="bi bi-check-circle-fill"></i> psa_birth_cert_joeshuasantos.pdf
                 </div>
             </div>
             <div class="grid-col-6">
                 <label>Certificate of Good Moral Character</label>
                 <div class="file-review-badge">
-                    <i class="bi bi-check-circle-fill"></i> delacruz_goodmoral.pdf
+                    <i class="bi bi-check-circle-fill"></i> good_moral_joeshuasantos.pdf
                 </div>
             </div>
             <div class="grid-col-6">
                 <label>Recent 2x2 ID Picture</label>
                 <div class="file-review-badge">
-                    <i class="bi bi-check-circle-fill"></i> delacruz_2x2.jpg
+                    <i class="bi bi-check-circle-fill"></i> 2x2_id_picture_joeshuasantos.jpg
                 </div>
             </div>
         </div>
 
         <div class="action-footer">
-            <a href="../new_student_registration.php" class="btn-home">
-                <i class="bi bi-house-door-fill"></i> Return to Homepage
+            <a href="new_student_registration.php" class="btn-back-portal">
+                <i class="bi bi-arrow-left"></i> Return to Main Home Portal
             </a>
-            <button type="button" class="btn-print" onclick="window.print()">
-                Print Application <i class="bi bi-printer-fill"></i>
+            <button type="button" class="btn-print-summary" onclick="window.print()">
+                Print Statement <i class="bi bi-printer-fill"></i>
             </button>
         </div>
-
     </main>
 
     <div id="coursesModal" class="modal-overlay">
@@ -599,7 +653,6 @@
             <ul class="course-list">
                 <li><i class="bi bi-book-half"></i> Bachelor of Science in Computer Science (BSCS)</li>
                 <li><i class="bi bi-laptop"></i> Bachelor of Science in Information Technology (BSIT)</li>
-            </ul>
         </div>
     </div>
 

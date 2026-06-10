@@ -582,10 +582,6 @@
                         <option value="" disabled selected>Select preferred program</option>
                         <option value="BSCS">Bachelor of Science in Computer Science (BSCS)</option>
                         <option value="BSIT">Bachelor of Science in Information Technology (BSIT)</option>
-                        <option value="BSBA">Bachelor of Science in Business Administration (BSBA)</option>
-                        <option value="BSHM">Bachelor of Science in Hospitality Management (BSHM)</option>
-                        <option value="BSED">Bachelor of Secondary Education (BSEd)</option>
-                        <option value="BSCrim">Bachelor of Science in Criminology (BSCrim)</option>
                     </select>
                 </div>
                 <div class="grid-col-6">
@@ -639,10 +635,6 @@
             <ul class="course-list">
                 <li><i class="bi bi-book-half"></i> Bachelor of Science in Computer Science (BSCS)</li>
                 <li><i class="bi bi-laptop"></i> Bachelor of Science in Information Technology (BSIT)</li>
-                <li><i class="bi bi-briefcase-fill"></i> Bachelor of Science in Business Administration (BSBA)</li>
-                <li><i class="bi bi-buildings-fill"></i> Bachelor of Science in Hospitality Management (BSHM)</li>
-                <li><i class="bi bi-mortarboard-fill"></i> Bachelor of Secondary Education (BSEd)</li>
-                <li><i class="bi bi-shield-fill-check"></i> Bachelor of Science in Criminology (BSCrim)</li>
             </ul>
         </div>
     </div>

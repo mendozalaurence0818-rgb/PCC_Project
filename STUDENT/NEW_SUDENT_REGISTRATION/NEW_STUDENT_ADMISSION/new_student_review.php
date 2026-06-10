@@ -521,7 +521,7 @@
             <div class="grid-row">
                 <div class="grid-col-4">
                     <label>First Name</label>
-                    <input type="text" class="form-input form-input-locked" value="John" readonly>
+                    <input type="text" class="form-input form-input-locked" value="Joeshua" readonly>
                 </div>
                 <div class="grid-col-4">
                     <label>Middle Name</label>
@@ -529,7 +529,7 @@
                 </div>
                 <div class="grid-col-4">
                     <label>Last Name</label>
-                    <input type="text" class="form-input form-input-locked" value="Doe" readonly>
+                    <input type="text" class="form-input form-input-locked" value="Santos" readonly>
                 </div>
             </div>
 
@@ -567,7 +567,7 @@
             <div class="grid-row">
                 <div class="grid-col-6">
                     <label>Active Email Address</label>
-                    <input type="email" class="form-input form-input-locked" value="johndoe@email.com" readonly>
+                    <input type="email" class="form-input form-input-locked" value="joeshuasantos@email.com" readonly>
                 </div>
                 <div class="grid-col-6">
                     <label>Mobile Number</label>
@@ -635,7 +635,7 @@
             <div class="grid-row">
                 <div class="grid-col-4">
                     <label>Guardian Name</label>
-                    <input type="text" class="form-input form-input-locked" value="Jane Doe" readonly>
+                    <input type="text" class="form-input form-input-locked" value="Kylie Santos" readonly>
                 </div>
                 <div class="grid-col-4">
                     <label>Relationship</label>
@@ -656,25 +656,25 @@
                 <div class="grid-col-6">
                     <label>SF10 / Form 138 (Report Card)</label>
                     <div class="file-review-badge">
-                        <i class="bi bi-check-circle-fill"></i> form_138_johndoe.pdf
+                        <i class="bi bi-check-circle-fill"></i> form_138_joeshuasantos.pdf
                     </div>
                 </div>
                 <div class="grid-col-6">
                     <label>PSA Birth Certificate</label>
                     <div class="file-review-badge">
-                        <i class="bi bi-check-circle-fill"></i> psa_birth_cert_johndoe.pdf
+                        <i class="bi bi-check-circle-fill"></i> psa_birth_cert_joeshuasantos.pdf
                     </div>
                 </div>
                 <div class="grid-col-6">
                     <label>Certificate of Good Moral Character</label>
                     <div class="file-review-badge">
-                        <i class="bi bi-check-circle-fill"></i> good_moral_johndoe.pdf
+                        <i class="bi bi-check-circle-fill"></i> good_moral_joeshuasantos.pdf
                     </div>
                 </div>
                 <div class="grid-col-6">
                     <label>Recent 2x2 ID Picture</label>
                     <div class="file-review-badge">
-                        <i class="bi bi-check-circle-fill"></i> 2x2_id_picture_johndoe.jpg
+                        <i class="bi bi-check-circle-fill"></i> 2x2_id_picture_joeshuasantos.jpg
                     </div>
                 </div>
             </div>
@@ -712,10 +712,6 @@
             <ul class="course-list">
                 <li><i class="bi bi-book-half"></i> Bachelor of Science in Computer Science (BSCS)</li>
                 <li><i class="bi bi-laptop"></i> Bachelor of Science in Information Technology (BSIT)</li>
-                <li><i class="bi bi-briefcase-fill"></i> Bachelor of Science in Business Administration (BSBA)</li>
-                <li><i class="bi bi-buildings-fill"></i> Bachelor of Science in Hospitality Management (BSHM)</li>
-                <li><i class="bi bi-mortarboard-fill"></i> Bachelor of Secondary Education (BSEd)</li>
-                <li><i class="bi bi-shield-fill-check"></i> Bachelor of Science in Criminology (BSCrim)</li>
             </ul>
         </div>
     </div>

@@ -208,7 +208,7 @@
                                     <tr>
                                         <td class="ps-4 fw-semibold">BSIT-101</td>
                                         <td>1st Year</td>
-                                        <td><span class="badge bg-success">Active</span></td>
+                                        <td><span class="badge bg-danger">Not Available</span></td>
                                         <td class="pe-4 text-end">
                                             <button class="btn btn-sm btn-outline-warning"><i class="bi bi-pencil"></i>
                                                 Edit</button>
@@ -219,7 +219,7 @@
                                     <tr>
                                         <td class="ps-4 fw-semibold">BSIT-102</td>
                                         <td>1st Year</td>
-                                        <td><span class="badge bg-success">Active</span></td>
+                                        <td><span class="badge bg-success">Available</span></td>
                                         <td class="pe-4 text-end">
                                             <button class="btn btn-sm btn-outline-warning"><i class="bi bi-pencil"></i>
                                                 Edit</button>
@@ -230,7 +230,7 @@
                                     <tr>
                                         <td class="ps-4 fw-semibold">BSIT-201</td>
                                         <td>2nd Year</td>
-                                        <td><span class="badge bg-success">Active</span></td>
+                                        <td><span class="badge bg-success">Available</span></td>
                                         <td class="pe-4 text-end">
                                             <button class="btn btn-sm btn-outline-warning"><i class="bi bi-pencil"></i>
                                                 Edit</button>
@@ -241,7 +241,7 @@
                                     <tr>
                                         <td class="ps-4 fw-semibold">BSIT-202</td>
                                         <td>2nd Year</td>
-                                        <td><span class="badge bg-success">Active</span></td>
+                                        <td><span class="badge bg-success">Available</span></td>
                                         <td class="pe-4 text-end">
                                             <button class="btn btn-sm btn-outline-warning"><i class="bi bi-pencil"></i>
                                                 Edit</button>
@@ -279,7 +279,6 @@
                                         <td>
                                             <button class="btn btn-xs btn-warning text-white"><i
                                                     class="bi bi-pencil"></i></button>
-                                            <button class="btn btn-xs btn-danger"><i class="bi bi-trash"></i></button>
                                         </td>
                                         <td class="pe-4 text-end">
                                             <button class="btn btn-xs btn-outline-success"><i
@@ -297,7 +296,6 @@
                                         <td>
                                             <button class="btn btn-xs btn-warning text-white"><i
                                                     class="bi bi-pencil"></i></button>
-                                            <button class="btn btn-xs btn-danger"><i class="bi bi-trash"></i></button>
                                         </td>
                                         <td class="pe-4 text-end">
                                             <button class="btn btn-xs btn-outline-success"><i

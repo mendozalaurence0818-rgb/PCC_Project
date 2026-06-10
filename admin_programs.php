@@ -260,7 +260,7 @@
                                     <i class="bi bi-people-fill"></i>
                                 </span>
                                 <div class="info-box-content ms-3">
-                                    <span class="text-muted small text-uppercase d-block">IT/CS Enrollees</span>
+                                    <span class="text-muted small text-uppercase d-block">Total Enrollees</span>
                                     <h4 class="fw-bold mb-0 text-success">842</h4>
                                 </div>
                             </div>
@@ -274,18 +274,6 @@
                                 <div class="info-box-content ms-3">
                                     <span class="text-muted small text-uppercase d-block">Faculty Members</span>
                                     <h4 class="fw-bold mb-0 text-warning">28</h4>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-sm-6 col-xl-3">
-                            <div class="info-box bg-white shadow-sm d-flex align-items-center p-3 rounded">
-                                <span class="info-box-icon bg-info text-white d-flex align-items-center justify-content-center rounded"
-                                    style="width: 50px; height: 50px; font-size: 22px;">
-                                    <i class="bi bi-check-circle-fill"></i>
-                                </span>
-                                <div class="info-box-content ms-3">
-                                    <span class="text-muted small text-uppercase d-block">Status</span>
-                                    <h4 class="fw-bold mb-0 text-info">Active</h4>
                                 </div>
                             </div>
                         </div>

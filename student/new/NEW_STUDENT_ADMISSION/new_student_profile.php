@@ -707,8 +707,8 @@ $form = $_SESSION['applicant_step1'] ?? [];
             <div class="grid-row">
                 <div class="grid-col-6"><label>Last SHS School Attended <span
                             class="required-mark">*</span></label><input type="text" name="shs_school_attended"
-                        class="form-input" placeholder=""
-                        value="<?php echo $form['shs_school_attended'] ?? ''; ?>" required></div>
+                        class="form-input" placeholder="" value="<?php echo $form['shs_school_attended'] ?? ''; ?>"
+                        required></div>
                 <div class="grid-col-6"><label>SHS Track & Strand <span class="required-mark">*</span></label>
                     <select name="shs_strand" class="form-dropdown" required>
                         <option value="" disabled <?php echo !isset($form['shs_strand']) ? 'selected' : ''; ?>>Select
@@ -840,130 +840,145 @@ $form = $_SESSION['applicant_step1'] ?? [];
     </div>
 
     <script>
-        const locationData = {
-            "NCR": {
-                provinces: ["Metro Manila"],
-                cities: { "Metro Manila": ["Manila", "Quezon City", "Caloocan", "Malabon", "Navotas"] },
-                barangays: {
-                    "Manila": ["Barangay 101", "Barangay 102", "Barangay 201", "Poblacion"],
-                    "Quezon City": ["Bagong Pag-asa", "Socorro", "Commonwealth"],
-                    "Caloocan": ["Barangay 1", "Barangay 2"],
-                    "Malabon": ["Hulong Duhat", "Catmon"],
-                    "Navotas": ["Tangos", "San Jose"]
-                },
-                postalCodes: [
-                    { value: "1000", label: "1000 - Manila Central" },
-                    { value: "1012", label: "1012 - San Nicolas" },
-                    { value: "1013", label: "1013 - Tondo" },
-                    { value: "1100", label: "1100 - Quezon City Central" }
-                ]
-            },
-            "Region III": {
-                provinces: ["Bulacan", "Pampanga"],
-                cities: { "Bulacan": ["Malolos", "Meycauayan"], "Pampanga": ["San Fernando", "Angeles"] },
-                barangays: {
-                    "Malolos": ["Guinhawa", "San Juan"], "Meycauayan": ["Bangcal", "Calvario"],
-                    "San Fernando": ["Dolores", "San Jose"], "Angeles": ["Balibago", "Malabanias"]
-                },
-                postalCodes: [
-                    { value: "3000", label: "3000 - Malolos, Bulacan" },
-                    { value: "3020", label: "3020 - Meycauayan, Bulacan" },
-                    { value: "2000", label: "2000 - San Fernando, Pampanga" }
-                ]
-            },
-            "Region IV-A": {
-                provinces: ["Cavite", "Laguna"],
-                cities: { "Cavite": ["Cavite City", "Dasmarinas"], "Laguna": ["San Pablo City", "Calamba"] },
-                barangays: {
-                    "Cavite City": ["Barangay 1", "Barangay 2"], "Dasmarinas": ["Burol", "Salitran"],
-                    "San Pablo City": ["Concepcion", "San Lucas"], "Calamba": ["Parian", "Real"]
-                },
-                postalCodes: [
-                    { value: "4100", label: "4100 - Cavite City, Cavite" },
-                    { value: "4114", label: "4114 - Dasmarinas, Cavite" },
-                    { value: "4000", label: "4000 - San Pablo City, Laguna" }
-                ]
-            }
-        };
+        const PSGC_API = 'https://psgc.gitlab.io/api';
 
-        function handleRegionChange() {
-            const region = document.getElementById("address_region").value;
-            const provinceSelect = document.getElementById("address_province");
-            provinceSelect.innerHTML = '<option value="" disabled selected>Select Province</option>';
-            document.getElementById("address_city").innerHTML = '<option value="" disabled selected>Select Province First</option>';
-            document.getElementById("address_barangay").innerHTML = '<option value="" disabled selected>Select City First</option>';
-            if (region && locationData[region]) {
-                locationData[region].provinces.forEach(prov => {
-                    const opt = document.createElement("option"); opt.value = prov; opt.text = prov;
-                    provinceSelect.appendChild(opt);
+        document.addEventListener("DOMContentLoaded", async () => {
+            const regionSelect = document.getElementById("address_region");
+            regionSelect.innerHTML = '<option value="" disabled selected>Loading Regions...</option>';
+
+            try {
+                const response = await fetch(`${PSGC_API}/regions/`);
+                const regions = await response.json();
+
+                regions.sort((a, b) => a.name.localeCompare(b.name));
+
+                regionSelect.innerHTML = '<option value="" disabled selected>Select Region</option>';
+                regions.forEach(region => {
+                    const option = document.createElement('option');
+                    option.value = region.name;
+                    option.dataset.code = region.code;
+                    option.textContent = region.name;
+                    regionSelect.appendChild(option);
                 });
-            }
-            updatePostalCodes(region);
-        }
 
-        function handleProvinceChange() {
-            const region = document.getElementById("address_region").value;
-            const province = document.getElementById("address_province").value;
-            const citySelect = document.getElementById("address_city");
-            citySelect.innerHTML = '<option value="" disabled selected>Select City / Municipality</option>';
-            document.getElementById("address_barangay").innerHTML = '<option value="" disabled selected>Select City First</option>';
-            if (region && province && locationData[region].cities[province]) {
-                locationData[region].cities[province].forEach(city => {
-                    const opt = document.createElement("option"); opt.value = city; opt.text = city;
-                    citySelect.appendChild(opt);
-                });
-            }
-        }
-
-        function handleCityChange() {
-            const region = document.getElementById("address_region").value;
-            const city = document.getElementById("address_city").value;
-            const brgySelect = document.getElementById("address_barangay");
-            brgySelect.innerHTML = '<option value="" disabled selected>Select Barangay</option>';
-            if (region && city && locationData[region].barangays[city]) {
-                locationData[region].barangays[city].forEach(brgy => {
-                    const opt = document.createElement("option"); opt.value = brgy; opt.text = brgy;
-                    brgySelect.appendChild(opt);
-                });
-            }
-        }
-
-        function updatePostalCodes(region) {
-            const postalSelect = document.getElementById("address_postal");
-            postalSelect.innerHTML = "";
-            if (region && locationData[region]) {
-                locationData[region].postalCodes.forEach(code => {
-                    const option = document.createElement("option"); option.value = code.value; option.text = code.label;
-                    postalSelect.appendChild(option);
-                });
-            } else {
-                const defaultOption = document.createElement("option"); defaultOption.value = ""; defaultOption.text = "Select Region First";
-                defaultOption.disabled = true; defaultOption.selected = true;
-                postalSelect.appendChild(defaultOption);
-            }
-        }
-
-        window.onload = function () {
-            const savedRegion = "<?php echo $form['address_region'] ?? ''; ?>";
-            if (savedRegion !== "") {
-                handleRegionChange();
-                const savedProv = "<?php echo $form['address_province'] ?? ''; ?>";
-                if (savedProv !== "") {
-                    document.getElementById("address_province").value = savedProv; handleProvinceChange();
-                    const savedCity = "<?php echo $form['address_city'] ?? ''; ?>";
-                    if (savedCity !== "") {
-                        document.getElementById("address_city").value = savedCity; handleCityChange();
-                        const savedBrgy = "<?php echo $form['address_barangay'] ?? ''; ?>";
-                        if (savedBrgy !== "") { document.getElementById("address_barangay").value = savedBrgy; }
-                    }
+                const savedRegion = "<?php echo $form['address_region'] ?? ''; ?>";
+                if (savedRegion) {
+                    regionSelect.value = savedRegion;
+                    handleRegionChange();
                 }
-                const savedPostal = "<?php echo $form['address_postal'] ?? ''; ?>";
-                if (savedPostal !== "") { document.getElementById("address_postal").value = savedPostal; }
+            } catch (error) {
+                regionSelect.innerHTML = '<option value="" disabled selected>Error loading regions</option>';
+                console.error("Error fetching regions:", error);
             }
-        };
+        });
 
-        function toggleCourseDescription(courseId) { const targetItem = document.getElementById('item-' + courseId); const allItems = document.querySelectorAll('.course-item'); allItems.forEach(item => { if (item !== targetItem) { item.classList.remove('expanded'); } }); targetItem.classList.toggle('expanded'); }
-        function selectCourseAndClose(courseValue) { const courseSelect = document.getElementById('preferred_program'); if (courseSelect) { courseSelect.value = courseValue; } window.location.hash = '#'; }
+        async function handleRegionChange() {
+            const regionSelect = document.getElementById("address_region");
+            const selectedOption = regionSelect.options[regionSelect.selectedIndex];
+            const regionCode = selectedOption.dataset.code;
+
+            const provinceSelect = document.getElementById("address_province");
+            const citySelect = document.getElementById("address_city");
+            const brgySelect = document.getElementById("address_barangay");
+
+            provinceSelect.innerHTML = '<option value="" disabled selected>Loading...</option>';
+            citySelect.innerHTML = '<option value="" disabled selected>Select Province First</option>';
+            brgySelect.innerHTML = '<option value="" disabled selected>Select City First</option>';
+
+            try {
+                if (regionCode === '130000000') {
+                    provinceSelect.innerHTML = '<option value="Metro Manila" data-code="130000000" selected>Metro Manila</option>';
+                    handleProvinceChange(regionCode, true);
+                    return;
+                }
+
+                const response = await fetch(`${PSGC_API}/regions/${regionCode}/provinces/`);
+                const provinces = await response.json();
+
+                provinceSelect.innerHTML = '<option value="" disabled selected>Select Province</option>';
+                provinces.sort((a, b) => a.name.localeCompare(b.name)).forEach(province => {
+                    const option = document.createElement('option');
+                    option.value = province.name;
+                    option.dataset.code = province.code;
+                    option.textContent = province.name;
+                    provinceSelect.appendChild(option);
+                });
+            } catch (error) {
+                console.error("Error fetching provinces:", error);
+                provinceSelect.innerHTML = '<option value="" disabled selected>Error loading data</option>';
+            }
+        }
+
+        async function handleProvinceChange(regionCodeOverride = null, isNCR = false) {
+            const provinceSelect = document.getElementById("address_province");
+            const selectedOption = isNCR ? null : provinceSelect.options[provinceSelect.selectedIndex];
+            const provinceCode = isNCR ? regionCodeOverride : selectedOption.dataset.code;
+
+            const citySelect = document.getElementById("address_city");
+            const brgySelect = document.getElementById("address_barangay");
+
+            citySelect.innerHTML = '<option value="" disabled selected>Loading...</option>';
+            brgySelect.innerHTML = '<option value="" disabled selected>Select City First</option>';
+
+            try {
+                const endpoint = isNCR
+                    ? `${PSGC_API}/regions/${provinceCode}/cities-municipalities/`
+                    : `${PSGC_API}/provinces/${provinceCode}/cities-municipalities/`;
+
+                const response = await fetch(endpoint);
+                const cities = await response.json();
+
+                citySelect.innerHTML = '<option value="" disabled selected>Select City / Municipality</option>';
+                cities.sort((a, b) => a.name.localeCompare(b.name)).forEach(city => {
+                    const option = document.createElement('option');
+                    option.value = city.name;
+                    option.dataset.code = city.code;
+                    option.textContent = city.name;
+                    citySelect.appendChild(option);
+                });
+            } catch (error) {
+                console.error("Error fetching cities:", error);
+                citySelect.innerHTML = '<option value="" disabled selected>Error loading data</option>';
+            }
+        }
+
+        async function handleCityChange() {
+            const citySelect = document.getElementById("address_city");
+            const selectedOption = citySelect.options[citySelect.selectedIndex];
+            const cityCode = selectedOption.dataset.code;
+
+            const brgySelect = document.getElementById("address_barangay");
+            brgySelect.innerHTML = '<option value="" disabled selected>Loading...</option>';
+
+            try {
+                const response = await fetch(`${PSGC_API}/cities-municipalities/${cityCode}/barangays/`);
+                const barangays = await response.json();
+
+                brgySelect.innerHTML = '<option value="" disabled selected>Select Barangay</option>';
+                barangays.sort((a, b) => a.name.localeCompare(b.name)).forEach(brgy => {
+                    const option = document.createElement('option');
+                    option.value = brgy.name;
+                    option.textContent = brgy.name;
+                    brgySelect.appendChild(option);
+                });
+            } catch (error) {
+                console.error("Error fetching barangays:", error);
+                brgySelect.innerHTML = '<option value="" disabled selected>Error loading data</option>';
+            }
+        }
+
+        function toggleCourseDescription(courseId) {
+            const targetItem = document.getElementById('item-' + courseId);
+            const allItems = document.querySelectorAll('.course-item');
+            allItems.forEach(item => { if (item !== targetItem) { item.classList.remove('expanded'); } });
+            targetItem.classList.toggle('expanded');
+        }
+
+        function selectCourseAndClose(courseValue) {
+            const courseSelect = document.getElementById('preferred_program');
+            if (courseSelect) { courseSelect.value = courseValue; }
+            window.location.hash = '#';
+        }
     </script>
 </body>
 

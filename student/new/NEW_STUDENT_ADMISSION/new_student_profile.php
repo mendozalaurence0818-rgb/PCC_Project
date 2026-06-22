@@ -688,9 +688,8 @@ $form = $_SESSION['applicant_step1'] ?? [];
                     </select>
                 </div>
                 <div class="grid-col-4"><label>Postal Code <span class="required-mark">*</span></label>
-                    <select id="address_postal" name="address_postal" class="form-dropdown" required>
-                        <option value="" disabled selected>Select Region First</option>
-                    </select>
+                    <input type="text" id="address_postal" name="address_postal" class="form-input"
+                        placeholder="e.g. 1000" value="<?php echo $form['address_postal'] ?? ''; ?>" required>
                 </div>
             </div>
             <div class="grid-row">
@@ -903,6 +902,12 @@ $form = $_SESSION['applicant_step1'] ?? [];
                     option.textContent = province.name;
                     provinceSelect.appendChild(option);
                 });
+
+                const savedProv = "<?php echo $form['address_province'] ?? ''; ?>";
+                if (savedProv) {
+                    provinceSelect.value = savedProv;
+                    handleProvinceChange();
+                }
             } catch (error) {
                 console.error("Error fetching provinces:", error);
                 provinceSelect.innerHTML = '<option value="" disabled selected>Error loading data</option>';
@@ -936,6 +941,12 @@ $form = $_SESSION['applicant_step1'] ?? [];
                     option.textContent = city.name;
                     citySelect.appendChild(option);
                 });
+
+                const savedCity = "<?php echo $form['address_city'] ?? ''; ?>";
+                if (savedCity) {
+                    citySelect.value = savedCity;
+                    handleCityChange();
+                }
             } catch (error) {
                 console.error("Error fetching cities:", error);
                 citySelect.innerHTML = '<option value="" disabled selected>Error loading data</option>';
@@ -961,6 +972,11 @@ $form = $_SESSION['applicant_step1'] ?? [];
                     option.textContent = brgy.name;
                     brgySelect.appendChild(option);
                 });
+
+                const savedBrgy = "<?php echo $form['address_barangay'] ?? ''; ?>";
+                if (savedBrgy) {
+                    brgySelect.value = savedBrgy;
+                }
             } catch (error) {
                 console.error("Error fetching barangays:", error);
                 brgySelect.innerHTML = '<option value="" disabled selected>Error loading data</option>';

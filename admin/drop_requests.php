@@ -77,6 +77,19 @@ try {
 } catch (PDOException $e) {
     $drop_queue = [];
 }
+
+$pending_enrollment_count = 0;
+$pending_drop_count = 0;
+
+try {
+    $enroll_count_stmt = $conn->query("SELECT COUNT(*) FROM students WHERE enrollment_status = 'Pending Approval'");
+    $pending_enrollment_count = $enroll_count_stmt->fetchColumn();
+
+    $drop_count_stmt = $conn->query("SELECT COUNT(*) FROM drop_requests WHERE status = 'Pending Review'");
+    $pending_drop_count = $drop_count_stmt->fetchColumn();
+} catch (PDOException $e) {
+    error_log("Sidebar Badges Fetch Error: " . $e->getMessage());
+}
 ?>
 <!doctype html>
 <html lang="en">
@@ -135,7 +148,7 @@ try {
             <div class="sidebar-brand"
                 style="border-right: 1px solid rgba(255, 255, 255, 0.1); border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
                 <a href="dashboard.php" class="brand-link">
-                    <img src="../assets/images/PCC_Logo.png" alt="PCC Logo" class="brand-image" />
+                    <img src="../assets/images/PCC_logo.png" alt="PCC Logo" class="brand-image" />
                     <span class="brand-text fw-bold" style="color: white;">PCC Admin</span>
                 </a>
             </div>
@@ -159,31 +172,45 @@ try {
                                     class="nav-icon bi bi-speedometer"></i>
                                 <p>Dashboard</p>
                             </a></li>
-                        <li class="nav-item"><a href="students.php" class="nav-link"><i
+                        <li class="nav-item"><a href="students.php" class="nav-link "><i
                                     class="nav-icon bi bi-people-fill"></i>
                                 <p>Students</p>
                             </a></li>
-                        <li class="nav-item"><a href="admissions.php" class="nav-link"><i
+                        <li class="nav-item"><a href="admissions.php" class="nav-link "><i
                                     class="nav-icon bi bi-clipboard-fill"></i>
-                                <p>Admissions <span
-                                        class="badge bg-warning text-dark float-end small font-bold rounded-pill"><?= $new_admissions; ?></span>
+                                <p>Admissions
+                                    <?php if ($new_admissions > 0): ?>
+                                        <span id="admissionsBadge"
+                                            class="badge bg-warning text-dark float-end small font-bold rounded-pill"
+                                            style="background-color: white"><?php echo $new_admissions; ?></span>
+                                    <?php endif; ?>
                                 </p>
                             </a></li>
                         <li class="nav-item"><a href="verify_enrollment.php" class="nav-link"><i
                                     class="nav-icon bi bi-shield-check"></i>
-                                <p>Enrollment</p>
+                                <p>Enrollment
+                                    <?php if ($pending_enrollment_count > 0): ?>
+                                        <span class="badge bg-warning text-dark float-end small font-bold rounded-pill"
+                                            style="background-color: white"><?php echo $pending_enrollment_count; ?></span>
+                                    <?php endif; ?>
+                                </p>
                             </a></li>
                         <li class="nav-item"><a href="#" class="nav-link"><i
                                     class="nav-icon bi bi-clipboard-data-fill"></i>
                                 <p>Programs</p>
                             </a></li>
-                        <li class="nav-item"><a href="subjects.php" class="nav-link "><i
+                        <li class="nav-item"><a href="subjects.php" class="nav-link"><i
                                     class="nav-icon bi bi-clipboard2-minus-fill"></i>
                                 <p>Subjects</p>
                             </a></li>
                         <li class="nav-item"><a href="drop_requests.php" class="nav-link sidebar-bg-active"><i
                                     class="nav-icon bi bi-file-earmark-minus-fill"></i>
-                                <p>Drop Requests</p>
+                                <p>Drop Requests
+                                    <?php if ($pending_drop_count > 0): ?>
+                                        <span class="badge bg-warning text-dark float-end small font-bold rounded-pill"
+                                            style="background-color: white"><?php echo $pending_drop_count; ?></span>
+                                    <?php endif; ?>
+                                </p>
                             </a></li>
                         <li class="nav-item"><a href="#" class="nav-link"><i class="nav-icon bi bi-calendar3"></i>
                                 <p>Schedules</p>
@@ -197,15 +224,17 @@ try {
                                     class="nav-icon bi bi-person-check-fill"></i>
                                 <p>Users</p>
                             </a></li>
-                        <li class="nav-item"><a href="settings.php" class="nav-link"><i
+                        <li class="nav-item"><a href="settings.php" class="nav-link "><i
                                     class="nav-icon bi bi-gear-fill"></i>
                                 <p>Settings</p>
                             </a></li>
-                        <li class="nav-item"><a href="../index.php" class="nav-link text-danger-emphasis"
-                                onclick="return confirm('Exit Snapshot?');"><i
-                                    class="nav-icon bi bi-box-arrow-left text-danger"></i>
+                        <li class="nav-item">
+                            <a href="../index.php" class="nav-link text-danger-emphasis"
+                                onclick="return confirm('Are you sure you want to end your snapshot session?');">
+                                <i class="nav-icon bi bi-box-arrow-left text-danger"></i>
                                 <p class="text-danger font-bold">Logout</p>
-                            </a></li>
+                            </a>
+                        </li>
                     </ul>
                 </nav>
             </div>

@@ -231,6 +231,19 @@ try {
 } catch (PDOException $e) {
     $student_list = [];
 }
+
+$pending_enrollment_count = 0;
+$pending_drop_count = 0;
+
+try {
+    $enroll_count_stmt = $conn->query("SELECT COUNT(*) FROM students WHERE enrollment_status = 'Pending Approval'");
+    $pending_enrollment_count = $enroll_count_stmt->fetchColumn();
+
+    $drop_count_stmt = $conn->query("SELECT COUNT(*) FROM drop_requests WHERE status = 'Pending Review'");
+    $pending_drop_count = $drop_count_stmt->fetchColumn();
+} catch (PDOException $e) {
+    error_log("Sidebar Badges Fetch Error: " . $e->getMessage());
+}
 ?>
 <!doctype html>
 <html lang="en">
@@ -357,7 +370,7 @@ try {
             <div class="sidebar-brand"
                 style="border-right: 1px solid rgba(255, 255, 255, 0.1); border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
                 <a href="dashboard.php" class="brand-link">
-                    <img src="../assets/images/PCC_Logo.png" alt="PCC Logo" class="brand-image" />
+                    <img src="../assets/images/PCC_logo.png" alt="PCC Logo" class="brand-image" />
                     <span class="brand-text fw-bold" style="color: white;">PCC Admin</span>
                 </a>
             </div>
@@ -387,13 +400,22 @@ try {
                             </a></li>
                         <li class="nav-item"><a href="admissions.php" class="nav-link "><i
                                     class="nav-icon bi bi-clipboard-fill"></i>
-                                <p>Admissions <span id="admissionsBadge"
-                                        class="badge bg-warning text-dark float-end small font-bold rounded-pill"
-                                        style="background-color: white"><?php echo $new_admissions; ?></span></p>
+                                <p>Admissions
+                                    <?php if ($new_admissions > 0): ?>
+                                        <span id="admissionsBadge"
+                                            class="badge bg-warning text-dark float-end small font-bold rounded-pill"
+                                            style="background-color: white"><?php echo $new_admissions; ?></span>
+                                    <?php endif; ?>
+                                </p>
                             </a></li>
                         <li class="nav-item"><a href="verify_enrollment.php" class="nav-link"><i
                                     class="nav-icon bi bi-shield-check"></i>
-                                <p>Enrollment</p>
+                                <p>Enrollment
+                                    <?php if ($pending_enrollment_count > 0): ?>
+                                        <span class="badge bg-warning text-dark float-end small font-bold rounded-pill"
+                                            style="background-color: white"><?php echo $pending_enrollment_count; ?></span>
+                                    <?php endif; ?>
+                                </p>
                             </a></li>
                         <li class="nav-item"><a href="#" class="nav-link"><i
                                     class="nav-icon bi bi-clipboard-data-fill"></i>
@@ -405,7 +427,12 @@ try {
                             </a></li>
                         <li class="nav-item"><a href="drop_requests.php" class="nav-link"><i
                                     class="nav-icon bi bi-file-earmark-minus-fill"></i>
-                                <p>Drop Requests</p>
+                                <p>Drop Requests
+                                    <?php if ($pending_drop_count > 0): ?>
+                                        <span class="badge bg-warning text-dark float-end small font-bold rounded-pill"
+                                            style="background-color: white"><?php echo $pending_drop_count; ?></span>
+                                    <?php endif; ?>
+                                </p>
                             </a></li>
                         <li class="nav-item"><a href="#" class="nav-link"><i class="nav-icon bi bi-calendar3"></i>
                                 <p>Schedules</p>
@@ -419,7 +446,7 @@ try {
                                     class="nav-icon bi bi-person-check-fill"></i>
                                 <p>Users</p>
                             </a></li>
-                        <li class="nav-item"><a href="settings.php" class="nav-link"><i
+                        <li class="nav-item"><a href="settings.php" class="nav-link "><i
                                     class="nav-icon bi bi-gear-fill"></i>
                                 <p>Settings</p>
                             </a></li>
@@ -535,8 +562,8 @@ try {
                                                     <label class="form-label small fw-bold text-secondary">Full Name
                                                         (Format: Lastname, Firstname)</label>
                                                     <input type="text" name="name"
-                                                        class="form-control form-control-sm border shadow-sm"
-                                                        placeholder="" required>
+                                                        class="form-control form-control-sm border shadow-sm" placeholder=""
+                                                        required>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <label class="form-label small fw-bold text-secondary">Institutional

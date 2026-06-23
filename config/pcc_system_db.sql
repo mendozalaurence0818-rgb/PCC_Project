@@ -34,7 +34,7 @@ CREATE TABLE `academic_backgrounds` (
   PRIMARY KEY (`background_id`),
   KEY `application_id` (`application_id`),
   CONSTRAINT `academic_backgrounds_ibfk_1` FOREIGN KEY (`application_id`) REFERENCES `applicants` (`application_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -43,7 +43,7 @@ CREATE TABLE `academic_backgrounds` (
 
 LOCK TABLES `academic_backgrounds` WRITE;
 /*!40000 ALTER TABLE `academic_backgrounds` DISABLE KEYS */;
-INSERT INTO `academic_backgrounds` VALUES (6,7,'San Fernando Integrated','HUMSS',2023,'San Fernando Pampanga 781',NULL,NULL),(7,8,'Holy Heart Christian Academy','STEM',2024,'Dagupan',NULL,NULL);
+INSERT INTO `academic_backgrounds` VALUES (6,7,'San Fernando Integrated','HUMSS',2023,'San Fernando Pampanga 781',NULL,NULL),(7,8,'Holy Heart Christian Academy','STEM',2024,'Dagupan',NULL,NULL),(13,14,'Holy Heart Christian Academy','ABM',2025,'JoloAddress',NULL,NULL);
 /*!40000 ALTER TABLE `academic_backgrounds` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -119,6 +119,7 @@ CREATE TABLE `applicants` (
   `reference_number` varchar(15) NOT NULL,
   `student_number` varchar(50) DEFAULT NULL,
   `classification` enum('freshman','transferee') NOT NULL,
+  `year_level` int(11) DEFAULT 1,
   `academic_term` varchar(20) DEFAULT '1st Semester',
   `school_year` varchar(15) DEFAULT '2026-2027',
   `first_name` varchar(50) NOT NULL,
@@ -153,7 +154,7 @@ CREATE TABLE `applicants` (
   KEY `guardian_id` (`guardian_id`),
   CONSTRAINT `applicants_ibfk_1` FOREIGN KEY (`preferred_program`) REFERENCES `courses` (`course_code`),
   CONSTRAINT `applicants_ibfk_2` FOREIGN KEY (`guardian_id`) REFERENCES `guardians` (`guardian_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -162,7 +163,7 @@ CREATE TABLE `applicants` (
 
 LOCK TABLES `applicants` WRITE;
 /*!40000 ALTER TABLE `applicants` DISABLE KEYS */;
-INSERT INTO `applicants` VALUES (7,'PCC-2026-3EFEAB','2026-00001','freshman','1st Semester','2026-2027','John','','Doe','Sr','2003-03-18','Male','Single','American','Catholic','johndoe@gmail.com','09768199263','Region III','Pampanga','San Fernando','San Jose','815-C San Fernando St, San Jose, San Fernando, Pampanga','BSCS',7,'Approved','2026-06-22 09:29:00','2000','../uploads/credentials/form_138_6a3900584c132.jpg','../uploads/credentials/birth_certificate_6a3900584c636.png','../uploads/credentials/good_moral_6a3900584cc15.png','../uploads/credentials/id_picture_6a3900584cf32.jpg'),(8,'PCC-2026-3453DB','2026-00002','freshman','1st Semester','2026-2027','Laurence','','Mendoza','','2005-12-08','Male','Single','Filipino','Catholic','mendozalaurence0818@gmail.com','09398977676','NCR','Metro Manila','Manila','Barangay 101','1501 Dagupan St Tondo Manila','BSCS',8,'Approved','2026-06-22 09:43:47','1013','../uploads/credentials/form_138_6a3903c87f6fa.jpg','../uploads/credentials/birth_certificate_6a3903c87fa57.png','../uploads/credentials/good_moral_6a3903c87fda0.png','../uploads/credentials/id_picture_6a3903c8800e4.jpg');
+INSERT INTO `applicants` VALUES (7,'PCC-2026-3EFEAB','2026-00001','freshman',1,'1st Semester','2026-2027','John','','Doe','Sr','2003-03-18','Male','Single','American','Catholic','johndoe@gmail.com','09768199263','Region III','Pampanga','San Fernando','San Jose','815-C San Fernando St, San Jose, San Fernando, Pampanga','BSCS',7,'Approved','2026-06-22 09:29:00','2000','../uploads/credentials/form_138_6a3900584c132.jpg','../uploads/credentials/birth_certificate_6a3900584c636.png','../uploads/credentials/good_moral_6a3900584cc15.png','../uploads/credentials/id_picture_6a3900584cf32.jpg'),(8,'PCC-2026-3453DB','2026-00002','freshman',1,'1st Semester','2026-2027','Laurence','','Mendoza','','2005-12-08','Male','Single','Filipino','Catholic','mendozalaurence0818@gmail.com','09398977676','NCR','Metro Manila','Manila','Barangay 101','1501 Dagupan St Tondo Manila','BSCS',8,'Under Review','2026-06-22 09:43:47','1013','../uploads/credentials/form_138_6a3903c87f6fa.jpg','../uploads/credentials/birth_certificate_6a3903c87fa57.png','../uploads/credentials/good_moral_6a3903c87fda0.png','../uploads/credentials/id_picture_6a3903c8800e4.jpg'),(14,'PCC-2026-BE0488',NULL,'transferee',2,'1st Semester','2026-2027','Joeshua','Galinging','Villarta','','2006-12-08','Male','Single','Filipino','','jolo@gmail.com','09978719821','Eastern Visayas','Eastern Samar','Oras','Burak','Visayang JoloTown','BSCS',15,'Under Review','2026-06-23 11:52:14','1025','../uploads/credentials/form_138_6a3a733de659f.jpg','../uploads/credentials/birth_certificate_6a3a733de6a87.png','../uploads/credentials/good_moral_6a3a733de702a.png','../uploads/credentials/id_picture_6a3a733de7525.jpg');
 /*!40000 ALTER TABLE `applicants` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -210,7 +211,7 @@ CREATE TABLE `drop_requests` (
   KEY `enrollment_id` (`enrollment_id`),
   CONSTRAINT `drop_requests_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `students` (`student_id`) ON DELETE CASCADE,
   CONSTRAINT `drop_requests_ibfk_2` FOREIGN KEY (`enrollment_id`) REFERENCES `enrollments` (`enrollment_id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -219,6 +220,7 @@ CREATE TABLE `drop_requests` (
 
 LOCK TABLES `drop_requests` WRITE;
 /*!40000 ALTER TABLE `drop_requests` DISABLE KEYS */;
+INSERT INTO `drop_requests` VALUES (2,2,33,'dawdaw dawd aw','Rejected','2026-06-23 15:19:05'),(3,2,32,'IHHHH','Rejected','2026-06-23 16:16:52'),(4,2,32,'IHHHH','Pending Review','2026-06-23 16:17:36');
 /*!40000 ALTER TABLE `drop_requests` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -244,7 +246,7 @@ CREATE TABLE `enrollments` (
   KEY `subject_id` (`subject_id`),
   CONSTRAINT `enrollments_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `students` (`student_id`) ON DELETE CASCADE,
   CONSTRAINT `enrollments_ibfk_2` FOREIGN KEY (`subject_id`) REFERENCES `subjects` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -253,6 +255,7 @@ CREATE TABLE `enrollments` (
 
 LOCK TABLES `enrollments` WRITE;
 /*!40000 ALTER TABLE `enrollments` DISABLE KEYS */;
+INSERT INTO `enrollments` VALUES (31,2,16,'2026 - 2027','1st Semester',NULL,NULL,NULL,'2026-06-23 15:06:53'),(32,2,17,'2026 - 2027','1st Semester',NULL,NULL,NULL,'2026-06-23 15:06:53'),(33,2,18,'2026 - 2027','1st Semester',NULL,NULL,NULL,'2026-06-23 15:06:53'),(34,2,19,'2026 - 2027','1st Semester',NULL,NULL,NULL,'2026-06-23 15:06:53'),(35,2,20,'2026 - 2027','1st Semester',NULL,NULL,NULL,'2026-06-23 15:06:53'),(36,2,21,'2026 - 2027','1st Semester',NULL,NULL,NULL,'2026-06-23 15:06:53');
 /*!40000 ALTER TABLE `enrollments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -270,7 +273,7 @@ CREATE TABLE `guardians` (
   `emergency_phone` varchar(20) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`guardian_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -279,7 +282,7 @@ CREATE TABLE `guardians` (
 
 LOCK TABLES `guardians` WRITE;
 /*!40000 ALTER TABLE `guardians` DISABLE KEYS */;
-INSERT INTO `guardians` VALUES (1,'Nixon Mendoza','Mother','09398977676','2026-06-17 17:08:40'),(2,'John Doe Mendoza','Legal Guardian','09398977676','2026-06-19 06:14:23'),(3,'Miguel Sid Tatay','Grandmother','09398977676','2026-06-19 17:22:40'),(4,'Nixon Mendoza','Sibling','09398977676','2026-06-20 05:55:06'),(6,'Clarissa Mae Mistica','Legal Guardian','09398977676','2026-06-20 10:43:24'),(7,'Jane Doe','Mother','09897619263','2026-06-22 09:29:00'),(8,'Nixon Mendoza','Father','09398977676','2026-06-22 09:43:47');
+INSERT INTO `guardians` VALUES (1,'Nixon Mendoza','Mother','09398977676','2026-06-17 17:08:40'),(2,'John Doe Mendoza','Legal Guardian','09398977676','2026-06-19 06:14:23'),(3,'Miguel Sid Tatay','Grandmother','09398977676','2026-06-19 17:22:40'),(4,'Nixon Mendoza','Sibling','09398977676','2026-06-20 05:55:06'),(6,'Clarissa Mae Mistica','Legal Guardian','09398977676','2026-06-20 10:43:24'),(7,'Jane Doe','Mother','09897619263','2026-06-22 09:29:00'),(8,'Nixon Mendoza','Father','09398977676','2026-06-22 09:43:47'),(9,'Laurence Mendoza','Sibling','09398977676','2026-06-23 11:12:31'),(10,'John Doe Mendoza','Mother','09398977676','2026-06-23 11:14:16'),(11,'Maricar R. Santos','Mother','09398977676','2026-06-23 11:25:26'),(12,'Clarissa Mae Mistica','Legal Guardian','09398977676','2026-06-23 11:29:08'),(13,'Fredrick Craig Durong','Father','09731231231','2026-06-23 11:34:16'),(15,'John Doe Mendoza','Mother','09321312313','2026-06-23 11:52:14');
 /*!40000 ALTER TABLE `guardians` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -417,7 +420,7 @@ CREATE TABLE `students` (
 
 LOCK TABLES `students` WRITE;
 /*!40000 ALTER TABLE `students` DISABLE KEYS */;
-INSERT INTO `students` VALUES (1,'2026-00001','$2y$10$9O8Myksz.otLyMbwVV.Vk.9P2efHKelHhhRcIzvQtpZ0xOyPK2J2a',7,'John',NULL,'Doe',NULL,'doe.john@pcc.edu.ph','BSCS',NULL,1,'Regular','2026-06-22 09:40:41','Not Enrolled','Cashier','Full Payment',NULL,NULL),(2,'2026-00002','$2y$10$4B3rfCirjmLzZQDsglVhgOLUE3wjZBBgmtbP5XlZVs1S7TO1z3rTO',8,'Laurence',NULL,'Mendoza',NULL,'mendoza.laurence@pcc.edu.ph','BSCS',NULL,1,'Regular','2026-06-22 09:43:55','Not Enrolled','Cashier','Full Payment',NULL,NULL);
+INSERT INTO `students` VALUES (1,'2026-00001','$2y$10$9O8Myksz.otLyMbwVV.Vk.9P2efHKelHhhRcIzvQtpZ0xOyPK2J2a',7,'John',NULL,'Doe',NULL,'doe.john@pcc.edu.ph','BSCS',NULL,2,'Regular','2026-06-22 09:40:41','Not Enrolled','Cashier','Full Payment',NULL,NULL),(2,'2026-00002','$2y$10$4B3rfCirjmLzZQDsglVhgOLUE3wjZBBgmtbP5XlZVs1S7TO1z3rTO',8,'Laurence',NULL,'Mendoza',NULL,'mendoza.laurence@pcc.edu.ph','BSCS','BSCS-50A',1,'Regular','2026-06-22 09:43:55','Enrolled','Cashier','Installment',NULL,NULL);
 /*!40000 ALTER TABLE `students` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -465,10 +468,10 @@ CREATE TABLE `system_settings` (
   `school_year` varchar(20) NOT NULL DEFAULT '2026 - 2027',
   `semester` varchar(20) NOT NULL DEFAULT '1st Semester',
   `enrollment_status` varchar(20) NOT NULL DEFAULT 'Open',
-  `old_student_enrollment` varchar(20) NOT NULL DEFAULT 'Open',
   `grading_status` varchar(20) NOT NULL DEFAULT 'Closed',
   `system_maintenance` varchar(20) NOT NULL DEFAULT 'Disabled',
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `drop_subject_status` varchar(20) DEFAULT 'Open',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -479,7 +482,7 @@ CREATE TABLE `system_settings` (
 
 LOCK TABLES `system_settings` WRITE;
 /*!40000 ALTER TABLE `system_settings` DISABLE KEYS */;
-INSERT INTO `system_settings` VALUES (1,'2026 - 2027','1st Semester','Open','Open','Closed','Disabled','2026-06-22 08:29:48');
+INSERT INTO `system_settings` VALUES (1,'2026 - 2027','1st Semester','Closed','Closed','Disabled','2026-06-23 16:26:34','Open');
 /*!40000 ALTER TABLE `system_settings` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -500,7 +503,7 @@ CREATE TABLE `system_updates` (
   PRIMARY KEY (`id`),
   KEY `admin_id` (`admin_id`),
   CONSTRAINT `system_updates_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admins` (`admin_id`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=96 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -509,7 +512,6 @@ CREATE TABLE `system_updates` (
 
 LOCK TABLES `system_updates` WRITE;
 /*!40000 ALTER TABLE `system_updates` DISABLE KEYS */;
-INSERT INTO `system_updates` VALUES (1,'SCHEDULES',NULL,'ADM-2026-00007','Added a new Section \"sadwadaw\" .','2026-06-20 09:44:39'),(2,'SCHEDULES',NULL,'ADM-2026-00007','Deleted a Section \"sadwadaw\" .','2026-06-20 10:37:14'),(3,'ADMISSIONS',0,NULL,'Submitted an Application .','2026-06-20 10:43:24'),(4,'STUDENTS',2038,'ADM-2026-00007','Updated Student profile data for {student_name} (2026-00001) .','2026-06-20 11:35:57'),(5,'USERS',NULL,'ADM-2026-00007','Published a new Notice, \"Notice3\" for \"All Programs\" .','2026-06-20 12:05:37'),(6,'USERS',NULL,'ADM-2026-00007','Deleted a Notice, \"Notice3\" for \"All Programs\" .','2026-06-20 12:05:46'),(7,'ADMISSIONS',6,'ADM-2026-00007','Declined the Application of {student_name} .','2026-06-20 12:13:25'),(8,'USERS',NULL,'ADM-2026-00008','Modified system announcement Advisory profile properties for \"Semester Enrollment is now Open!\" .','2026-06-21 08:21:24'),(9,'STUDENTS',2039,'ADM-2026-00008','Updated Student profile data for {student_name} (2026-00002) .','2026-06-21 08:48:21'),(10,'STUDENTS',2039,'ADM-2026-00008','Updated Student profile data for {student_name} (2026-00002) .','2026-06-21 08:48:27'),(11,'STUDENTS',2038,'ADM-2026-00008','Updated Student profile data for {student_name} (2026-00001) .','2026-06-21 09:33:07'),(12,'STUDENTS',2038,'ADM-2026-00008','Updated Student profile data for {student_name} (2026-00001) .','2026-06-21 09:33:12'),(13,'STUDENTS',NULL,'ADM-2026-00008','Deleted Student profile record for 2026-00001 from directory.','2026-06-21 12:03:13'),(14,'SUBJECTS',NULL,'ADM-2026-00008','Added a new Subject \"IT-ESC1104, Extracting System Compilation\" .','2026-06-21 12:54:57'),(15,'SUBJECTS',NULL,'ADM-2026-00008','Deleted a Subject \"IT-ESC1104, Extracting System Compilation\" .','2026-06-21 12:55:40'),(16,'SCHEDULES',NULL,'ADM-2026-00008','Updated Section profile configurations for \"BSIT-101\" .','2026-06-21 16:12:57'),(17,'SCHEDULES',NULL,'ADM-2026-00008','Updated Section profile configurations for \"BSIT-101\" .','2026-06-21 16:15:14'),(18,'SCHEDULES',NULL,'ADM-2026-00008','Deleted a Section \"BSIT-202\" .','2026-06-21 16:15:36'),(19,'SCHEDULES',NULL,'ADM-2026-00008','Deleted a Section \"BSIT-102\" .','2026-06-21 16:15:39'),(20,'SCHEDULES',NULL,'ADM-2026-00008','Added a new Section \"BSIT-10A\" .','2026-06-21 16:15:58'),(21,'SUBJECTS',NULL,'ADM-2026-00008','Added a new Subject \"CCS-102, Computer Programming 1\" .','2026-06-21 16:17:41'),(22,'SUBJECTS',NULL,'ADM-2026-00008','Added a new Subject \"IT-111, Discrete Mathematics for IT\" .','2026-06-21 16:17:58'),(23,'SUBJECTS',NULL,'ADM-2026-00008','Added a new Subject \"GE-101, Understanding the Self\" .','2026-06-21 16:18:10'),(24,'SUBJECTS',NULL,'ADM-2026-00008','Added a new Subject \"PE-101, Physical Fitness and Wellness 1\" .','2026-06-21 16:18:28'),(25,'SUBJECTS',NULL,'ADM-2026-00008','Added a new Subject \"PE-102, Physical Fitness and Wellness 2\" .','2026-06-21 16:18:37'),(26,'SCHEDULES',NULL,'ADM-2026-00008','Added a new Section \"BSIT-20B\" .','2026-06-21 16:18:54'),(27,'SCHEDULES',NULL,'ADM-2026-00008','Updated Section profile configurations for \"BSIT-20B\" .','2026-06-21 16:19:00'),(28,'SUBJECTS',NULL,'ADM-2026-00008','Added a new Subject \"IT-211, Data Structures and Algorithms\" .','2026-06-21 16:20:12'),(29,'SUBJECTS',NULL,'ADM-2026-00008','Added a new Subject \"IT-213, Web Systems and Technologies\" .','2026-06-21 16:20:38'),(30,'SUBJECTS',NULL,'ADM-2026-00008','Added a new Subject \"IT-214, Object-Oriented Programming\" .','2026-06-21 16:20:54'),(31,'SUBJECTS',NULL,'ADM-2026-00008','Added a new Subject \"IT-215, Platform Technologies\" .','2026-06-21 16:21:20'),(32,'SCHEDULES',NULL,'ADM-2026-00008','Added a new Section \"BSCS-501\" under program BSCS.','2026-06-21 16:29:58'),(33,'SCHEDULES',NULL,'ADM-2026-00008','Added a new Section \"BSCS-50A\" under program BSIT.','2026-06-21 16:30:11'),(34,'SCHEDULES',NULL,'ADM-2026-00008','Added a new Section \"BSCS-601\" under program BSIT.','2026-06-21 16:30:22'),(35,'SCHEDULES',NULL,'ADM-2026-00008','Added a new Section \"BSCS-60B\" under program BSCS.','2026-06-21 16:30:34'),(36,'SCHEDULES',NULL,'ADM-2026-00008','Updated Section profile configurations for \"BSCS-50A\".','2026-06-21 16:30:38'),(37,'SCHEDULES',NULL,'ADM-2026-00008','Updated Section profile configurations for \"BSCS-601\".','2026-06-21 16:30:43'),(38,'SCHEDULES',NULL,'ADM-2026-00008','Updated Section profile configurations for \"BSCS-60B\".','2026-06-21 16:30:50'),(39,'SCHEDULES',NULL,'ADM-2026-00008','Updated Section profile configurations for \"BSCS-601\".','2026-06-21 16:30:54'),(40,'SCHEDULES',NULL,'ADM-2026-00008','Updated Section profile configurations for \"BSCS-501\".','2026-06-21 17:05:10'),(41,'SCHEDULES',NULL,'ADM-2026-00008','Updated Section profile configurations for \"BSCS-501\".','2026-06-21 17:07:05'),(42,'SCHEDULES',NULL,'ADM-2026-00008','Updated Section profile configurations for \"BSCS-501\".','2026-06-21 17:09:18'),(43,'SCHEDULES',NULL,'ADM-2026-00008','Updated Section profile configurations for \"BSCS-60B\".','2026-06-21 17:14:08'),(44,'SCHEDULES',NULL,'ADM-2026-00008','Updated Section profile configurations for \"BSCS-50A\".','2026-06-21 17:14:34'),(45,'SCHEDULES',NULL,'ADM-2026-00008','Updated Section profile configurations for \"BSCS-501\".','2026-06-21 17:25:15'),(46,'SCHEDULES',NULL,'ADM-2026-00008','Updated Section profile configurations for \"BSCS-601\".','2026-06-21 17:25:21'),(47,'SCHEDULES',NULL,'ADM-2026-00008','Updated Section profile configurations for \"BSIT-101\".','2026-06-21 17:25:26'),(48,'SCHEDULES',NULL,'ADM-2026-00008','Updated Section profile configurations for \"BSIT-201\".','2026-06-21 17:25:29'),(49,'SCHEDULES',NULL,'ADM-2026-00008','Updated Section profile configurations for \"BSIT-201\".','2026-06-21 17:25:32'),(50,'ADMISSIONS',6,'ADM-2026-00008','Approved the Application of {student_name} . Status updated to Approved.','2026-06-21 17:36:51'),(51,'ADMISSIONS',4,'ADM-2026-00008','Approved the Application of {student_name} . Status updated to Approved.','2026-06-21 17:42:27'),(52,'STUDENTS',NULL,'ADM-2026-00008','Deleted Student profile record for 2026-00003 from directory.','2026-06-21 17:46:31'),(53,'ADMISSIONS',6,'ADM-2026-00008','Approved the Application of {student_name} . Status updated to Approved.','2026-06-21 17:46:41'),(54,'STUDENTS',2040,'ADM-2026-00008','Updated Student profile data for {student_name} (2026-00003) .','2026-06-21 17:51:23'),(55,'STUDENTS',2040,'ADM-2026-00008','Updated Student profile data for {student_name} (2026-00003) .','2026-06-21 17:51:30'),(56,'SCHEDULES',NULL,'ADM-2026-00008','Verified class schedule load matrix parameters for Student Database Token ID #2039 into formal section track BSIT-10A.','2026-06-22 06:27:12'),(57,'SCHEDULES',NULL,'ADM-2026-00008','Verified class schedule load matrix parameters for Student Database Token ID #2039 into formal section track BSIT-10A.','2026-06-22 06:28:14'),(58,'SCHEDULES',NULL,'ADM-2026-00008','Verified class schedule load matrix parameters for Student Database Token ID #2039 into formal section track BSIT-10A.','2026-06-22 06:28:14'),(59,'STUDENTS',2039,'ADM-2026-00008','Updated Student profile data for {student_name} (2026-00002) .','2026-06-22 06:33:18'),(60,'SCHEDULES',NULL,'ADM-2026-00008','Verified class schedule load matrix parameters for Student Database Token ID #2039 into formal section track BSIT-10A.','2026-06-22 06:41:49'),(61,'SCHEDULES',NULL,'ADM-2026-00008','Rejected load configuration setup variables for student record context entry key #2039. Session dropped back to zero state rosters.','2026-06-22 06:54:12'),(62,'SCHEDULES',NULL,'ADM-2026-00008','Rejected load configuration setup variables for student record context entry key #2039. Session dropped back to zero state rosters.','2026-06-22 06:54:59'),(63,'SCHEDULES',NULL,'ADM-2026-00008','Rejected load configuration setup variables for student record context entry key #2039. Session dropped back to zero state rosters.','2026-06-22 06:54:59'),(64,'SCHEDULES',NULL,'ADM-2026-00008','Rejected load configuration setup variables for student record context entry key #2039. Session dropped back to zero state rosters.','2026-06-22 06:55:00'),(65,'SCHEDULES',NULL,'ADM-2026-00008','Rejected load configuration setup variables for student record context entry key #2039. Session dropped back to zero state rosters.','2026-06-22 06:55:00'),(66,'SCHEDULES',NULL,'ADM-2026-00008','Rejected load configuration setup variables for student record context entry key #2039. Session dropped back to zero state rosters.','2026-06-22 06:55:00'),(67,'SCHEDULES',NULL,'ADM-2026-00008','Rejected load configuration setup variables for student record context entry key #2039. Session dropped back to zero state rosters.','2026-06-22 06:57:53'),(68,'SCHEDULES',NULL,'ADM-2026-00008','Rejected load configuration setup variables for student record context entry key #2039. Session dropped back to zero state rosters.','2026-06-22 06:58:05'),(69,'SCHEDULES',NULL,'ADM-2026-00008','Rejected load configuration setup variables for student record context entry key #2039. Session dropped back to zero state rosters.','2026-06-22 07:03:22'),(70,'SCHEDULES',NULL,'ADM-2026-00008','Rejected load configuration setup variables for student record context entry key #2039. Session dropped back to zero state rosters.','2026-06-22 07:10:30'),(71,'SCHEDULES',NULL,'ADM-2026-00008','Rejected load configuration setup variables for student record context entry key #2039. Session dropped back to zero state rosters.','2026-06-22 07:14:01'),(72,'SCHEDULES',NULL,'ADM-2026-00008','Rejected load configuration setup variables for student record context entry key #2039. Session dropped back to zero state rosters.','2026-06-22 07:14:22'),(73,'SCHEDULES',NULL,'ADM-2026-00008','Rejected load configuration setup variables for student record context entry key #2039. Session dropped back to zero state rosters.','2026-06-22 07:16:39'),(74,'SCHEDULES',NULL,'ADM-2026-00008','Rejected load configuration setup variables for student record context entry key #2039. Session dropped back to zero state rosters.','2026-06-22 07:19:00'),(75,'SCHEDULES',NULL,'ADM-2026-00008','Rejected load configuration setup variables for student record context entry key #2039. Session dropped back.','2026-06-22 07:37:47'),(76,'STUDENTS',2040,'ADM-2026-00008','Updated Student profile data for {student_name} (2026-00003) .','2026-06-22 07:46:11'),(77,'STUDENTS',2040,'ADM-2026-00008','Updated Student profile data for {student_name} (2026-00003) .','2026-06-22 07:46:16'),(78,'STUDENTS',2040,'ADM-2026-00008','Updated Student profile data for {student_name} (2026-00003) .','2026-06-22 07:46:44'),(79,'ADMISSIONS',3,'ADM-2026-00008','Declined the Application of {student_name} .','2026-06-22 07:47:04'),(80,'SCHEDULES',NULL,'ADM-2026-00008','Formally confirmed enrollment for Student ID Token #2039 into formal section block group row BSIT-10A.','2026-06-22 07:53:45'),(81,'USERS',NULL,'ADM-2026-00008','Published a new Notice, \"PCC STUDENT COUNCIL BODY NOW AVAILABLE!\" for \"All Programs\" .','2026-06-22 08:07:13'),(82,'USERS',NULL,'ADM-2026-00008','Deleted a Notice, \"PCC STUDENT COUNCIL BODY NOW AVAILABLE!\" for \"All Programs\" .','2026-06-22 08:08:13'),(83,'ADMISSIONS',0,NULL,'Submitted an Application .','2026-06-22 09:29:00'),(84,'STUDENTS',NULL,'ADM-2026-00008','Deleted Student profile record for 2026-00003 from directory.','2026-06-22 09:38:48'),(85,'STUDENTS',NULL,'ADM-2026-00008','Deleted Student profile record for 2026-00001 from directory.','2026-06-22 09:39:54'),(86,'STUDENTS',NULL,'ADM-2026-00008','Deleted Student profile record for 2026-00001 from directory.','2026-06-22 09:39:55'),(87,'STUDENTS',NULL,'ADM-2026-00008','Deleted Student profile record for 2026-00001 from directory.','2026-06-22 09:39:56'),(88,'STUDENTS',NULL,'ADM-2026-00008','Deleted Student profile record for 2026-00001 from directory.','2026-06-22 09:39:56'),(89,'STUDENTS',NULL,'ADM-2026-00008','Deleted Student profile record for 2026-00001 from directory.','2026-06-22 09:39:56'),(90,'STUDENTS',NULL,'ADM-2026-00008','Deleted Student profile record for 2026-00002 from directory.','2026-06-22 09:40:34'),(91,'STUDENTS',NULL,'ADM-2026-00008','Deleted Student profile record for 2026-00002 from directory.','2026-06-22 09:40:35'),(92,'STUDENTS',NULL,'ADM-2026-00008','Deleted Student profile record for 2026-00002 from directory.','2026-06-22 09:40:36'),(93,'ADMISSIONS',7,'ADM-2026-00008','Approved Admission for John Doe. Account created: 2026-00001','2026-06-22 09:40:41'),(94,'ADMISSIONS',0,NULL,'Submitted an Application .','2026-06-22 09:43:47'),(95,'ADMISSIONS',8,'ADM-2026-00008','Approved Admission for Laurence Mendoza. Account created: 2026-00002','2026-06-22 09:43:55');
 /*!40000 ALTER TABLE `system_updates` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -522,4 +524,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-06-22 17:48:57
+-- Dump completed on 2026-06-24  0:28:12

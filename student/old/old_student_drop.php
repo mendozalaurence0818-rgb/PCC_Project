@@ -13,18 +13,39 @@ $student_number = $_SESSION['student_number'];
 $student_id = $_SESSION['student_id'] ?? 0;
 
 $toast_notification = "";
-
 $is_admission_closed = false;
+$dropping_announcement = "";
+
 try {
-    $admission_check = $conn->query("SELECT LOWER(TRIM(enrollment_status)) FROM system_settings LIMIT 1");
-    $admission_state = $admission_check->fetchColumn();
-    
-    if ($admission_state === 'closed') {
+    // 1. Core verification sequence: Check if systemic maintenance overrides portals first
+    $settings_check = $conn->query("SELECT LOWER(TRIM(system_maintenance)) FROM system_settings LIMIT 1");
+    $system_maintenance = $settings_check->fetchColumn();
+
+    if ($system_maintenance === 'enabled') {
         $is_admission_closed = true;
+    } else {
+        // 2. Fetch configurations template safely from your server config file
+        $config_file = '../../admin/portal_config.json';
+        $drop_subject_status = 'Open';
+
+        if (file_exists($config_file)) {
+            $local_config = json_decode(file_get_contents($config_file), true);
+            // Synced up with standard admin config variables
+            $drop_subject_status = $local_config['drop_subject_status'] ?? $local_config['enrollment_status'] ?? 'Open';
+            
+            // Capture custom announcement from JSON metadata if provided
+            if (isset($local_config['dropping_announcement'])) {
+                $dropping_announcement = trim($local_config['dropping_announcement']);
+            }
+        }
+
+        if (strtolower(trim($drop_subject_status)) === 'closed') {
+            $is_admission_closed = true;
+        }
     }
 } catch (PDOException $e) {
     $is_admission_closed = true;
-    error_log("Dropping access gate reading error: " . $e->getMessage());
+    error_log("Dropping access gate verification fault loop: " . $e->getMessage());
 }
 
 $student_data = null;
@@ -145,10 +166,10 @@ if (!$is_admission_closed) {
     }
 }
 
-$first_name = $student_data['first_name'] ?: ($applicant_data['first_name'] ?? 'Not Provided');
-$middle_name = $student_data['middle_name'] ?: ($applicant_data['middle_name'] ?? '');
-$last_name = $student_data['last_name'] ?: ($applicant_data['last_name'] ?? 'Not Provided');
-$suffix = $student_data['suffix'] ?: ($applicant_data['suffix'] ?? '');
+$first_name = $student_data['first_name'] ?? ($applicant_data['first_name'] ?? 'Not Provided');
+$middle_name = $student_data['middle_name'] ?? ($applicant_data['middle_name'] ?? '');
+$last_name = $student_data['last_name'] ?? ($applicant_data['last_name'] ?? 'Not Provided');
+$suffix = $student_data['suffix'] ?? ($applicant_data['suffix'] ?? '');
 
 $display_name = trim(preg_replace('/\s+/', ' ', "$first_name $middle_name $last_name $suffix"));
 
@@ -285,7 +306,7 @@ $formatted_rank = "{$course_code} - {$year_level_raw}{$suffix_str} Year";
             <div class="sidebar-brand"
                 style="border-right: 1px solid rgba(255, 255, 255, 0.1); border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
                 <a href="#" class="brand-link">
-                    <img src="../../assets/images/PCC_Logo.png" alt="PCC Logo" class="brand-image" />
+                    <img src="../../assets/images/PCC_logo.png" alt="PCC Logo" class="brand-image" />
                     <span class="brand-text fw-bold" style="color: white;">PCC Student</span>
                 </a>
             </div>
@@ -356,6 +377,18 @@ $formatted_rank = "{$course_code} - {$year_level_raw}{$suffix_str} Year";
             </div>
             
             <div class="row">
+                <?php if (!empty($dropping_announcement)): ?>
+                    <div class="col-12 mb-3">
+                        <div class="alert alert-warning border-0 shadow-sm p-4 d-flex align-items-center rounded-3 text-dark" style="background-color: #fff3cd;">
+                            <i class="bi bi-megaphone-fill fs-2 me-4 text-warning"></i>
+                            <div>
+                                <h5 class="fw-bold text-warning-dark mb-1" style="color: #664d03;">Portal Announcement</h5>
+                                <span class="small fw-medium"><?php echo htmlspecialchars($dropping_announcement); ?></span>
+                            </div>
+                        </div>
+                    </div>
+                <?php endif; ?>
+
                 <?php if ($is_admission_closed): ?>
                     <div class="col-12">
                         <div class="alert alert-danger border-0 shadow-sm p-4 mb-4 d-flex align-items-center rounded-3 text-dark" style="background-color: #f8d7da;">
@@ -379,7 +412,7 @@ $formatted_rank = "{$course_code} - {$year_level_raw}{$suffix_str} Year";
                             </h5>
                         </div>
                         <p class="text-secondary small lh-base">
-                            Dropping of subjects must be executed within the allowable period set by the Registrar's
+                            Dropping of subjects must be executed within the allowable period set by the Admin'sapi_windows_cp_get
                             Office. Unauthorized absences do not constitute an official drop.
                         </p>
                         <hr class="opacity-25 my-3">
@@ -434,11 +467,13 @@ $formatted_rank = "{$course_code} - {$year_level_raw}{$suffix_str} Year";
                                         <option value="" selected disabled>
                                             <?php echo ($is_admission_closed) ? '-- Drop Period Inactive --' : '-- Select Course --'; ?>
                                         </option>
-                                        <?php foreach ($eligible_subjects as $sub): ?>
-                                            <option value="<?php echo $sub['enrollment_id']; ?>">
-                                                <?php echo htmlspecialchars($sub['subject_code'] . " - " . $sub['descriptive_title']); ?>
-                                            </option>
-                                        <?php endforeach; ?>
+                                        <?php if (!empty($eligible_subjects)): ?>
+                                            <?php foreach ($eligible_subjects as $sub): ?>
+                                                <option value="<?php echo $sub['enrollment_id']; ?>">
+                                                    <?php echo htmlspecialchars($sub['subject_code'] . " - " . $sub['descriptive_title']); ?>
+                                                </option>
+                                            <?php endforeach; ?>
+                                        <?php endif; ?>
                                     </select>
                                 </div>
                                 <div class="col-12">

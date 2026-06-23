@@ -10,50 +10,81 @@ require_once '../config/database_connect.php';
 date_default_timezone_set('Asia/Manila');
 
 $toast_notification = "";
+$config_file = 'portal_config.json';
+
+// Load extra settings from local server configuration file if it exists
+$local_config = [];
+if (file_exists($config_file)) {
+    $local_config = json_decode(file_get_contents($config_file), true) ?? [];
+}
 
 $current_school_year = '2026-2027';
 $current_semester = '1st Semester';
 $enrollment_status = 'Open';
-$old_student_enrollment = 'Open';
+$drop_subject_status = $local_config['drop_subject_status'] ?? 'Open';
 $grading_status = 'Closed';
 $system_maintenance = 'Disabled';
-
-$display_semester_year = $current_semester . ", AY " . $current_school_year;
 
 try {
     $config_stmt = $conn->query("SELECT * FROM system_settings LIMIT 1");
     $config_data = $config_stmt->fetch(PDO::FETCH_ASSOC);
     if ($config_data) {
-        $current_school_year = $config_data['school_year'] ?? $current_school_year;
-        $current_semester = $config_data['semester'] ?? $current_semester;
-        $enrollment_status = $config_data['enrollment_status'] ?? $enrollment_status;
-        $old_student_enrollment = $config_data['old_student_enrollment'] ?? $old_student_enrollment;
-        $grading_status = $config_data['grading_status'] ?? $grading_status;
-        $system_maintenance = $config_data['system_maintenance'] ?? $system_maintenance;
+        $current_school_year    = $config_data['school_year'] ?? '2026-2027';
+        $current_semester       = $config_data['semester'] ?? '1st Semester';
+        $enrollment_status      = $config_data['enrollment_status'] ?? 'Open';
+        $grading_status         = $config_data['grading_status'] ?? 'Closed';
+        $system_maintenance     = $config_data['system_maintenance'] ?? 'Disabled';
     }
-} catch (PDOException $e) {
+} catch (PDOException $e) { /* Log error */ }
+
+if ($system_maintenance === 'Enabled') {
+    $drop_subject_status = 'Closed';
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    
     if (isset($_POST['save_settings'])) {
         $school_year = trim($_POST['school_year']);
         $semester = trim($_POST['semester']);
-        $enroll_status = trim($_POST['enrollment_status']);
-        $old_enroll_status = trim($_POST['old_student_enrollment']);
-        $grade_status = trim($_POST['grading_status']);
+        $grading_status_form = trim($_POST['grading_status']);
         $maintenance = trim($_POST['system_maintenance']);
 
+        $enroll_status = isset($_POST['enrollment_status']) ? trim($_POST['enrollment_status']) : $enrollment_status;
+        $drop_status = isset($_POST['drop_subject_status']) ? trim($_POST['drop_subject_status']) : $drop_subject_status;
+
         try {
-            $check_stmt = $conn->query("SELECT COUNT(*) FROM system_settings");
-            if ($check_stmt->fetchColumn() > 0) {
-                $upd_stmt = $conn->prepare("UPDATE system_settings SET school_year = :sy, semester = :sem, enrollment_status = :es, old_student_enrollment = :ose, grading_status = :gs, system_maintenance = :sm WHERE id = 1");
-            } else {
-                $upd_stmt = $conn->prepare("INSERT INTO system_settings (id, school_year, semester, enrollment_status, old_student_enrollment, grading_status, system_maintenance) VALUES (1, :sy, :sem, :es, :ose, :gs, :sm)");
-            }
-            $upd_stmt->execute([':sy' => $school_year, ':sem' => $semester, ':es' => $enroll_status, ':ose' => $old_enroll_status, ':gs' => $grade_status, ':sm' => $maintenance]);
-            $toast_notification = "<div class='toast-container position-fixed bottom-0 end-0 p-3 z-3'><div class='toast show bg-success text-white border-0 shadow'><div class='toast-body'><i class='bi bi-check-circle-fill me-2'></i>Settings Saved Successfully.</div></div></div>";
+            $stmt = $conn->prepare("
+                UPDATE system_settings 
+                SET school_year = :sy, 
+                    semester = :sem, 
+                    enrollment_status = :es, 
+                    grading_status = :gs, 
+                    system_maintenance = :sm 
+                WHERE id = 1
+            ");
+
+            $stmt->execute([
+                ':sy' => $school_year,
+                ':sem' => $semester,
+                ':es' => $enroll_status,
+                ':gs' => $grading_status_form,
+                ':sm' => $maintenance
+            ]);
+
+            $local_config['drop_subject_status'] = $drop_status;
+            file_put_contents($config_file, json_encode($local_config, JSON_PRETTY_PRINT));
+
+            $toast_notification = "<div class='toast-container position-fixed bottom-0 end-0 p-3 z-3'><div class='toast show bg-success text-white'><div class='toast-body'>Settings updated successfully.</div></div></div>";
+            
+            $current_school_year = $school_year;
+            $current_semester = $semester;
+            $enrollment_status = $enroll_status;
+            $grading_status = $grading_status_form;
+            $system_maintenance = $maintenance;
+            $drop_subject_status = ($system_maintenance === 'Enabled') ? 'Closed' : $drop_status;
+
         } catch (PDOException $e) {
-            $toast_notification = "<div class='alert alert-danger m-3'>Database Error: " . htmlspecialchars($e->getMessage()) . "</div>";
+            $toast_notification = "<div class='alert alert-danger'>Database Error: " . $e->getMessage() . "</div>";
         }
     }
 
@@ -85,6 +116,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
+$clean_school_year = str_replace(' - ', '-', $current_school_year);
+$display_semester_year = $current_semester . ", AY " . $clean_school_year;
 $new_admissions = 0;
 
 try {
@@ -92,9 +125,20 @@ try {
     $new_student_count = $conn->query("SELECT COUNT(*) FROM applicants WHERE classification = 'freshman'")->fetchColumn();
     $transferee_count = $conn->query("SELECT COUNT(*) FROM applicants WHERE classification = 'transferee'")->fetchColumn();
     $new_admissions = $conn->query("SELECT COUNT(*) FROM applicants WHERE application_status = 'Pending'")->fetchColumn();
-} catch (PDOException $e) {
-}
+} catch (PDOException $e) { }
 
+$pending_enrollment_count = 0;
+$pending_drop_count = 0;
+
+try {
+    $enroll_count_stmt = $conn->query("SELECT COUNT(*) FROM students WHERE enrollment_status = 'Pending Approval'");
+    $pending_enrollment_count = $enroll_count_stmt->fetchColumn();
+
+    $drop_count_stmt = $conn->query("SELECT COUNT(*) FROM drop_requests WHERE status = 'Pending Review'");
+    $pending_drop_count = $drop_count_stmt->fetchColumn();
+} catch (PDOException $e) {
+    error_log("Sidebar Badges Fetch Error: " . $e->getMessage());
+}
 ?>
 <!doctype html>
 <html lang="en">
@@ -212,7 +256,7 @@ try {
             <div class="sidebar-brand"
                 style="border-right: 1px solid rgba(255, 255, 255, 0.1); border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
                 <a href="dashboard.php" class="brand-link">
-                    <img src="../assets/images/PCC_Logo.png" alt="PCC Logo" class="brand-image" />
+                    <img src="../assets/images/PCC_logo.png" alt="PCC Logo" class="brand-image" />
                     <span class="brand-text fw-bold" style="color: white;">PCC Admin</span>
                 </a>
             </div>
@@ -242,13 +286,22 @@ try {
                             </a></li>
                         <li class="nav-item"><a href="admissions.php" class="nav-link "><i
                                     class="nav-icon bi bi-clipboard-fill"></i>
-                                <p>Admissions <span id="admissionsBadge"
-                                        class="badge bg-warning text-dark float-end small font-bold rounded-pill"
-                                        style="background-color: white"><?php echo $new_admissions; ?></span></p>
+                                <p>Admissions
+                                    <?php if ($new_admissions > 0): ?>
+                                        <span id="admissionsBadge"
+                                            class="badge bg-warning text-dark float-end small font-bold rounded-pill"
+                                            style="background-color: white"><?php echo $new_admissions; ?></span>
+                                    <?php endif; ?>
+                                </p>
                             </a></li>
                         <li class="nav-item"><a href="verify_enrollment.php" class="nav-link"><i
                                     class="nav-icon bi bi-shield-check"></i>
-                                <p>Enrollment</p>
+                                <p>Enrollment
+                                    <?php if ($pending_enrollment_count > 0): ?>
+                                        <span class="badge bg-warning text-dark float-end small font-bold rounded-pill"
+                                            style="background-color: white"><?php echo $pending_enrollment_count; ?></span>
+                                    <?php endif; ?>
+                                </p>
                             </a></li>
                         <li class="nav-item"><a href="#" class="nav-link"><i
                                     class="nav-icon bi bi-clipboard-data-fill"></i>
@@ -260,7 +313,12 @@ try {
                             </a></li>
                         <li class="nav-item"><a href="drop_requests.php" class="nav-link"><i
                                     class="nav-icon bi bi-file-earmark-minus-fill"></i>
-                                <p>Drop Requests</p>
+                                <p>Drop Requests
+                                    <?php if ($pending_drop_count > 0): ?>
+                                        <span class="badge bg-warning text-dark float-end small font-bold rounded-pill"
+                                            style="background-color: white"><?php echo $pending_drop_count; ?></span>
+                                    <?php endif; ?>
+                                </p>
                             </a></li>
                         <li class="nav-item"><a href="#" class="nav-link"><i class="nav-icon bi bi-calendar3"></i>
                                 <p>Schedules</p>
@@ -311,8 +369,8 @@ try {
                                             <div class="col-md-4"><label class="form-label small fw-bold">Active School
                                                     Year</label><select name="school_year"
                                                     class="form-select form-select-sm">
-                                                    <option value="2025 - 2026" <?php echo $current_school_year === '2025 - 2026' ? 'selected' : ''; ?>>2025 - 2026</option>
-                                                    <option value="2026 - 2027" <?php echo $current_school_year === '2026 - 2027' ? 'selected' : ''; ?>>2026 - 2027</option>
+                                                    <option value="2025 - 2026" <?php echo trim($current_school_year) === '2025 - 2026' ? 'selected' : ''; ?>>2025 - 2026</option>
+                                                    <option value="2026 - 2027" <?php echo trim($current_school_year) === '2026 - 2027' ? 'selected' : ''; ?>>2026 - 2027</option>
                                                 </select></div>
                                             <div class="col-md-4"><label class="form-label small fw-bold">Current
                                                     Academic Semester</label><select name="semester"
@@ -321,17 +379,21 @@ try {
                                                     <option value="2nd Semester" <?php echo $current_semester === '2nd Semester' ? 'selected' : ''; ?>>2nd Semester</option>
                                                 </select></div>
                                             <div class="col-md-4"><label class="form-label small fw-bold">Admission
-                                                    State</label><select name="enrollment_status"
-                                                    class="form-select form-select-sm">
+                                                    State</label>
+                                                <select name="enrollment_status" class="form-select form-select-sm"
+                                                    <?php echo ($system_maintenance === 'Enabled') ? 'disabled style="background-color: #e9ecef; cursor: not-allowed;"' : ''; ?>>
                                                     <option value="Open" <?php echo $enrollment_status === 'Open' ? 'selected' : ''; ?>>Open</option>
                                                     <option value="Closed" <?php echo $enrollment_status === 'Closed' ? 'selected' : ''; ?>>Closed</option>
-                                                </select></div>
-                                            <div class="col-md-4"><label class="form-label small fw-bold">Old Student
-                                                    Portal Status</label><select name="old_student_enrollment"
-                                                    class="form-select form-select-sm">
-                                                    <option value="Open" <?php echo $old_student_enrollment === 'Open' ? 'selected' : ''; ?>>Open</option>
-                                                    <option value="Closed" <?php echo $old_student_enrollment === 'Closed' ? 'selected' : ''; ?>>Closed</option>
-                                                </select></div>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-4"><label class="form-label small fw-bold">Dropping of
+                                                    Subject</label>
+                                                <select name="drop_subject_status" class="form-select form-select-sm"
+                                                    <?php echo ($system_maintenance === 'Enabled') ? 'disabled style="background-color: #e9ecef; cursor: not-allowed;"' : ''; ?>>
+                                                    <option value="Open" <?php echo $drop_subject_status === 'Open' ? 'selected' : ''; ?>>Open</option>
+                                                    <option value="Closed" <?php echo $drop_subject_status === 'Closed' ? 'selected' : ''; ?>>Closed</option>
+                                                </select>
+                                            </div>
                                             <div class="col-md-4"><label class="form-label small fw-bold">Grading
                                                     Module</label><select name="grading_status"
                                                     class="form-select form-select-sm">

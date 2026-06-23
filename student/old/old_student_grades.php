@@ -308,7 +308,7 @@ $formatted_rank = ($year_level_raw > 0) ? "{$course_code} - {$year_level_raw}{$s
             <div class="sidebar-brand"
                 style="border-right: 1px solid rgba(255, 255, 255, 0.1); border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
                 <a href="#" class="brand-link">
-                    <img src="../../assets/images/PCC_Logo.png" alt="PCC Logo" class="brand-image" />
+                    <img src="../../assets/images/PCC_logo.png" alt="PCC Logo" class="brand-image" />
                     <span class="brand-text fw-bold" style="color: white;">PCC Student</span>
                 </a>
             </div>
@@ -369,7 +369,7 @@ $formatted_rank = ($year_level_raw > 0) ? "{$course_code} - {$year_level_raw}{$s
 
         <main class="app-main p-4">
             <div class="print-header-canvas">
-                <img src="../../assets/images/PCC_Logo.png" alt="Logo" style="max-height: 65px; margin-bottom: 10px;">
+                <img src="../../assets/images/PCC_logo.png" alt="Logo" style="max-height: 65px; margin-bottom: 10px;">
                 <h4 class="fw-bold mb-0">POBLACION CENTRAL COLLEGE</h4>
                 <p class="small text-uppercase text-secondary tracking-wider mb-1">Office of the School Registrar</p>
                 <div class="fw-bold small text-dark mt-2">OFFICIAL TERM GRADE REPORT SLIP</div>

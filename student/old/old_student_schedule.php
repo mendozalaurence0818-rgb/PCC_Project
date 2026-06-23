@@ -200,7 +200,7 @@
         <aside class="app-sidebar sidebar-bg">
             <div class="sidebar-brand" style="border-right: 1px solid rgba(255, 255, 255, 0.1);">
                 <a href="#" class="brand-link">
-                    <img src="../../images/PCC_Logo.png" alt="PCC Logo" class="brand-image" />
+                    <img src="../../images/PCC_logo.png" alt="PCC Logo" class="brand-image" />
                     <span class="brand-text fw-bold" style="color: white;">PCC Student</span>
                 </a>
             </div>

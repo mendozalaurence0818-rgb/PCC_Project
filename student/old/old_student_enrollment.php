@@ -210,8 +210,8 @@ $target_year_string = "{$year_level_raw}" . (($year_level_raw == 1) ? 'st' : (($
 
 $sections_list = [];
 try {
-    $sec_query = $conn->prepare("SELECT * FROM sections WHERE (target_year = :ty OR target_year = 'All') AND program = :program AND status != 'Inactive' ORDER BY section_name ASC");
-    $sec_query->execute([':ty' => $target_year_string, ':program' => $course_code]);
+    $sec_query = $conn->prepare("SELECT * FROM sections WHERE (target_year = :ty OR target_year = 'All' OR target_year = :yr_num) AND program = :program AND status != 'Inactive' ORDER BY section_name ASC");
+    $sec_query->execute([':ty' => $target_year_string, ':yr_num' => $year_level_raw, ':program' => $course_code]);
     $sections_list = $sec_query->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
     error_log("Error getting sections: " . $e->getMessage());
@@ -226,9 +226,9 @@ try {
         JOIN subjects sub ON ss.subject_id = sub.id
         WHERE sub.status = 'Active' 
           AND s.status != 'Inactive' 
-          AND sub.program = :program
+          AND (sub.program = :program OR s.program = :program_alt)
     ");
-    $relationship_query->execute([':program' => $course_code]);
+    $relationship_query->execute([':program' => $course_code, ':program_alt' => $course_code]);
     $master_section_subjects = $relationship_query->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
     error_log("Error getting section subjects: " . $e->getMessage());
@@ -236,8 +236,8 @@ try {
 
 $unmapped_free_subjects = [];
 try {
-    $free_sub_query = $conn->prepare("SELECT id, subject_code, descriptive_title, units FROM subjects WHERE status = 'Active' AND program = :program AND target_year = :ty ORDER BY subject_code ASC");
-    $free_sub_query->execute([':program' => $course_code, ':ty' => $target_year_string]);
+    $free_sub_query = $conn->prepare("SELECT id, subject_code, descriptive_title, units FROM subjects WHERE status = 'Active' AND program = :program AND (target_year = :ty OR target_year = :yr_num) ORDER BY subject_code ASC");
+    $free_sub_query->execute([':program' => $course_code, ':ty' => $target_year_string, ':yr_num' => $year_level_raw]);
     $unmapped_free_subjects = $free_sub_query->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {}
 
@@ -344,9 +344,9 @@ if ($db_enrollment_status === 'Enrolled') {
     </style>
 </head>
 
-<body class="fixed-header bg-body-tertiary">
+<body class="fixed-header sidebar-expand-lg bg-body-tertiary">
     <div class="app-wrapper">
-        <nav class="app-header navbar navbar-expand bg-body">
+        <nav class="app-header navbar navbar-expand bg-body px-1">
             <div class="container-fluid">
                 <ul class="navbar-nav">
                     <li class="nav-item"><a class="nav-link text-dark" href="#" onclick="toggleSidebarMenu(event)" role="button"><i class="bi bi-list fs-5"></i></a></li>
@@ -362,7 +362,7 @@ if ($db_enrollment_status === 'Enrolled') {
         <aside class="app-sidebar sidebar-bg">
             <div class="sidebar-brand" style="border-right: 1px solid rgba(255, 255, 255, 0.1); border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
                 <a href="#" class="brand-link">
-                    <img src="../../assets/images/PCC_Logo.png" alt="PCC Logo" class="brand-image" />
+                    <img src="../../assets/images/PCC_logo.png" alt="PCC Logo" class="brand-image" />
                     <span class="brand-text fw-bold" style="color: white;">PCC Student</span>
                 </a>
             </div>
@@ -451,6 +451,7 @@ if ($db_enrollment_status === 'Enrolled') {
                                         <h5 class="fw-bold m-0 text-dark" id="step1FormTitleLabel">Step 1: Choose Your Section</h5>
                                     </div>
                                     
+                                    <!-- FIXED: Removed the invalid nested <aside> element that was causing structural framework compilation conflicts -->
                                     <select class="form-select border shadow-sm mb-4 py-2.5 fw-semibold" id="sectionSelectorField" onchange="processSectionChoice(this.value)" <?php echo ($is_admission_closed) ? 'disabled' : ''; ?>>
                                         <option value="" disabled selected>-- Choose an open section --</option>
                                         <?php foreach ($sections_list as $sec): ?>
@@ -625,7 +626,7 @@ if ($db_enrollment_status === 'Enrolled') {
                         <div class="card enrollment-card cor-watermark shadow-lg mx-auto mb-4" style="max-width: 850px;">
                             <div class="row align-items-center border-bottom pb-3 mb-4">
                                 <div class="col-sm-2 text-center text-md-start">
-                                    <img src="../../assets/images/PCC_Logo.png" alt="PCC Logo" style="max-height: 75px;">
+                                    <img src="../../assets/images/PCC_logo.png" alt="PCC Logo" style="max-height: 75px;">
                                 </div>
                                 <div class="col-sm-7 text-center text-md-start mt-2 mt-md-0">
                                     <h4 class="fw-bold text-dark mb-0">POBLACION CENTRAL COLLEGE</h4>
@@ -815,7 +816,7 @@ if ($db_enrollment_status === 'Enrolled') {
                         row.className = "subject-row-box d-flex justify-content-between align-items-center shadow-sm bg-white border-0";
                         row.innerHTML = `
                             <div>
-                                <span class="badge bg-primary-subtle text-primary mb-1 fw-bold"><?= $sub['subject_code']; ?></span>
+                                <span class="badge bg-primary-subtle text-primary mb-1 fw-bold">${sub.subject_code}</span>
                                 <h6 class="fw-bold text-dark mb-1">${sub.descriptive_title}</h6>
                                 <small class="text-secondary font-monospace fs-8">Credits: ${sub.units} Units</small>
                             </div>

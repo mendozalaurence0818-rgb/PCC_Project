@@ -608,9 +608,9 @@ function in_all_array($needle, $haystack)
             </div>
             <div class="grid-row">
                 <div class="grid-col-12">
-                    <label><i class="bi bi-file-earmark-text me-1"></i> Grade 12 Report Card (Form 138) <span
+                    <label><i class="bi bi-file-earmark-text me-1"></i> Report Card (Form 138) <span
                             class="required-mark">*</span></label>
-                    <span class="label-desc">Upload a copy of your 1st or 2nd semester Grade 12 card.</span>
+                    <span class="label-desc">Upload a copy of your last/current report card.</span>
                     <input type="file" name="form_138" class="form-input" accept=".pdf,.jpg,.jpeg,.png" required>
                 </div>
                 <div class="grid-col-12">

@@ -64,10 +64,13 @@ if (isset($_GET['accept_id'])) {
             $next_sequence = $count_stmt->fetchColumn() + 1;
             $generated_student_no = $current_year . '-' . str_pad($next_sequence, 5, '0', STR_PAD_LEFT);
 
+            // Fetch year level if provided dynamically by portal setup rules
+            $target_year = isset($app['year_level']) ? intval($app['year_level']) : 1;
+
             $pwd_hash = password_hash('student123', PASSWORD_DEFAULT);
             $ins_student = $conn->prepare("INSERT INTO students 
                 (student_number, password_hash, application_id, first_name, last_name, email, current_course, year_level, classification, enrollment_status) 
-                VALUES (:num, :pwd, :app_id, :first, :last, :email, :course, 1, 'Regular', 'Not Enrolled')");
+                VALUES (:num, :pwd, :app_id, :first, :last, :email, :course, :yr, 'Regular', 'Not Enrolled')");
 
             $ins_student->execute([
                 ':num' => $generated_student_no,
@@ -75,11 +78,11 @@ if (isset($_GET['accept_id'])) {
                 ':app_id' => $accept_id,
                 ':first' => $app['first_name'],
                 ':last' => $app['last_name'],
-                ':email' => $computed_email, // Assigned institutional account layout destination profile
-                ':course' => $app['preferred_program']
+                ':email' => $computed_email,
+                ':course' => $app['preferred_program'],
+                ':yr' => $target_year
             ]);
 
-            // Form data updates logic: Saved personal email unchanged inside tracking logs table configuration arrays.
             $upd_stmt = $conn->prepare("UPDATE applicants SET application_status = 'Approved', student_number = :student_no WHERE application_id = :id");
             $upd_stmt->execute([
                 ':student_no' => $generated_student_no,
@@ -278,12 +281,18 @@ try {
             $selected_applicant = $row;
             $edit_mode = true;
         }
+
+        $yr_raw = isset($row['year_level']) ? intval($row['year_level']) : 1;
+        $suffix_str = ($yr_raw == 1) ? 'st' : (($yr_raw == 2) ? 'nd' : (($yr_raw == 3) ? 'rd' : 'th'));
+        $formatted_year_string = "{$yr_raw}{$suffix_str} Year";
+
         $applicant_list[] = [
             'applicant_id' => $row['application_id'],
             'reference_no' => $row['reference_number'],
             'first_name' => $row['first_name'],
             'last_name' => $row['last_name'],
             'classification' => (strtolower($row['classification'] ?? 'freshman') === 'freshman') ? 'New Student' : 'Transferee',
+            'year_level_display' => $formatted_year_string,
             'program' => $row['preferred_program'] ?? '',
             'year' => $row['school_year'] ?? '',
             'status' => $row['application_status'] ?? 'Pending'
@@ -294,6 +303,19 @@ try {
 }
 
 $current_semester = "1st Semester, AY 2026-2027";
+
+$pending_enrollment_count = 0;
+$pending_drop_count = 0;
+
+try {
+    $enroll_count_stmt = $conn->query("SELECT COUNT(*) FROM students WHERE enrollment_status = 'Pending Approval'");
+    $pending_enrollment_count = $enroll_count_stmt->fetchColumn();
+
+    $drop_count_stmt = $conn->query("SELECT COUNT(*) FROM drop_requests WHERE status = 'Pending Review'");
+    $pending_drop_count = $drop_count_stmt->fetchColumn();
+} catch (PDOException $e) {
+    error_log("Sidebar Badges Fetch Error: " . $e->getMessage());
+}
 ?>
 <!doctype html>
 <html lang="en">
@@ -445,7 +467,7 @@ $current_semester = "1st Semester, AY 2026-2027";
             <div class="sidebar-brand"
                 style="border-right: 1px solid rgba(255, 255, 255, 0.1); border-bottom: 1px solid rgba(255, 255, 255, 0.1);">
                 <a href="dashboard.php" class="brand-link">
-                    <img src="../assets/images/PCC_Logo.png" alt="PCC Logo" class="brand-image" />
+                    <img src="../assets/images/PCC_logo.png" alt="PCC Logo" class="brand-image" />
                     <span class="brand-text fw-bold" style="color: white;">PCC Admin</span>
                 </a>
             </div>
@@ -469,19 +491,28 @@ $current_semester = "1st Semester, AY 2026-2027";
                                     class="nav-icon bi bi-speedometer"></i>
                                 <p>Dashboard</p>
                             </a></li>
-                        <li class="nav-item"><a href="students.php" class="nav-link"><i
+                        <li class="nav-item"><a href="students.php" class="nav-link "><i
                                     class="nav-icon bi bi-people-fill"></i>
                                 <p>Students</p>
                             </a></li>
                         <li class="nav-item"><a href="admissions.php" class="nav-link sidebar-bg-active"><i
                                     class="nav-icon bi bi-clipboard-fill"></i>
-                                <p>Admissions <span id="admissionsBadge"
-                                        class="badge bg-warning text-dark float-end small font-bold rounded-pill"
-                                        style="background-color: white"><?php echo $new_admissions; ?></span></p>
+                                <p>Admissions
+                                    <?php if ($new_admissions > 0): ?>
+                                        <span id="admissionsBadge"
+                                            class="badge bg-warning text-dark float-end small font-bold rounded-pill"
+                                            style="background-color: white"><?php echo $new_admissions; ?></span>
+                                    <?php endif; ?>
+                                </p>
                             </a></li>
                         <li class="nav-item"><a href="verify_enrollment.php" class="nav-link"><i
                                     class="nav-icon bi bi-shield-check"></i>
-                                <p>Enrollment</p>
+                                <p>Enrollment
+                                    <?php if ($pending_enrollment_count > 0): ?>
+                                        <span class="badge bg-warning text-dark float-end small font-bold rounded-pill"
+                                            style="background-color: white"><?php echo $pending_enrollment_count; ?></span>
+                                    <?php endif; ?>
+                                </p>
                             </a></li>
                         <li class="nav-item"><a href="#" class="nav-link"><i
                                     class="nav-icon bi bi-clipboard-data-fill"></i>
@@ -493,7 +524,12 @@ $current_semester = "1st Semester, AY 2026-2027";
                             </a></li>
                         <li class="nav-item"><a href="drop_requests.php" class="nav-link"><i
                                     class="nav-icon bi bi-file-earmark-minus-fill"></i>
-                                <p>Drop Requests</p>
+                                <p>Drop Requests
+                                    <?php if ($pending_drop_count > 0): ?>
+                                        <span class="badge bg-warning text-dark float-end small font-bold rounded-pill"
+                                            style="background-color: white"><?php echo $pending_drop_count; ?></span>
+                                    <?php endif; ?>
+                                </p>
                             </a></li>
                         <li class="nav-item"><a href="#" class="nav-link"><i class="nav-icon bi bi-calendar3"></i>
                                 <p>Schedules</p>
@@ -507,7 +543,7 @@ $current_semester = "1st Semester, AY 2026-2027";
                                     class="nav-icon bi bi-person-check-fill"></i>
                                 <p>Users</p>
                             </a></li>
-                        <li class="nav-item"><a href="settings.php" class="nav-link"><i
+                        <li class="nav-item"><a href="settings.php" class="nav-link "><i
                                     class="nav-icon bi bi-gear-fill"></i>
                                 <p>Settings</p>
                             </a></li>
@@ -1113,6 +1149,7 @@ $current_semester = "1st Semester, AY 2026-2027";
                                                     onclick="sortTable(2)">Full Name <i
                                                         class="bi bi-arrow-down-up text-muted ms-1 small"></i></th>
                                                 <th>Classification</th>
+                                                <th>Year Level</th>
                                                 <th>Course / Program</th>
                                                 <th>School Year</th>
                                                 <th class="text-center">Status</th>
@@ -1122,7 +1159,7 @@ $current_semester = "1st Semester, AY 2026-2027";
                                         <tbody>
                                             <?php if (empty($applicant_list)): ?>
                                                 <tr>
-                                                    <td colspan="8" class="py-0">
+                                                    <td colspan="9" class="py-0">
                                                         <div class="text-center py-5 bg-white">
                                                             <i
                                                                 class="bi bi-folder-x fs-1 text-muted opacity-50 mb-3 d-block"></i>
@@ -1149,6 +1186,9 @@ $current_semester = "1st Semester, AY 2026-2027";
                                                             ?>
                                                             <span
                                                                 class="badge <?php echo $badge_theme; ?> tab-indicator"><?php echo htmlspecialchars($app['classification']); ?></span>
+                                                        </td>
+                                                        <td class="fw-semibold text-secondary-emphasis small">
+                                                            <?php echo htmlspecialchars($app['year_level_display']); ?>
                                                         </td>
                                                         <td><span
                                                                 class="badge bg-secondary-subtle text-secondary-emphasis fw-medium px-2 py-1"><?php echo htmlspecialchars($app['program']); ?></span>
@@ -1255,7 +1295,7 @@ $current_semester = "1st Semester, AY 2026-2027";
                     const referenceNo = row.cells[1]?.textContent.toLowerCase().trim() || "";
                     const studentName = row.cells[2]?.textContent.toLowerCase().trim() || "";
                     const studentClassification = row.cells[3]?.textContent.trim() || "";
-                    const studentStatus = row.cells[6]?.textContent.trim() || "";
+                    const studentStatus = row.cells[7]?.textContent.trim() || ""; // Updated cell index reference match pattern rules
 
                     const matchesSearch = rowId.includes(query) || referenceNo.includes(query) || studentName.includes(query);
                     const matchesStatus = selectedStatus === "All Status" || studentStatus === selectedStatus;

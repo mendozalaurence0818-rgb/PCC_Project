@@ -1,44 +1,98 @@
 <?php
 session_start();
+require_once '../../../config/database_connect.php';
+
+$error_message = "";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    $_SESSION['applicant_reference'] = 'PCC-' . date('Y') . '-' . strtoupper(bin2hex(random_bytes(3)));
+    $raw_first = $_POST['first_name'] ?? '';
+    $raw_middle = $_POST['middle_name'] ?? '';
+    $raw_last = $_POST['last_name'] ?? '';
+    $raw_suffix = $_POST['suffix'] ?? '';
 
-    $_SESSION['applicant_step1'] = [
-        'first_name' => htmlspecialchars(trim($_POST['first_name'])),
-        'middle_name' => htmlspecialchars(trim($_POST['middle_name'] ?? '')),
-        'last_name' => htmlspecialchars(trim($_POST['last_name'])),
-        'suffix' => htmlspecialchars(trim($_POST['suffix'] ?? '')),
-        'date_of_birth' => $_POST['date_of_birth'],
-        'gender' => $_POST['gender'],
-        'civil_status' => $_POST['civil_status'],
-        'nationality' => $_POST['nationality'],
-        'religious_affiliation' => htmlspecialchars(trim($_POST['religious_affiliation'] ?? '')),
-        'email_address' => filter_var(trim($_POST['email_address']), FILTER_SANITIZE_EMAIL),
-        'mobile_number' => htmlspecialchars(trim($_POST['mobile_number'])),
-        'address_region' => $_POST['address_region'],
-        'address_province' => $_POST['address_province'],
-        'address_city' => $_POST['address_city'],
-        'address_barangay' => $_POST['address_barangay'],
-        'address_postal' => htmlspecialchars(trim($_POST['address_postal'])),
-        'address_street' => htmlspecialchars(trim($_POST['address_street'])),
-        'shs_school_attended' => htmlspecialchars(trim($_POST['shs_school_attended'])),
-        'shs_strand' => $_POST['shs_strand'],
-        'shs_year_graduated' => intval($_POST['shs_year_graduated']),
-        'shs_school_address' => htmlspecialchars(trim($_POST['shs_school_address'])),
-        'preferred_program' => $_POST['preferred_program'],
-        'academic_term' => '1st Semester',
-        'school_year' => '2026-2027',
-        'guardian_name' => htmlspecialchars(trim($_POST['guardian_name'])),
-        'guardian_relationship' => $_POST['guardian_relationship'],
-        'emergency_phone' => htmlspecialchars(trim($_POST['emergency_phone']))
-    ];
+    $clean_first = mb_convert_case(trim($raw_first), MB_CASE_TITLE, "UTF-8");
+    $clean_middle = mb_convert_case(trim($raw_middle), MB_CASE_TITLE, "UTF-8");
+    $clean_last = mb_convert_case(trim($raw_last), MB_CASE_TITLE, "UTF-8");
+    $clean_suffix = trim($raw_suffix);
 
-    header("Location: new_student_updocs.php");
-    exit();
+    $email_address = filter_var(trim($_POST['email_address']), FILTER_SANITIZE_EMAIL);
+    $date_of_birth = $_POST['date_of_birth'];
+
+    try {
+        $check_duplicate_stmt = $conn->prepare("
+            SELECT COUNT(*) FROM applicants 
+            WHERE email_address = :email;
+        ");
+        
+        $check_duplicate_stmt->execute([
+            ':email' => $email_address,
+        ]);
+
+        if ($check_duplicate_stmt->fetchColumn() > 0) {
+            $error_message = "An admission profile with this identical email address or identity record already exists. Please verify your details or contact the admissions office for assistance.";
+        }
+    } catch (PDOException $e) {
+        $error_message = "Database Validation Check Error: " . $e->getMessage();
+    }
+
+    if (empty($error_message)) {
+        $_SESSION['applicant_reference'] = 'PCC-' . date('Y') . '-' . strtoupper(bin2hex(random_bytes(3)));
+
+        $_SESSION['applicant_step1'] = [
+            'classification' => htmlspecialchars(trim($_POST['classification'] ?? 'Regular')),
+            'year_level' => htmlspecialchars(trim($_POST['year_level'] ?? '1')),
+            'student_status' => htmlspecialchars(trim($_POST['student_status'] ?? 'New')),
+
+            'first_name' => htmlspecialchars($clean_first),
+            'middle_name' => htmlspecialchars($clean_middle),
+            'last_name' => htmlspecialchars($clean_last),
+            'suffix' => htmlspecialchars($clean_suffix),
+            'date_of_birth' => $date_of_birth,
+            'gender' => $_POST['gender'],
+            'civil_status' => $_POST['civil_status'],
+            'nationality' => $_POST['nationality'],
+            'religious_affiliation' => htmlspecialchars(trim($_POST['religious_affiliation'] ?? '')),
+            'email_address' => $email_address,
+            'mobile_number' => htmlspecialchars(trim($_POST['mobile_number'])),
+            'address_region' => $_POST['address_region'],
+            'address_province' => $_POST['address_province'],
+            'address_city' => $_POST['address_city'],
+            'address_barangay' => $_POST['address_barangay'],
+            'address_postal' => htmlspecialchars(trim($_POST['address_postal'])),
+            'address_street' => htmlspecialchars(trim($_POST['address_street'])),
+            'shs_school_attended' => htmlspecialchars(trim($_POST['shs_school_attended'])),
+            'shs_strand' => $_POST['shs_strand'],
+            'shs_year_graduated' => intval($_POST['shs_year_graduated']),
+            'shs_school_address' => htmlspecialchars(trim($_POST['shs_school_address'])),
+            'preferred_program' => $_POST['preferred_program'],
+            'academic_term' => '1st Semester',
+            'school_year' => '2026-2027',
+            'guardian_name' => htmlspecialchars(trim($_POST['guardian_name'])),
+            'guardian_relationship' => $_POST['guardian_relationship'],
+            'emergency_phone' => htmlspecialchars(trim($_POST['emergency_phone']))
+        ];
+
+        header("Location: new_student_updocs.php");
+        exit();
+    }
 }
+
+$passed_classification = isset($_GET['classification']) ? trim($_GET['classification']) : 'Regular';
+$passed_year_level = isset($_GET['year_level']) ? trim($_GET['year_level']) : '1';
+$passed_student_status = isset($_GET['student_status']) ? trim($_GET['student_status']) : 'New';
+
 $form = $_SESSION['applicant_step1'] ?? [];
+
+if (!isset($form['classification'])) {
+    $form['classification'] = $passed_classification;
+}
+if (!isset($form['year_level'])) {
+    $form['year_level'] = $passed_year_level;
+}
+if (!isset($form['student_status'])) {
+    $form['student_status'] = $passed_student_status;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -46,7 +100,7 @@ $form = $_SESSION['applicant_step1'] ?? [];
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PCC | Admission Portal</title>
+    <title>PCC | Upload Documents</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -180,6 +234,16 @@ $form = $_SESSION['applicant_step1'] ?? [];
             color: #000;
         }
 
+        .btn-cancel-app {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
         .main-container {
             max-width: 1000px;
             margin: 50px auto;
@@ -221,6 +285,29 @@ $form = $_SESSION['applicant_step1'] ?? [];
             gap: 12px;
         }
 
+        .btn-advance-step {
+            background-color: #0A1140;
+            color: #FFFFFF;
+            font-family: var(--font-body);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 16px 40px;
+            border-radius: 4px;
+            font-size: 14px;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.2s;
+        }
+
+        .btn-advance-step:hover {
+            background-color: #000;
+            transform: translateY(-1px);
+        }
+
         .form-section-divider hr {
             border: 0;
             border-top: 1px solid #dee2e6;
@@ -252,16 +339,19 @@ $form = $_SESSION['applicant_step1'] ?? [];
             margin-bottom: 25px;
         }
 
-        .grid-col-8 {
-            width: 66.6666%;
-            padding: 0 15px;
-            margin-bottom: 25px;
-        }
-
         .grid-col-12 {
             width: 100%;
             padding: 0 15px;
             margin-bottom: 25px;
+        }
+
+        .action-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid #eee;
         }
 
         label {
@@ -306,46 +396,18 @@ $form = $_SESSION['applicant_step1'] ?? [];
             border-color: #ced4da;
         }
 
-        .action-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 60px;
-            padding-top: 30px;
-            border-top: 1px solid #eee;
-        }
-
-        .btn-cancel-app {
-            color: var(--text-muted);
-            text-decoration: none;
+        .alert-danger-custom {
+            background-color: #f8d7da;
+            border: 1px solid #f5c2c7;
+            color: #842029;
+            padding: 16px 20px;
+            border-radius: 6px;
+            margin-bottom: 30px;
+            font-size: 14px;
             font-weight: 500;
-            font-size: 14px;
-            display: inline-flex;
+            display: flex;
             align-items: center;
-            gap: 8px;
-        }
-
-        .btn-advance-step {
-            background-color: #0A1140;
-            color: #FFFFFF;
-            font-family: var(--font-body);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            padding: 16px 40px;
-            border-radius: 4px;
-            font-size: 14px;
-            border: none;
-            cursor: pointer;
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            transition: all 0.2s;
-        }
-
-        .btn-advance-step:hover {
-            background-color: #000;
-            transform: translateY(-1px);
+            gap: 10px;
         }
 
         .modal-overlay {
@@ -402,13 +464,7 @@ $form = $_SESSION['applicant_step1'] ?? [];
             font-size: 28px;
             color: #adb5bd;
             text-decoration: none;
-            cursor: pointer;
-            transition: color 0.2s;
             line-height: 1;
-        }
-
-        .modal-close-btn:hover {
-            color: #000;
         }
 
         .modal-content h3 {
@@ -486,28 +542,6 @@ $form = $_SESSION['applicant_step1'] ?? [];
             margin-bottom: 12px;
         }
 
-        .course-select-btn {
-            background-color: #0A1140;
-            color: #fff;
-            border: none;
-            padding: 8px 16px;
-            font-size: 12px;
-            font-weight: 600;
-            border-radius: 4px;
-            cursor: pointer;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-top: 5px;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            transition: background-color 0.2s;
-        }
-
-        .course-select-btn:hover {
-            background-color: #000;
-        }
-
         .course-item.expanded {
             border-color: #0A1140;
         }
@@ -522,6 +556,17 @@ $form = $_SESSION['applicant_step1'] ?? [];
             color: #0A1140;
         }
 
+        .alert-error-banner {
+            background-color: #f8d7da;
+            border: 1px solid #f5c2c7;
+            color: #842029;
+            padding: 12px 20px;
+            border-radius: 4px;
+            margin-bottom: 30px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
         @media (max-width: 768px) {
             .top-navbar {
                 padding: 14px 25px;
@@ -530,8 +575,7 @@ $form = $_SESSION['applicant_step1'] ?? [];
 
             .grid-col-3,
             .grid-col-4,
-            .grid-col-6,
-            .grid-col-8 {
+            .grid-col-6 {
                 width: 100%;
             }
 
@@ -572,13 +616,26 @@ $form = $_SESSION['applicant_step1'] ?? [];
             </div>
         </div>
     </div>
-    <main class="main-container">
+    <div class="main-container">
         <div class="section-intro">
             <h2>Application for Admission</h2>
             <p>Please provide accurate information as per your official legal documents. All fields marked with an
                 asterisk (<span class="required-mark">*</span>) are required.</p>
         </div>
+
+        <?php if (!empty($error_message)): ?>
+            <div class="alert-danger-custom">
+                <i class="bi bi-exclamation-octagon-fill fs-5"></i>
+                <div><?php echo htmlspecialchars($error_message); ?></div>
+            </div>
+        <?php endif; ?>
+
         <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
+
+            <input type="hidden" name="classification" value="<?php echo htmlspecialchars($form['classification']); ?>">
+            <input type="hidden" name="year_level" value="<?php echo htmlspecialchars($form['year_level']); ?>">
+            <input type="hidden" name="student_status" value="<?php echo htmlspecialchars($form['student_status']); ?>">
+
             <div class="form-section-divider">
                 <h4>I. Personal Demographics</h4>
                 <hr>
@@ -644,7 +701,7 @@ $form = $_SESSION['applicant_step1'] ?? [];
             <div class="grid-row">
                 <div class="grid-col-6">
                     <label>Active Email Address <span class="required-mark">*</span></label>
-                    <input type="email" name="email_address" class="form-input" placeholder="juan.delacruz@email.com"
+                    <input type="email" name="email_address" class="form-input" placeholder=""
                         value="<?php echo $form['email_address'] ?? ''; ?>" required>
                 </div>
                 <div class="grid-col-6">
@@ -659,32 +716,26 @@ $form = $_SESSION['applicant_step1'] ?? [];
                 <div class="grid-col-4"><label>Region <span class="required-mark">*</span></label>
                     <select id="address_region" name="address_region" class="form-dropdown"
                         onchange="handleRegionChange()" required>
-                        <option value="" disabled <?php echo !isset($form['address_region']) ? 'selected' : ''; ?>>
-                            Select Region</option>
-                        <option value="NCR" <?php echo isset($form['address_region']) && $form['address_region'] === 'NCR' ? 'selected' : ''; ?>>National Capital Region (NCR)</option>
-                        <option value="Region III" <?php echo isset($form['address_region']) && $form['address_region'] === 'Region III' ? 'selected' : ''; ?>>Region III (Central Luzon)
-                        </option>
-                        <option value="Region IV-A" <?php echo isset($form['address_region']) && $form['address_region'] === 'Region IV-A' ? 'selected' : ''; ?>>Region IV-A (CALABARZON)
-                        </option>
+                        <option value="" disabled selected>Select Region</option>
                     </select>
                 </div>
                 <div class="grid-col-4"><label>Province <span class="required-mark">*</span></label>
                     <select id="address_province" name="address_province" class="form-dropdown"
                         onchange="handleProvinceChange()" required>
-                        <option value="" disabled selected>Select Region First</option>
+                        <option value="" disabled selected>Select Province</option>
                     </select>
                 </div>
                 <div class="grid-col-4"><label>City / Municipality <span class="required-mark">*</span></label>
                     <select id="address_city" name="address_city" class="form-dropdown" onchange="handleCityChange()"
                         required>
-                        <option value="" disabled selected>Select Province First</option>
+                        <option value="" disabled selected>Select City / Municipality</option>
                     </select>
                 </div>
             </div>
             <div class="grid-row">
                 <div class="grid-col-4"><label>Barangay <span class="required-mark">*</span></label>
                     <select id="address_barangay" name="address_barangay" class="form-dropdown" required>
-                        <option value="" disabled selected>Select City First</option>
+                        <option value="" disabled selected>Select Barangay</option>
                     </select>
                 </div>
                 <div class="grid-col-4"><label>Postal Code <span class="required-mark">*</span></label>
@@ -746,9 +797,9 @@ $form = $_SESSION['applicant_step1'] ?? [];
                             Technology (BSIT)</option>
                     </select>
                 </div>
-                <div class="grid-col-6"><label>Academic Term Entering</label><input type="text" name="academic_term"
+                <div class="grid-col-6"><label class="text-muted opacity-50">Academic Term Entering</label><input type="text" name="academic_term"
                         class="form-input form-input-locked" value="1st Semester" readonly></div>
-                <div class="grid-col-6"><label>School Year (A.Y.)</label><input type="text" name="school_year"
+                <div class="grid-col-6"><label class="text-muted opacity-50">School Year (A.Y.)</label><input type="text" name="school_year"
                         class="form-input form-input-locked" value="2026-2027" readonly></div>
             </div>
 
@@ -790,7 +841,7 @@ $form = $_SESSION['applicant_step1'] ?? [];
                         class="bi bi-chevron-right"></i></button>
             </div>
         </form>
-    </main>
+    </div>
 
     <div id="coursesModal" class="modal-overlay">
         <a href="#" class="modal-backdrop"></a>
@@ -799,7 +850,7 @@ $form = $_SESSION['applicant_step1'] ?? [];
             <h3>Programs & Courses Offered</h3>
             <hr>
             <p style="font-size: 13.5px; color: var(--text-muted); margin-bottom: 20px;">Click a program below to review
-                details, then use the button inside to select it.</p>
+                details.</p>
             <div class="course-list">
                 <div class="course-item" id="item-BSCS">
                     <div class="course-header" onclick="toggleCourseDescription('BSCS')">
@@ -811,9 +862,7 @@ $form = $_SESSION['applicant_step1'] ?? [];
                             <p><strong>Overview:</strong> This program focuses on computing concepts, algorithms,
                                 theory, software structures, and advanced computational math foundation blocks.</p>
                             <p><strong>Core Focus Areas:</strong> Artificial Intelligence, Software Engineering, Data
-                                Structures, Machine Learning, and Algorithm Analysis.</p><button type="button"
-                                class="course-select-btn" onclick="selectCourseAndClose('BSCS')"><i
-                                    class="bi bi-check2-circle"></i> Select BSCS</button>
+                                Structures, Machine Learning, and Algorithm Analysis.</p>
                         </div>
                     </div>
                 </div>
@@ -828,30 +877,27 @@ $form = $_SESSION['applicant_step1'] ?? [];
                                 development demands through systems administration, network design, and web programming.
                             </p>
                             <p><strong>Core Focus Areas:</strong> Full-Stack Development, Database Management Systems
-                                (DBMS), Network Security, and System Integration.</p><button type="button"
-                                class="course-select-btn" onclick="selectCourseAndClose('BSIT')"><i
-                                    class="bi bi-check2-circle"></i> Select BSIT</button>
+                                (DBMS), Network Security, and System Integration.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
     <script>
         const PSGC_API = 'https://psgc.gitlab.io/api';
 
         document.addEventListener("DOMContentLoaded", async () => {
             const regionSelect = document.getElementById("address_region");
-            regionSelect.innerHTML = '<option value="" disabled selected>Loading Regions...</option>';
+            const savedRegion = "<?php echo $form['address_region'] ?? ''; ?>";
 
+            regionSelect.innerHTML = '<option value="" disabled selected>Loading Regions...</option>';
             try {
                 const response = await fetch(`${PSGC_API}/regions/`);
                 const regions = await response.json();
-
                 regions.sort((a, b) => a.name.localeCompare(b.name));
-
                 regionSelect.innerHTML = '<option value="" disabled selected>Select Region</option>';
+
                 regions.forEach(region => {
                     const option = document.createElement('option');
                     option.value = region.name;
@@ -860,41 +906,41 @@ $form = $_SESSION['applicant_step1'] ?? [];
                     regionSelect.appendChild(option);
                 });
 
-                const savedRegion = "<?php echo $form['address_region'] ?? ''; ?>";
                 if (savedRegion) {
                     regionSelect.value = savedRegion;
-                    handleRegionChange();
+                    await handleRegionChange();
                 }
             } catch (error) {
                 regionSelect.innerHTML = '<option value="" disabled selected>Error loading regions</option>';
-                console.error("Error fetching regions:", error);
             }
         });
 
         async function handleRegionChange() {
             const regionSelect = document.getElementById("address_region");
             const selectedOption = regionSelect.options[regionSelect.selectedIndex];
-            const regionCode = selectedOption.dataset.code;
+            if (!selectedOption || selectedOption.value === "") return;
 
+            const regionCode = selectedOption.dataset.code;
             const provinceSelect = document.getElementById("address_province");
             const citySelect = document.getElementById("address_city");
             const brgySelect = document.getElementById("address_barangay");
+            const savedProvince = "<?php echo $form['address_province'] ?? ''; ?>";
 
-            provinceSelect.innerHTML = '<option value="" disabled selected>Loading...</option>';
+            provinceSelect.innerHTML = '<option value="" disabled selected>Loading Provinces...</option>';
             citySelect.innerHTML = '<option value="" disabled selected>Select Province First</option>';
             brgySelect.innerHTML = '<option value="" disabled selected>Select City First</option>';
 
             try {
-                if (regionCode === '130000000') {
+                if (regionSelect.value === 'National Capital Region (NCR)' || regionCode === '130000000') {
                     provinceSelect.innerHTML = '<option value="Metro Manila" data-code="130000000" selected>Metro Manila</option>';
-                    handleProvinceChange(regionCode, true);
+                    await handleProvinceChange('130000000', true);
                     return;
                 }
 
                 const response = await fetch(`${PSGC_API}/regions/${regionCode}/provinces/`);
                 const provinces = await response.json();
-
                 provinceSelect.innerHTML = '<option value="" disabled selected>Select Province</option>';
+
                 provinces.sort((a, b) => a.name.localeCompare(b.name)).forEach(province => {
                     const option = document.createElement('option');
                     option.value = province.name;
@@ -903,13 +949,11 @@ $form = $_SESSION['applicant_step1'] ?? [];
                     provinceSelect.appendChild(option);
                 });
 
-                const savedProv = "<?php echo $form['address_province'] ?? ''; ?>";
-                if (savedProv) {
-                    provinceSelect.value = savedProv;
-                    handleProvinceChange();
+                if (savedProvince) {
+                    provinceSelect.value = savedProvince;
+                    await handleProvinceChange();
                 }
             } catch (error) {
-                console.error("Error fetching provinces:", error);
                 provinceSelect.innerHTML = '<option value="" disabled selected>Error loading data</option>';
             }
         }
@@ -917,12 +961,14 @@ $form = $_SESSION['applicant_step1'] ?? [];
         async function handleProvinceChange(regionCodeOverride = null, isNCR = false) {
             const provinceSelect = document.getElementById("address_province");
             const selectedOption = isNCR ? null : provinceSelect.options[provinceSelect.selectedIndex];
-            const provinceCode = isNCR ? regionCodeOverride : selectedOption.dataset.code;
+            if (!isNCR && (!selectedOption || selectedOption.value === "")) return;
 
+            const provinceCode = isNCR ? regionCodeOverride : selectedOption.dataset.code;
             const citySelect = document.getElementById("address_city");
             const brgySelect = document.getElementById("address_barangay");
+            const savedCity = "<?php echo $form['address_city'] ?? ''; ?>";
 
-            citySelect.innerHTML = '<option value="" disabled selected>Loading...</option>';
+            citySelect.innerHTML = '<option value="" disabled selected>Loading Cities...</option>';
             brgySelect.innerHTML = '<option value="" disabled selected>Select City First</option>';
 
             try {
@@ -932,8 +978,8 @@ $form = $_SESSION['applicant_step1'] ?? [];
 
                 const response = await fetch(endpoint);
                 const cities = await response.json();
-
                 citySelect.innerHTML = '<option value="" disabled selected>Select City / Municipality</option>';
+
                 cities.sort((a, b) => a.name.localeCompare(b.name)).forEach(city => {
                     const option = document.createElement('option');
                     option.value = city.name;
@@ -942,13 +988,11 @@ $form = $_SESSION['applicant_step1'] ?? [];
                     citySelect.appendChild(option);
                 });
 
-                const savedCity = "<?php echo $form['address_city'] ?? ''; ?>";
                 if (savedCity) {
                     citySelect.value = savedCity;
-                    handleCityChange();
+                    await handleCityChange();
                 }
             } catch (error) {
-                console.error("Error fetching cities:", error);
                 citySelect.innerHTML = '<option value="" disabled selected>Error loading data</option>';
             }
         }
@@ -956,16 +1000,19 @@ $form = $_SESSION['applicant_step1'] ?? [];
         async function handleCityChange() {
             const citySelect = document.getElementById("address_city");
             const selectedOption = citySelect.options[citySelect.selectedIndex];
-            const cityCode = selectedOption.dataset.code;
+            if (!selectedOption || selectedOption.value === "") return;
 
+            const cityCode = selectedOption.dataset.code;
             const brgySelect = document.getElementById("address_barangay");
-            brgySelect.innerHTML = '<option value="" disabled selected>Loading...</option>';
+            const savedBrgy = "<?php echo $form['address_barangay'] ?? ''; ?>";
+
+            brgySelect.innerHTML = '<option value="" disabled selected>Loading Barangays...</option>';
 
             try {
                 const response = await fetch(`${PSGC_API}/cities-municipalities/${cityCode}/barangays/`);
                 const barangays = await response.json();
-
                 brgySelect.innerHTML = '<option value="" disabled selected>Select Barangay</option>';
+
                 barangays.sort((a, b) => a.name.localeCompare(b.name)).forEach(brgy => {
                     const option = document.createElement('option');
                     option.value = brgy.name;
@@ -973,28 +1020,14 @@ $form = $_SESSION['applicant_step1'] ?? [];
                     brgySelect.appendChild(option);
                 });
 
-                const savedBrgy = "<?php echo $form['address_barangay'] ?? ''; ?>";
                 if (savedBrgy) {
                     brgySelect.value = savedBrgy;
                 }
             } catch (error) {
-                console.error("Error fetching barangays:", error);
                 brgySelect.innerHTML = '<option value="" disabled selected>Error loading data</option>';
             }
         }
-
-        function toggleCourseDescription(courseId) {
-            const targetItem = document.getElementById('item-' + courseId);
-            const allItems = document.querySelectorAll('.course-item');
-            allItems.forEach(item => { if (item !== targetItem) { item.classList.remove('expanded'); } });
-            targetItem.classList.toggle('expanded');
-        }
-
-        function selectCourseAndClose(courseValue) {
-            const courseSelect = document.getElementById('preferred_program');
-            if (courseSelect) { courseSelect.value = courseValue; }
-            window.location.hash = '#';
-        }
+        function toggleCourseDescription(courseId) { const targetItem = document.getElementById('item-' + courseId); const allItems = document.querySelectorAll('.course-item'); allItems.forEach(item => { if (item !== targetItem) { item.classList.remove('expanded'); } }); targetItem.classList.toggle('expanded'); }
     </script>
 </body>
 

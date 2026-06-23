@@ -23,14 +23,16 @@ try {
         ':phone' => $data['emergency_phone']
     ]);
     $guardian_id = $conn->lastInsertId();
+
+    // FIXED: Added year_level to the column list and the VALUES parameters
     $sql2 = "INSERT INTO applicants (
-                reference_number, classification, academic_term, school_year,
+                reference_number, classification, year_level, academic_term, school_year,
                 first_name, middle_name, last_name, suffix, date_of_birth, gender, civil_status,
                 nationality, religious_affiliation, email_address, mobile_number,
                 address_region, address_province, address_city, address_barangay, address_postal, address_street,
                 preferred_program, guardian_id, shs_card_path, psa_cert_path, good_moral_path, applicant_photo_path
              ) VALUES (
-                :ref, :classification, :term, :sy,
+                :ref, :classification, :year_level, :term, :sy,
                 :fname, :mname, :lname, :suffix, :dob, :gender, :civil,
                 :nat, :religion, :email, :mobile,
                 :region, :province, :city, :barangay, :postal, :street,
@@ -40,7 +42,9 @@ try {
     $stmt2 = $conn->prepare($sql2);
     $stmt2->execute([
         ':ref' => $ref_num,
-        ':classification' => 'freshman',
+        ':classification' => $data['classification'],
+        // FIXED: Explicitly bind the session-calculated year level to the query
+        ':year_level' => $data['year_level'],
         ':term' => $data['academic_term'],
         ':sy' => $data['school_year'],
         ':fname' => $data['first_name'],
@@ -171,74 +175,6 @@ try {
             display: block;
         }
 
-        .timeline-bar {
-            background-color: #FFFFFF;
-            border-bottom: 1px solid #e9ecef;
-            padding: 30px 20px;
-        }
-
-        .timeline-wrapper {
-            max-width: 1000px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            position: relative;
-        }
-
-        .timeline-wrapper::before {
-            content: '';
-            position: absolute;
-            top: 15px;
-            left: 5%;
-            right: 5%;
-            height: 3px;
-            border-top: 1.5px solid var(--accent-yellow);
-            border-bottom: 1.5px solid var(--accent-yellow);
-            z-index: 1;
-        }
-
-        .timeline-item {
-            position: relative;
-            z-index: 2;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            flex: 1;
-        }
-
-        .timeline-bubble {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            background-color: #FFFFFF;
-            border: 2px solid var(--border-color);
-            color: var(--text-muted);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 600;
-            font-size: 13px;
-        }
-
-        .timeline-label {
-            font-size: 11px;
-            font-weight: 600;
-            color: var(--text-muted);
-            margin-top: 10px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .timeline-item.completed .timeline-bubble {
-            background-color: #0A1140;
-            border-color: #0A1140;
-            color: #FFFFFF;
-        }
-
-        .timeline-item.completed .timeline-label {
-            color: #0A1140;
-        }
-
         .main-container {
             max-width: 1000px;
             margin: 30px auto;
@@ -276,106 +212,6 @@ try {
             letter-spacing: 1px;
         }
 
-        .form-section-divider {
-            margin: 50px 0 30px 0;
-        }
-
-        .form-section-divider h4 {
-            font-family: var(--font-heading);
-            font-size: 20px;
-            color: #0A1140;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .form-section-divider hr {
-            border: 0;
-            border-top: 1px solid #dee2e6;
-            margin-top: 10px;
-        }
-
-        .grid-row {
-            display: flex;
-            flex-wrap: wrap;
-            margin-right: -15px;
-            margin-left: -15px;
-        }
-
-        .grid-col-3 {
-            width: 25%;
-            padding: 0 15px;
-            margin-bottom: 25px;
-        }
-
-        .grid-col-4 {
-            width: 33.3333%;
-            padding: 0 15px;
-            margin-bottom: 25px;
-        }
-
-        .grid-col-6 {
-            width: 50%;
-            padding: 0 15px;
-            margin-bottom: 25px;
-        }
-
-        .grid-col-12 {
-            width: 100%;
-            padding: 0 15px;
-            margin-bottom: 25px;
-        }
-
-        label {
-            display: block;
-            font-size: 12px;
-            font-weight: 600;
-            color: #495057;
-            margin-bottom: 8px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .form-input {
-            width: 100%;
-            padding: 12px 14px;
-            font-size: 14px;
-            font-family: var(--font-body);
-            color: #6c757d !important;
-            background-color: var(--input-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-            cursor: not-allowed;
-        }
-
-        .form-input-success-highlight {
-            background-color: #e8f4fd !important;
-            color: #0D6EFD !important;
-            font-weight: 700;
-            font-size: 16px;
-            letter-spacing: 0.5px;
-            border-color: #b8dbf8 !important;
-        }
-
-        .file-review-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 12px 16px;
-            background-color: #f8f9fa;
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-            font-size: 14px;
-            color: #212529;
-            width: 100%;
-        }
-
-        .file-review-badge i {
-            color: #198754;
-            font-size: 16px;
-        }
-
         .action-footer {
             display: flex;
             justify-content: center;
@@ -411,7 +247,7 @@ try {
 
 <body>
     <nav class="top-navbar">
-        <a href="../../../../index.php">Dashboard</a>
+        <a href="../../../index.php">Dashboard</a>
     </nav>
     <img src="../../../assets/images/PCC_Admission.png" alt="Admission Portal Header" class="header-banner">
     <div class="main-container">

@@ -14,15 +14,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $error_message = "All authorization fields are strictly required and must follow standard formats.";
     } else {
         try {
-            $query = "SELECT * FROM admins WHERE admin_id = :admin_id AND pcc_email = :email LIMIT 1";
+            // STEP 1: First, isolate and check if the Admin ID exists on its own
+            $query = "SELECT * FROM admins WHERE admin_id = :admin_id LIMIT 1";
             $stmt = $conn->prepare($query);
-            $stmt->execute([
-                ':admin_id' => $input_id,
-                ':email' => $input_email
-            ]);
+            $stmt->execute([':admin_id' => $input_id]);
             $admin = $stmt->fetch();
 
-            if ($admin) {
+            if (!$admin) {
+                $error_message = "Invalid credentials. The Admin ID you entered does not exist.";
+            } 
+            // STEP 2: Verify if the provided email matches the one bound to that Admin ID
+            elseif (trim($admin['pcc_email']) !== trim($_POST['pcc_email'])) {
+                $error_message = "Invalid credentials. The Email Address does not match this Admin ID.";
+            } else {
                 $authenticated = false;
                 $stored_code = trim($admin['access_code']);
 
@@ -41,6 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     ]);
                 }
 
+                // STEP 3: Handle wrong Access Code if authentication fails
                 if ($authenticated) {
                     $_SESSION['admin_logged_in'] = true;
                     $_SESSION['admin_id'] = $admin['admin_id'];
@@ -50,10 +55,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     header("Location: dashboard.php");
                     exit();
                 } else {
-                    $error_message = "Invalid Admin ID, Email Address, or Access Code credentials combination.";
+                    $error_message = "Invalid credentials. Incorrect Admin Access Code.";
                 }
-            } else {
-                $error_message = "Invalid Admin ID, Email Address, or Access Code credentials combination.";
             }
         } catch (PDOException $e) {
             $error_message = "Internal authentication engine fault: " . $e->getMessage();
@@ -117,7 +120,7 @@ $random_bg = $backgrounds[array_rand($backgrounds)];
 <body class="login-page bg-body-secondary">
     <div class="login-box">
         <div class="login-logo" style="color: white;">
-            <i><img src="../assets/images/PCC_Logo.png" alt="" style="width: 100px; height: 100px;"></i>
+            <i><img src="../assets/images/PCC_logo.png" alt="" style="width: 100px; height: 100px;"></i>
             <br>
             <p
                 style="font-size: 25px; font-weight: bold; margin-bottom: -10px; margin-top: 5px; text-shadow: 1px 1px 3px black;">

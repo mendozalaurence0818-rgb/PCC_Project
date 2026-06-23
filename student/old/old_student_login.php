@@ -27,11 +27,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $access_code = trim($_POST['access_code']);
 
     try {
-        $auth_stmt = $conn->prepare("SELECT * FROM students WHERE student_number = :num AND email = :email LIMIT 1");
-        $auth_stmt->execute([':num' => $student_no, ':email' => $email]);
-        $student = $auth_stmt->fetch(PDO::FETCH_ASSOC);
+        $check_id_stmt = $conn->prepare("SELECT * FROM students WHERE student_number = :num LIMIT 1");
+        $check_id_stmt->execute([':num' => $student_no]);
+        $student = $check_id_stmt->fetch(PDO::FETCH_ASSOC);
 
-        if ($student && password_verify($access_code, $student['password_hash'])) {
+        if (!$student) {
+            $toast_notification = "<div class='alert alert-danger position-fixed bottom-0 end-0 m-3 z-3 shadow'><strong>Login Denied!</strong> Incorrect Student ID.</div>";
+        } elseif ($student['email'] !== $email) {
+            $toast_notification = "<div class='alert alert-danger position-fixed bottom-0 end-0 m-3 z-3 shadow'><strong>Login Denied!</strong> Incorrect Email Address.</div>";
+        } elseif (!password_verify($access_code, $student['password_hash'])) {
+            $toast_notification = "<div class='alert alert-danger position-fixed bottom-0 end-0 m-3 z-3 shadow'><strong>Login Denied!</strong> Incorrect Student Access Code.</div>";
+        } else {
             $_SESSION['student_logged_in'] = true;
             $_SESSION['student_id'] = $student['student_id'];
             $_SESSION['student_number'] = $student['student_number'];
@@ -39,12 +45,134 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             header("Location: old_student_dashboard.php");
             exit();
-        } else {
-            $toast_notification = "<div class='alert alert-danger position-fixed bottom-0 end-0 m-3 z-3 shadow'><strong>Login Denied!</strong> Credentials entered do not match active student profiles.</div>";
         }
     } catch (PDOException $e) {
         $toast_notification = "<div class='alert alert-danger m-3'>Authentication Fault Loop: " . htmlspecialchars($e->getMessage()) . "</div>";
     }
+}
+
+try {
+    // 1. Fetch system maintenance settings from database
+    $maintenance_check = $conn->query("SELECT system_maintenance FROM system_settings LIMIT 1");
+    $maintenance_config = $maintenance_check->fetch(PDO::FETCH_ASSOC);
+
+    if ($maintenance_config && strtolower(trim($maintenance_config['system_maintenance'])) === 'enabled') {
+
+        // 2. Safely fallback or pick a random background image so the CSS template doesn't throw errors
+        $maintenance_backgrounds = [
+            '../../assets/images/PCC_Main_Background.png',
+            '../../assets/images/PCC_BG2.png'
+        ];
+        $selected_maintenance_bg = $maintenance_backgrounds[array_rand($maintenance_backgrounds)];
+        ?>
+        <!DOCTYPE html>
+        <html lang="en">
+
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>PCC | System Under Maintenance</title>
+            <!-- Included Bootstrap Icons so the "Go back to Home" arrow renders beautifully -->
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+                crossorigin="anonymous" />
+            <link rel="icon" href="../../assets/images/PCC_favicon.png" type="image/png" />
+            <style>
+                body {
+                    min-height: 100vh;
+                    display: flex;
+                    flex-direction: column;
+                    /* Stack the card and home link correctly */
+                    align-items: center;
+                    justify-content: center;
+                    background-image: url('<?php echo $selected_maintenance_bg; ?>');
+                    background-repeat: no-repeat;
+                    background-attachment: fixed;
+                    background-size: cover;
+                    font-family: sans-serif;
+                    margin: 0;
+                }
+
+                .maintenance-card {
+                    text-align: center;
+                    width: 90%;
+                    max-width: 480px;
+                    padding: 40px;
+                    background: white;
+                    border-radius: 12px;
+                    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+                }
+
+                h2 {
+                    color: #002c5e;
+                    margin: 0 0 12px 0;
+                    font-size: 26px;
+                    font-weight: 700;
+                }
+
+                p {
+                    color: #6c757d;
+                    line-height: 1.6;
+                    font-size: 14px;
+                    margin-bottom: 0;
+                }
+
+                .badge {
+                    display: inline-block;
+                    padding: 6px 14px;
+                    background: #fff3cd;
+                    color: #856404;
+                    font-size: 12px;
+                    font-weight: 700;
+                    border-radius: 50px;
+                    text-transform: uppercase;
+                    margin-bottom: 20px;
+                }
+
+                .home-link-container {
+                    text-align: center;
+                    margin-top: 20px;
+                }
+
+                .home-link-container a {
+                    color: white;
+                    text-decoration: none;
+                    font-size: 14px;
+                    font-weight: 600;
+                    letter-spacing: 0.5px;
+                    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.9);
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 4px;
+                    transition: opacity 0.2s;
+                }
+
+                .home-link-container a:hover {
+                    opacity: 0.85;
+                }
+            </style>
+        </head>
+
+        <body>
+            <div class="maintenance-card">
+                <div class="badge">Down For Maintenance</div>
+                <h2>Portal Temporarily Offline</h2>
+                <p>The Student Portal is currently undergoing routine maintenance updates.
+                    System functionality will be fully restored shortly.</p>
+            </div>
+
+            <div class="home-link-container">
+                <a href="../../index.php">
+                    <i class="bi bi-arrow-left-short fs-5"></i>Go back to Home
+                </a>
+            </div>
+        </body>
+
+        </html>
+        <?php
+        exit();
+    }
+} catch (PDOException $e) {
+    // Fails silently to prevent exposing full database errors to public users
 }
 ?>
 <!DOCTYPE html>
@@ -85,7 +213,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <div class="login-box">
         <div class="login-logo" style="color: white;">
-            <i><img src="../../assets/images/PCC_Logo.png" alt="PCC Logo"
+            <i><img src="../../assets/images/PCC_logo.png" alt="PCC Logo"
                     style="width: 100px; height: 100px; text-shadow: 1px 1px 3px black;"></i>
             <br>
             <p

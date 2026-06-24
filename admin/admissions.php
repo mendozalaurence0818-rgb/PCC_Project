@@ -391,11 +391,15 @@ try {
 
         .tab-indicator {
             font-weight: 600;
-            padding: 6px 12px;
+            padding: 6px 16px;
             border-radius: 20px;
-            font-size: 0.8rem;
-            display: inline-flex;
+            font-size: 0.78rem;
+            display: inline-flex !important;
             align-items: center;
+            justify-content: center;
+            white-space: nowrap;
+            min-width: 115px;
+            width: auto;
         }
 
         .nav-date {
@@ -981,7 +985,7 @@ try {
 
                                                 <div class="col-sm-6 col-md-3">
                                                     <div class="document-thumbnail-frame">
-                                                        <span class="d-block small text-muted fw-bold mb-1">Grade 12 Card (Form
+                                                        <span class="d-block small text-muted fw-bold mb-1">Grade Card (Form
                                                             138)</span>
                                                         <?php
                                                         $card_db = $selected_applicant['shs_card_path'] ?? '';
@@ -1208,8 +1212,9 @@ try {
                                                                 $status_badge = 'bg-info-subtle text-info border border-info-subtle';
                                                             }
                                                             ?>
-                                                            <span
-                                                                class="badge <?php echo $status_badge; ?> tab-indicator d-inline-block w-75 text-center"><?php echo htmlspecialchars($status); ?></span>
+                                                            <span class="badge <?php echo $status_badge; ?> tab-indicator">
+                                                                <?php echo htmlspecialchars($status); ?>
+                                                            </span>
                                                         </td>
                                                         <td class="pe-4 text-end">
                                                             <a href="?edit_id=<?php echo urlencode($app['applicant_id']); ?>"
